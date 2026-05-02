@@ -123,6 +123,7 @@
   .activity-cell.on { background: var(--panel-2); color: var(--bar); }
   .activity-cell.future { outline: 1px dashed var(--bar); outline-offset: -1px; }
   .activity-cell.on.future { background: var(--bg); color: var(--bar); outline-color: var(--bar); }
+  .activity-cell.selected { outline: 2px solid var(--text); outline-offset: 1px; }
   .activity-tot { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
   .activity-empty { color: var(--muted); font-size: 13px; }
   @media (max-width: 600px) {
@@ -193,11 +194,6 @@
   </section>
 
   <section>
-    <h2><span data-month-label="Wall push-ups — $M">Wall push-ups</span></h2>
-    <svg class="chart tall" id="wallPushupChart" preserveAspectRatio="none"></svg>
-  </section>
-
-  <section>
     <h2><span data-month-label="Activities — $M">Activities</span></h2>
     <div id="activities"></div>
   </section>
@@ -213,7 +209,6 @@ let cachedSessions = null, cachedHealth = null, cachedErrors = [];
 let currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
 const STEPS_KEY = "steps";
 const SLEEP_KEY = "sleep";
-const WALL_PUSHUP_KEY = "wall push-up";
 const HABIT_LABELS = { "refined carbs": "refi. carbs" };
 const labelFor = k => HABIT_LABELS[k] || k;
 
@@ -271,8 +266,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "CAMxnrdOaZS_KMMR";
-  const CT_B64 = "0ldMosdUqMJvNWmdD1rYKsEBUlLveGG83t78vNBEpKFoOoS1NqHw2yk1LWe35bhZrfu2Dq0LCmdfV5STs5Uo_cLwEA3mQml97bQByX6YyNGlbnDYj8Q-OflMaLAjJO18zG7NxYZaiuoTto87M5NLcppwiEqitqICCfzQ0N_r1dYf5ExttM1h1wxcAgvzMz3vP8bF0ejD4LcAmdpWBruxJOL5lugewZFujTEVBrVZCEDJuFqqE_hr_nB8N_1gitdmjA8_8VNFl_0QdmlgQf_xbFoaMlDIveJ9fvGdw5ZSW5mGBeDXchqjwyHpbaJg6h5OmLWyynsdlaKEzpWu6f1Q6DqRn9Ke654gQXhRwyBL_3YVZbBzC60HWsUFpdxlgBBnowOb_CN1sC542yRK-vBnit33rk2ZzDx3S3xQ-QFBiAVVJGb0goR2XQC1fbFJSNtrXS0T8WjSjZswNuuMDH9lEl3Z-FQRMjLX5W3ABlmEq0Qr4QtVksxmsret1bZQ3FcorB6IXM09f43NYx6oytnMKcnGd3rsgKwaD3fvwF0BfXryD79Yu0eh_Sfefi3ZCooQUmpqaVEW34FOr7miqnZdKs79IIjEkBiNc8bBbXKZQonY2hLLRIEwG4J77qFx39oV_odYS8bNhAOA8xCXZ1DIPJPiOPwTnSAGXruGHQItoLH54f8tfoFz8JPKvdIGJXHcTi7q155GdkzeAqqlrpn-QB2jgRdeThRDReBbF_O_OCOOF_ZxyR-pPg";
+  const NONCE_B64 = "8aBNygkHI_m59Y2o";
+  const CT_B64 = "POJpATYvAXnIC2ugik97Nw34Wwyg4ZUbj_vNAxhlJrlvtQpt88wP3hVDyfjlx4OAa2UfRWT27rc6eyZpy7yYv987rKysj-ZLhFohLQSsRPpiW1BGpkqvzMMjyUaQ2Rmh6QfkMEddeF5cK4XxJnYnw1Jhf2UNL4xvkdJLkwpc0znerIaGI8kIX9Ml2dcXSevNkOcs37xDVbMdAWUj5SxMdZWsEAkVTPfAnnK64uGSwNZr1fbD-91iuQ5dBvXK-MdkXjPjJ7oCZ0fsZv-v_hqh7w5O4Uf1JLg4WVHtDrDRAGXGLFOCG9SFbzhg8T7P78DBcYXD20h6bDYCNrvCB8WqHVPw7jfetuc_EzPxDf98S5SeVwS99vrEitIFS9pzKs79sUXsj7X1alqim5lQGN1oXPIiwY4xVxmReR88626wnZqiMEMeSvutdQc4ttQRnpp1M_NvvEwlc7DAvdpf2OAr-bhC2_KyhNMq8l3ZZY7r59hat78E_BkW43SJcO-GUtgRCj9ayPUD0B1WHNRP7YwSTQruQO2jJlzu_w4v8zD3PsnrmZMhLfsvZUS-RgsTZQILHs8s4leDLDDeECRP1Uow2XHDIZ1Kuwzbh__0UIjWGmuiyiOp4jCJUn9gCT731bJfwghwXhn1I5pudfGNKRIOZI3bef8P8zQtNK471YGiY0AjGYvgqcKeEzKpzdFmqHTMxboR1cjl8OYZNedWegaNqc_tiEtGmRMZutJgrGMxIjPjMXUUrEICZA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -370,7 +365,7 @@ function render(sessions, health, errors) {
 
   const HABIT_KEYS = ["coffee", "alcohol", "fruit", "dessert", "fried foods", "refined carbs", "bowel movement"];
   const EVENT_KEYS = ["doctor visit"];
-  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging"];
+  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging", "wall push-up", "dead hang"];
   const baseOf = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
   const isHabit = k => HABIT_KEYS.includes(k);
   const isEvent = k => EVENT_KEYS.includes(k);
@@ -404,7 +399,6 @@ function render(sessions, health, errors) {
       if (isActivity(k)) continue;
       if (k === STEPS_KEY) continue;
       if (k === SLEEP_KEY) continue;
-      if (k === WALL_PUSHUP_KEY) continue;
       const num = typeof v === "number" ? v : (v && v.isCount ? v.value : null);
       if (num != null) {
         const baseKey = baseOf(k);
@@ -429,18 +423,6 @@ function render(sessions, health, errors) {
       `${stepEntriesMonth.length}d avg · ${monthName}`]);
   } else {
     cards.push(["Steps", "—", `no data · ${monthName}`]);
-  }
-
-  // Wall push-ups total for the selected month
-  const wpEntriesMonth = sessions
-    .filter(s => s.date.startsWith(monthPrefix))
-    .map(s => s.items[WALL_PUSHUP_KEY])
-    .filter(v => v != null)
-    .map(v => typeof v === "number" ? v : (v.isCount ? v.value : 0));
-  if (wpEntriesMonth.length) {
-    const total = wpEntriesMonth.reduce((a, b) => a + b, 0);
-    cards.push(["Wall push-ups", total.toLocaleString(),
-      `${wpEntriesMonth.length}d · ${monthName}`]);
   }
 
   // Sleep avg for the selected month
@@ -513,7 +495,6 @@ function render(sessions, health, errors) {
   renderActivities(sessions, ACTIVITY_KEYS, currentMonth);
   requestAnimationFrame(() => {
     drawStepsChart(sessions, currentMonth);
-    drawWallPushupChart(sessions, currentMonth);
     drawSleepChartCc02(sessions, currentMonth);
   });
 }
@@ -671,45 +652,6 @@ function drawStepsChart(sessions, month) {
   });
 }
 
-function drawWallPushupChart(sessions, month) {
-  const { svg, W, H } = setupSvg("wallPushupChart");
-  const slots = monthDays(month);
-  const days = slots.length;
-  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
-  const data = slots.map(date => {
-    const v = (byDate[date] || {})[WALL_PUSHUP_KEY];
-    const value = typeof v === "number" ? v : (v && v.isCount ? v.value : 0);
-    return { date, value };
-  });
-  const max = Math.max(20, ...data.map(d => d.value));
-  const niceMax = Math.ceil(max / 10) * 10;
-  const pad = { l: 44, r: 8, t: 8, b: 22 };
-  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
-  const slot = innerW / days;
-  const barW = Math.max(2, slot - 2);
-  const c = cssVar("--bar");
-
-  svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t + innerH, x2: W - pad.r, y2: pad.t + innerH }));
-  svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + 8 }, niceMax.toLocaleString()));
-  svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + innerH }, "0"));
-
-  data.forEach((d, i) => {
-    if (d.value > 0) {
-      const x = pad.l + i * slot + 1;
-      const h = (d.value / niceMax) * innerH;
-      const rect = svgEl("rect", { x, y: pad.t + innerH - h, width: barW, height: h, fill: c });
-      rect.appendChild(svgEl("title", {}, `${d.date}: ${d.value} wall push-ups`));
-      svg.appendChild(rect);
-    }
-    if (i === 0 || i === days - 1 || i === Math.floor(days / 2)) {
-      const isLast = i === days - 1;
-      const attrs = { class: "label", x: pad.l + i * slot + (isLast ? barW : barW / 2), y: H - 6 };
-      if (isLast) attrs["text-anchor"] = "end";
-      svg.appendChild(svgEl("text", attrs, d.date.slice(8)));
-    }
-  });
-}
-
 function renderActivities(sessions, activityKeys, month) {
   const container = document.getElementById("activities");
   if (!container) return;
@@ -720,35 +662,63 @@ function renderActivities(sessions, activityKeys, month) {
   const todayStr = new Date().toISOString().slice(0, 10);
 
   const rows = activityKeys.map(activity => {
-    let countDays = 0;
+    let countDays = 0, total = 0;
     const cells = dayKeys.map(dk => {
       const items = byDate[dk] || {};
-      let occurred = false;
+      let sumVal = 0;
+      const notes = [];
       for (const k of Object.keys(items)) {
-        if (stripBase(k) === activity) { occurred = true; break; }
+        if (stripBase(k) !== activity) continue;
+        const raw = items[k];
+        const v = typeof raw === "number" ? raw : (raw && raw.isCount ? raw.value : 0);
+        sumVal += v || 0;
+        if (raw && raw.notes) notes.push(...raw.notes);
       }
-      if (occurred) countDays++;
+      const occurred = sumVal > 0;
+      if (occurred) { countDays++; total += sumVal; }
       const isFuture = dk > todayStr;
-      return { dk, occurred, isFuture };
+      return { dk, occurred, sumVal, notes, isFuture };
     });
+    const hasCount = cells.some(c => c.sumVal > 1);
     const icon = iconFor(activity);
     const cellsHtml = cells.map(c => {
       const cls = ["activity-cell"];
       if (c.occurred) cls.push("on");
       if (c.isFuture) cls.push("future");
-      const inner = c.occurred ? "✓" : "";
-      const title = c.occurred
-        ? `${c.dk} — ${activity}${c.isFuture ? " (scheduled)" : ""}`
+      const inner = c.occurred ? (c.sumVal > 1 ? c.sumVal : "✓") : "";
+      const tip = c.occurred
+        ? `${c.dk} · ${activity}: ${c.sumVal}${c.notes.length ? " (" + c.notes.join(", ") + ")" : ""}${c.isFuture ? " (scheduled)" : ""}`
         : c.dk;
-      return `<div class="${cls.join(" ")}" title="${title}">${inner}</div>`;
+      const tipAttr = tip.replace(/"/g, "&quot;");
+      return `<div class="${cls.join(" ")}" title="${tipAttr}" data-tip="${tipAttr}" data-activity="${activity}" data-date="${c.dk}">${inner}</div>`;
     }).join("");
+    const tot = hasCount ? `${total} / ${countDays}d` : `${countDays}d`;
     return `<div class="activity-row" style="--days:${days}">
       <div class="activity-name"><span class="icon">${icon}</span>${activity}</div>
       <div class="activity-cells">${cellsHtml}</div>
-      <div class="activity-tot">${countDays}d</div>
+      <div class="activity-tot">${tot}</div>
     </div>`;
   }).join("");
-  container.innerHTML = rows || `<div class="activity-empty">No activities tracked.</div>`;
+  container.innerHTML =
+    `<div id="activityDetail" class="habit-detail empty">Tap a cell to see details</div>` +
+    (rows || `<div class="activity-empty">No activities tracked.</div>`);
+
+  const detail = container.querySelector("#activityDetail");
+  if (!detail) return;
+  container.onclick = e => {
+    const cell = e.target.closest(".activity-cell");
+    if (!cell) return;
+    if (cell.classList.contains("selected")) {
+      cell.classList.remove("selected");
+      detail.textContent = "Tap a cell to see details";
+      detail.classList.add("empty");
+      return;
+    }
+    container.querySelectorAll(".activity-cell.selected").forEach(c => c.classList.remove("selected"));
+    cell.classList.add("selected");
+    detail.textContent = cell.dataset.tip;
+    detail.classList.remove("empty");
+  };
 }
 
 const ICON_RULES = [
@@ -777,6 +747,8 @@ const ICON_RULES = [
   [/dancing|dance/i, "💃"],
   [/pilates|yoga/i, "🧘"],
   [/jogging|run/i, "🏃"],
+  [/wall.?push|push.?up/i, "💪"],
+  [/dead.?hang|hang/i, "🧗"],
   [/doctor/i, "🩺"],
   [/swim/i, "🏊"],
   [/sauna/i, "🧖"],
@@ -1258,6 +1230,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:42</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:47</div>
 </body>
 </html>

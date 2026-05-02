@@ -80,27 +80,32 @@
 const WORKER_URL = "https://cc02-log.twchou.workers.dev/entry";
 
 const CATEGORIES = [
-  { name: "Weight morning",  unit: "kg",  type: "number", placeholder: "58.0", suffix: " kg" },
-  { name: "Weight night",    unit: "kg",  type: "number", placeholder: "58.7", suffix: " kg" },
-  { name: "Sleep",           type: "text", placeholder: "23:00 → 09:00" },
-  { name: "Steps",           type: "number", placeholder: "11000" },
-  { name: "Wall push-up",    type: "number", placeholder: "50" },
-  { name: "Coffee",          type: "text", placeholder: "1 拿鐵" },
-  { name: "Alcohol",         type: "text", placeholder: "1 紅酒" },
-  { name: "Fruit",           type: "text", placeholder: "1 奇異果" },
-  { name: "Dessert",         type: "text", placeholder: "1 蛋糕" },
-  { name: "Fried foods",     type: "text", placeholder: "1 炸雞" },
-  { name: "Refined carbs",   type: "text", placeholder: "1 可頌麵包" },
-  { name: "Bowel movement",  type: "number", placeholder: "1", default: "1" },
-  { name: "Badminton",       type: "number", placeholder: "1", default: "1" },
-  { name: "Trampoline",      type: "number", placeholder: "1", default: "1" },
-  { name: "Dancing",         type: "number", placeholder: "1", default: "1" },
-  { name: "Pilates",         type: "number", placeholder: "1", default: "1" },
-  { name: "Jogging",         type: "number", placeholder: "1", default: "1" },
-  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1" },
+  // Body
+  { name: "Weight morning",  unit: "kg",  type: "number", placeholder: "58.0", suffix: " kg", group: "Body" },
+  { name: "Weight night",    unit: "kg",  type: "number", placeholder: "58.7", suffix: " kg", group: "Body" },
+  { name: "Sleep",           type: "text", placeholder: "23:00 → 09:00",                       group: "Body" },
+  { name: "Steps",           type: "number", placeholder: "11000",                              group: "Body" },
+  // Habits (text fields capture description after the count)
+  { name: "Coffee",          type: "text", placeholder: "1 拿鐵",     group: "Habits" },
+  { name: "Alcohol",         type: "text", placeholder: "1 紅酒",     group: "Habits" },
+  { name: "Fruit",           type: "text", placeholder: "1 奇異果",   group: "Habits" },
+  { name: "Dessert",         type: "text", placeholder: "1 蛋糕",     group: "Habits" },
+  { name: "Fried foods",     type: "text", placeholder: "1 炸雞",     group: "Habits" },
+  { name: "Refined carbs",   type: "text", placeholder: "1 可頌麵包", group: "Habits" },
+  { name: "Bowel movement",  type: "number", placeholder: "1", default: "1", group: "Habits" },
+  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1", group: "Habits" },
+  // Activities — default-1 chips submit with one tap; counted ones need a value
+  { name: "Badminton",       type: "number", placeholder: "1", default: "1", group: "Activities" },
+  { name: "Trampoline",      type: "number", placeholder: "1", default: "1", group: "Activities" },
+  { name: "Dancing",         type: "number", placeholder: "1", default: "1", group: "Activities" },
+  { name: "Pilates",         type: "number", placeholder: "1", default: "1", group: "Activities" },
+  { name: "Jogging",         type: "number", placeholder: "1", default: "1", group: "Activities" },
+  { name: "Wall push-up",    type: "number", placeholder: "50",              group: "Activities" },
+  { name: "Dead hang",       type: "number", placeholder: "60",              group: "Activities" },
+  // Schedule — picks an appointment date
   { name: "Doctor visit",    type: "number", placeholder: "1", default: "1", dateFocus: true, group: "Schedule" },
 ];
-const DEFAULT_GROUP = "Daily log";
+const DEFAULT_GROUP = "Body";
 
 const $ = id => document.getElementById(id);
 const dateEl = $("date");
@@ -166,6 +171,9 @@ function applyCategory() {
     if (active.dateFocus) {
       dateEl.focus({ preventScroll: true });
       if (dateEl.showPicker) { try { dateEl.showPicker(); } catch {} }
+    } else if (active.default) {
+      // Pre-filled value → focus Save so user can submit with one tap, no keyboard
+      submitEl.focus({ preventScroll: true });
     } else {
       valEl.focus({ preventScroll: true });
     }
