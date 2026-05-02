@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "OCoFOwRUpGWDcK5z";
-  const CT_B64 = "o7VMl0M8krLph3Gqigj9rdrP6K3WJl7H9AZ878VifVoBRRcUDv50J0O4Hpw1ztLkelK3U28ezDD-f8qp5lQ_gQmepxUyZ8akp7wqbgIwk18XMp25e5IMor1mjaKAjfTDB9UKDNMKc831sHALaOw2GZSpvejoci1XFagQfHU5L1mXyiQOfmOmDlkicJlkY7wQq0NDsygubKcudmGSDNUAFxqGBRotw1Lc9WsSurqcpsHaOGKbbtwYVmprJ3CS4v8DEIY5RcewXX1heuXtfqSkFY_NYo1Rdh6fkfr8jPVQdr5Yhe80kuyLSwNxa9yVAYjDTLWm4e-Maaz5qyZg4Yp6mvRk1K7Bvld1wLW7sqQ3yhBcl-fFPR-rgrwKqWct2r6d9TQEgXmjBkwvEy034eVFrZ03hnsjsR4N1sOHLO9oygG6BGlOyRsCC_8C62yuR-WUyGHee0p1dVFePo7XW5gwf0BOnhC8zQ";
+  const NONCE_B64 = "Wv-sPLQ_neZgI14s";
+  const CT_B64 = "gzWeNtr0I9nUofQZIzc2YRX7moqs_6TtHgKauo7NNtel1TJ-Trjwy6jhp9b3JZgyuNxmUR8SePoB1VicvrTDZFy9LN7Jj2QFMaZYLxlfVe5_Ka-RO5Dkt4Q1B1mMw8gUpdvA-VjVC23hW3ASSL-Hc2F8vcXY6XFCU2SuqN61ek5ccztFBOB-hqiLBY0vwkM6zsNepo4JaB7UFeMrlb-eSke-uyeBPncbgQV4joRa_ecl8bfjFMgMLmK_VVOwGJdXyHrw0V9A0xFTlj5uJWp3SIZfDGynqzWUD8CsaGmXr2Yd94z0tSWZu4jyl1cD2XQZs2qrwnU_-Tawx-AV4ATMaHIA2aa0QZAq9IYPmFrTBDNu0hhkqoRNcW1hwq8UpJJ9GUkUHTYW4_7zYM3_fXSEZZkNGRgQUoUk3o3OkbEERqJqb6zTLv7xcs-PH6NpnfsOY9T1dXxRw7wBFUrYcB4Y9ry40vw6heedB72bwCJuhIpE5EUWoD2Dh4yrD7Aw89wxntfMY7lsFK2o2Gvk8zFz7Q";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1177,6 +1177,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:00</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:11</div>
 </body>
 </html>
