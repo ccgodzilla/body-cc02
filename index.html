@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "LiLcr3lNh7XvRrvO";
-  const CT_B64 = "w2F8-uwZdIRYLP6Q7o0dDgq4OuX8wdDKAmqPzvAWMUvnW3uM8KfMmPur38FLciuQW991McrUS5Nx6grD85O-808f51fsSObeR2GyNWXtiCaaQocUUWlxhi61HiuN15bW5-IIQWwwVYGACmttiUes777f_lrbXJlzISHm2Ny763gxiw7nkwz7L_rOOIhh_ZlE0lGfjIGui_m6_HqSjE2bPNFhOO8-oQxsF5AHNjypxT8QvfdJafGbLXEOO1S43DFoC42Vfk6UZBWX_8JNhADCpVoIosbsaRgWZoNTdf80IcoNVhzqUFP0UCZEqON3Xll9ZlXzQT4cdxDol0VeTYkgv2z0QxvWGAMZcD7ABKn7sl8-uaUHy2gS6_HxktiedsJpkQiyRMRJF3Ef6Eyc51LOy1IiF7Daj1IC84A--78f6AbVLpUfxpvJH9fBxg6G5Uuo_kMwOKX142GjwYIrjqUl9kRQbYVuwNDRF8qnteQwdTd-HK-9xx_i1v_cchIZ0cnbmoO6xL1ulhWDITh9s9Nkps60YSMEL_yOLUhfh2fbDrMaHYQQJP3DZnP4-R35Yx3Jxi0_Az1ik2S1uUeD8DunLzK--izO2L9Trz2-HzWsZPz0-GdXJKsjWsG87-0IYeGxUDDD2dJXb2LDstLX2VkEH87L4YiLgHg5VPpHGx3yYtjESZmJLTGDgwNPZKPPWhYV_xvkMXc41pOAJqJnnUsjJCKfycZiY5xdnXlJ7TvOhLACCfOEyLibpdZgxBknYdCX2b-vgg";
+  const NONCE_B64 = "c12fCGAaSl1rFsJ6";
+  const CT_B64 = "2B9Qwz2gyds2ULBex_hxz9YVuZ-52VKn6nS_szqZ6deMvIcivE5gHqJROIUmnGSnmm8HLjLFx-eqWHhwag2sShg_KRyHuZ2f8UbB4cpO9pGfqHmp25KAK_JIe90hirVFLnjXcYCbvisNVFh5664cKZVqekFxf6D6DX5678lj9dQUxYQuwctV5EPVPo22dq3MRKCDRbH8L8hN5BwiMN9I6IvHGfQ-CFn-lKFScwZuRxyIzpYEH-ul6zbI2DIk968jYSWraqeGMTBX8dtJhbcDD_PrMr9no_BuzS_Bp0pip4M4mjyX0EcrXp4FiUJ-pBKkv91bZKh9840eMwz6zqQVcKengbKq-CrROFnM45pZHoBhOoCMDefrsY4MbgaF5bPEZf2TMXxpT12xztWawxEFkTH1QozRVhVInAA7odR6VNv7DsQDwdiWrwb5b1HF07D1kkTHJvyiBtzDEQWKiECQXrfmMtUnvie9HxeG_hV77GSICNYi1YwwcRzmZad4AEidnqt4uUAwtadloKrYDDxIoynyBWHGgdf9Sr0wFvhOpkicR3UB0wqYFKfCSNCBmA-f_cOjIoLwHG_1hh_Fr-NCzB9wZYyAPRzZ-_-7Ufhc0uhlWeucWhSZtsynS8mG_ipVj3FvEvIkPnJIw3UxhML2BjJGz6mJF1FNN9jmopZv1Vs5OGpK9uzDBqphIU9d6GOGvsSAxtxutyq9UEd4syigbSdt1tWyIMzbvyk63VYL7x7mwzxGh_WHwwFnzzAB9p4N_5_FhOqTJLJHkmUpcm_zYaIrUYa4hsKAmA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
