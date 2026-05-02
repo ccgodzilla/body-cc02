@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b0b0c">
+<title>cc02 log</title>
+<style>
+  :root {
+    --bg: #0b0b0c;
+    --card: #16161a;
+    --line: #26262d;
+    --text: #f3f3f5;
+    --muted: #8b8b95;
+    --accent: #ff7a59;
+    --ok: #6ad48b;
+    --err: #ff6f6f;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    padding-bottom: env(safe-area-inset-bottom); }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 16px 14px 80px; }
+  h1 { font-size: 18px; font-weight: 600; margin: 4px 0 14px; letter-spacing: -0.01em; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 14px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  input[type=date], input[type=text], input[type=number], select {
+    width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--card); color: var(--text); font-size: 16px; outline: none;
+    -webkit-appearance: none; appearance: none;
+  }
+  input:focus, select:focus { border-color: var(--accent); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cat {
+    padding: 14px 10px; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--card); color: var(--text); font-size: 15px; text-align: left;
+    display: flex; flex-direction: column; gap: 2px; cursor: pointer; transition: border-color .15s;
+  }
+  .cat .sub { color: var(--muted); font-size: 11px; }
+  .cat.active { border-color: var(--accent); background: #1c1a18; }
+  .submit {
+    width: 100%; padding: 16px; margin-top: 18px; border-radius: 14px; border: 0;
+    background: var(--accent); color: #1a0f0a; font-size: 17px; font-weight: 600;
+    cursor: pointer;
+  }
+  .submit:disabled { opacity: 0.4; }
+  .status { margin-top: 14px; min-height: 22px; font-size: 14px; text-align: center; }
+  .status.ok { color: var(--ok); }
+  .status.err { color: var(--err); }
+  .recent { margin-top: 22px; padding: 12px 14px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 12px; font-size: 13px; color: var(--muted); }
+  .recent .row { display: flex; justify-content: space-between; padding: 4px 0; }
+  .recent .row + .row { border-top: 1px dashed var(--line); }
+  .recent .v { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>cc02 log</h1>
+
+  <label>Date</label>
+  <input id="date" type="date">
+
+  <label>Category</label>
+  <div class="grid" id="cats"></div>
+
+  <label id="value-label">Value</label>
+  <input id="value" type="text" autocomplete="off" autocapitalize="off">
+
+  <button class="submit" id="submit">Save</button>
+  <div class="status" id="status"></div>
+
+  <div class="recent" id="recent" hidden>
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;">just saved</div>
+    <div id="recent-list"></div>
+  </div>
+</div>
+
+<script>
+const WORKER_URL = "https://cc02-log.twchou.workers.dev/entry";
+
+const CATEGORIES = [
+  { name: "Weight",          unit: "kg",  type: "number", placeholder: "58.7", suffix: " kg" },
+  { name: "Weight morning",  unit: "kg",  type: "number", placeholder: "58.0", suffix: " kg" },
+  { name: "Sleep",           type: "text", placeholder: "23:00 → 09:00" },
+  { name: "Coffee",          type: "text", placeholder: "1 拿鐵" },
+  { name: "Refined carbs",   type: "text", placeholder: "1 可頌麵包" },
+  { name: "Fruit",           type: "text", placeholder: "1 奇異果" },
+  { name: "Steps",           type: "number", placeholder: "11000" },
+  { name: "Bowel movement",  type: "number", placeholder: "1", default: "1" },
+  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1" },
+  { name: "Badminton",       type: "number", placeholder: "1", default: "1" },
+  { name: "Other",           type: "text", placeholder: "Category: value", custom: true },
+];
+
+const $ = id => document.getElementById(id);
+const dateEl = $("date");
+const catsEl = $("cats");
+const valEl = $("value");
+const labelEl = $("value-label");
+const submitEl = $("submit");
+const statusEl = $("status");
+const recentEl = $("recent");
+const recentListEl = $("recent-list");
+
+let active = CATEGORIES[0];
+
+function pad(n) { return String(n).padStart(2, "0"); }
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+function renderCats() {
+  catsEl.innerHTML = "";
+  CATEGORIES.forEach((c, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "cat" + (c === active ? " active" : "");
+    b.innerHTML = `<span>${c.name}</span>` + (c.unit ? `<span class="sub">${c.unit}</span>` : "");
+    b.onclick = () => { active = c; renderCats(); applyCategory(); };
+    catsEl.appendChild(b);
+  });
+}
+
+function applyCategory() {
+  labelEl.textContent = active.custom ? "Free text (e.g. 'Walk: 30min')" : `Value (${active.name})`;
+  valEl.type = active.type;
+  valEl.placeholder = active.placeholder || "";
+  valEl.value = active.default || "";
+  if (active.type === "number") {
+    valEl.inputMode = "decimal";
+    valEl.step = "any";
+  } else {
+    valEl.removeAttribute("inputmode");
+    valEl.removeAttribute("step");
+  }
+  setTimeout(() => valEl.focus({ preventScroll: true }), 0);
+}
+
+function setStatus(msg, kind) {
+  statusEl.textContent = msg;
+  statusEl.className = "status" + (kind ? " " + kind : "");
+}
+
+function pushRecent(date, line) {
+  recentEl.hidden = false;
+  const row = document.createElement("div");
+  row.className = "row";
+  row.innerHTML = `<span>${date}</span><span class="v">${line}</span>`;
+  recentListEl.prepend(row);
+  while (recentListEl.children.length > 5) recentListEl.lastChild.remove();
+}
+
+function buildEntry() {
+  const date = dateEl.value;
+  const raw = valEl.value.trim();
+  if (!raw) return null;
+  let category, value;
+  if (active.custom) {
+    const i = raw.indexOf(":");
+    if (i < 0) return { error: "Use 'Category: value' for Other" };
+    category = raw.slice(0, i).trim();
+    value = raw.slice(i + 1).trim();
+    if (!category || !value) return { error: "Both category and value required" };
+  } else {
+    category = active.name;
+    value = active.suffix && !raw.endsWith(active.suffix.trim()) ? raw + active.suffix : raw;
+  }
+  return { date, category, value };
+}
+
+const b64u = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes)))
+  .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const b64uDecode = s => Uint8Array.from(
+  atob(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4)),
+  c => c.charCodeAt(0));
+
+async function hmacKey() {
+  const keyStr = location.hash.replace(/^#/, "");
+  if (!keyStr) throw new Error("URL missing #key");
+  const keyBytes = b64uDecode(keyStr);
+  return crypto.subtle.importKey(
+    "raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+}
+
+async function submit() {
+  const entry = buildEntry();
+  if (!entry) { setStatus("Enter a value", "err"); return; }
+  if (entry.error) { setStatus(entry.error, "err"); return; }
+
+  submitEl.disabled = true;
+  setStatus("Saving…");
+  try {
+    const ts = Date.now();
+    const msg = `${ts}.${entry.date}.${entry.category}.${entry.value}`;
+    const key = await hmacKey();
+    const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(msg));
+    const body = JSON.stringify({ ts, date: entry.date, category: entry.category, value: entry.value, hmac: b64u(sig) });
+    const r = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+    if (!r.ok) {
+      const t = await r.text().catch(() => "");
+      throw new Error(`${r.status} ${t || r.statusText}`);
+    }
+    setStatus(`Saved: ${entry.category} = ${entry.value}`, "ok");
+    pushRecent(entry.date, `${entry.category}: ${entry.value}`);
+    if (!active.default && !active.custom) valEl.value = "";
+    if (active.custom) valEl.value = "";
+    if (navigator.vibrate) navigator.vibrate(30);
+  } catch (e) {
+    setStatus("Failed: " + (e.message || e), "err");
+  } finally {
+    submitEl.disabled = false;
+  }
+}
+
+dateEl.value = todayStr();
+renderCats();
+applyCategory();
+submitEl.onclick = submit;
+valEl.addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
+if (!location.hash) setStatus("URL missing #key — request the full link", "err");
+</script>
+</body>
+</html>
