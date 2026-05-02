@@ -98,7 +98,6 @@ const CATEGORIES = [
   { name: "Jogging",         type: "number", placeholder: "1", default: "1" },
   { name: "Doctor visit",    type: "number", placeholder: "1", default: "1" },
   { name: "Doctor visit",    type: "number", placeholder: "1", default: "1", dateFocus: true, group: "Schedule" },
-  { name: "Other",           type: "text", placeholder: "Category: value", custom: true, group: "Other" },
 ];
 const DEFAULT_GROUP = "Daily log";
 
@@ -150,7 +149,7 @@ function applyCategory() {
   if (active.dateFocus) {
     labelEl.textContent = `Value (${active.name}) — set Date above to the appointment date`;
   } else {
-    labelEl.textContent = active.custom ? "Free text (e.g. 'Walk: 30min')" : `Value (${active.name})`;
+    labelEl.textContent = `Value (${active.name})`;
   }
   valEl.type = active.type;
   valEl.placeholder = active.placeholder || "";
@@ -190,17 +189,8 @@ function buildEntry() {
   const date = dateEl.value;
   const raw = valEl.value.trim();
   if (!raw) return null;
-  let category, value;
-  if (active.custom) {
-    const i = raw.indexOf(":");
-    if (i < 0) return { error: "Use 'Category: value' for Other" };
-    category = raw.slice(0, i).trim();
-    value = raw.slice(i + 1).trim();
-    if (!category || !value) return { error: "Both category and value required" };
-  } else {
-    category = active.name;
-    value = active.suffix && !raw.endsWith(active.suffix.trim()) ? raw + active.suffix : raw;
-  }
+  const category = active.name;
+  const value = active.suffix && !raw.endsWith(active.suffix.trim()) ? raw + active.suffix : raw;
   return { date, category, value };
 }
 
@@ -242,8 +232,7 @@ async function submit() {
     }
     setStatus(`Saved: ${entry.category} = ${entry.value}`, "ok");
     pushRecent(entry.date, `${entry.category}: ${entry.value}`);
-    if (!active.default && !active.custom) valEl.value = "";
-    if (active.custom) valEl.value = "";
+    if (!active.default) valEl.value = "";
     if (navigator.vibrate) navigator.vibrate(30);
   } catch (e) {
     setStatus("Failed: " + (e.message || e), "err");
