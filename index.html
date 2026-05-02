@@ -264,8 +264,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "Bg0ilkXIXlD7jXCN";
-  const CT_B64 = "G02eZOr50XUfOCgVkpmk7a5b4TDTt7tTaJULgrMwh7FXhgthcpO4Tm47EQA7mmzbVYocUjJihUUELJLWyFTMJXBKYGgy3sHhWs_p20PQ0XP0RODBOzgOGvbKm44NYd_HJuP-vEi7vSy-aW0tGem6o8eOrnu_6nnKshjVYvyPShuDJiiAovRX2RPCtM87MBX0jdsW2JTPJ8nUo7DkAEmgD3R6bYSKopfXkv-wSwcGSsI00PvwkMYLuGmonSLFuGeQxcW-3qoL2FznmQbRmNsQsJeGRFncwVGFLagu0MyMhu11bxdXFT42m88yBRpUP-Ykj6qu_GL6cyk8W-Tm0hdW64VdhtFSSK5SpcZvUG4ayiruABR8qJZCxpNUsVaoOBJ9---lBLEUB2EGjSe3xCUUNiEvHh2P9rwVzBmpYeJIv0MRl7OOz10TvmgPi8cQ-5CaB7dGCj3U1XTrFY1edIBpBj3Rkcv6LC3Q_mMAgnT8Jb6hbbQWo-ynq_Edsm-d3BKczghgYEefaWSpr2UeyFHDBMfrXTp-nCGT9olavPBzMHKGT2cMtMfmnX0rWcl98Ptt0mwPS45zaPUBvSpDrGOQSDfrVmb489PB8ZjT-LyacmZlDUfh2t49vKesGi5lhNoo_Qrs-97_1bMgRDKCj63T7OW64ls-H6vEIDd0o4ZJRm3UOPjLqm9HSPVAZojVGKPxr0SKQNIX3ST8yGMKA7gTZsTtW5FXIpf2Ff-TpTJ5Py5ghsjQEqbYhH1TninboOD5dCnCIxFODDYqeuWEVruHwMlhjM3xp-4MLrTnSLDCFT5OVLK8TUPG2U1IyrZnEQ0AeyyA8toOMDWQlh9ZCVdHAbM70TTYLNRwgvA-k-2psAEGi4YiGQ";
+  const NONCE_B64 = "rjEyHAwi4piiJueY";
+  const CT_B64 = "h2R3Fy9XZAyID6w_zQabZkFB9m7-_HZ4brr4-wcem66PX-1PLGPJ_7SZQmCskJ2rxvpN8mSaJkNPDAwWHrRKtGBLogvHr1Uu1jZA1LkpTN-ll_oViDU_Xv2pIen_W5uxEqpV6ahCjliqn_UWSolfcxS4fj7j3PvUD33FKO_6FHX-vfeysZUXj5ckPsbbfkakWwUrSOvuUf-m6T7TLyeKiTq1cUgv8qNUH6UxMw9_P9zV2SqMuZpFxaJLscJeySjfCWrmvPI-Mqe-C7Fsu3CoYx7B1hwRhY9o1JExA2PGsKYaAM_JzdStWT6nbxAnMi7WblX0ssehCrB7KDRccVD7cuL7uAiTBtTkMMcYc2NgCQW5fBCPU0TKJRAN64tF5F9ibBYeKe9lNd3TpNaq_hQiNF5y0TZhHjC2A4jRIqeqqDIbnrhYCSCI7zjgXHTkDRNG0-TuwA-Ir43nq8QHwfriChC_FV5hI_zpyZse3wpz37GBu0dWKkjkdK_Eu0FmEup0t1ABG-MbVd1Ne98f8-lRj51z3pe4MMSyZtzSkv4eMIaXYExaW4hhID7ch2i0DQV8dl1kXyLxV6yP8jxVCtoOA-F1uHowPiW-HRzdoZzDY8EHgBrTya1Dn0ZiQcyPAmw19QDywCwZjiW30WVj5ET94ddJsraI8gm58rlwvcLdQ-B8cD1mccSlYyAFn_tEnSuLuiRZjG51_9nc3iYdIEWxvm0G-jYVPJYS-S9lW08h3X8Nq3lyCp1qu21RKOO9vzbI2QXfrWOeceay84T4sPSfJTU_eOBN950x4Fa6KDoCVL0ft0eUniv0CRNM28GIfDTNCBeuzA37FAUCcQNJUPGZwD5FoWtq_mf0ndxMetFGJJx61W9cU8LBNd3gXIhWr53Z5Pjf";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1234,6 +1234,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:04</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:05</div>
 </body>
 </html>
