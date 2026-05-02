@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "_nsxd6o3S5cz2yXB";
-  const CT_B64 = "faIcg_3MQo4_afvD2ujamyPBWJJ_szEYUG-p6Pu6pnwyXRS3yee2N_TotvtIkNKpcP1ocMaYjh2kfMRT06_3AR6uyPyul8z6PwNfwZIBlqukFR-Vc-O8ArIFYYFpfpMYQczHuKGgSeL0Qz4tCacg2vnws9FoQJ9gj6CecvP9iJ7zPte5AUxrtcQe9bnBGgoS5Fm_AAkT64oBm1tgy2E5gd3PBWbD1KQhkiR4e3K1OpEt_bHrfDVl6lSYpkE8DLNTMmnGzu9QoW_y7ND1RxaVmqywhjtpotUXs8jKgVgVTbnR-kfWSSHAMAm6KoSebxPWGIwdJ2YZX380XcQe3o-mr8W0ey71al1d2SiXjFQ_trzQx0gB7fWzEcmfHyGsckATLVWDH8GcF8946auXkYmmMBNJ2fC7-PeCMTLKicnAutqj5Dz_-mM4T9qNuJmdn4Mi7xu0ZmWcXzFTdQOUS4vm6r9k7rwWaIrN0pTecWvNpJNxXRNTzipXGeeTEKpj1l2O3YxX345q8fpSU6Maf2yV5vEMLXckpsf9iiZb04DquZ6JL3UMTpds6WAR2apX51gVs1b4H7cIQUj_Gb3vEBLzPeX-eBzvyyTJNT63dWTmRPs02TDsDHsCkiGLmUkv-EqAKgQQ4MsSfq9glnriKDaoZdqgPxGJmwzchWkpt5zakFbwwlNBIPbR2XembkrEhGNqPLvb_hAjZYKB4VlbfrRw7QdgM6-qxOCQhg";
+  const NONCE_B64 = "Pbm1wFb66ANs5o8Q";
+  const CT_B64 = "nNTwAbC9DGH98SqaImmy67mPpTC_4TD96nN3sMVkE-1pB1GcC9Jm4jrMYDDXhBsCURGzNUki6J_MgFoH502meLUUlZC813K0G-DaJsSCRIhvRc_gAt9cIwJr_FiMs4M1__q4K2i6MUgvZ48I6JARtIVQtR9NdaIlT87jZ5DPLI5l6U6RO8G081vnNKlWMz4o2YjbID41KFr2EatZrhcM36W7iEMOe7Hj5pisSrmkO0RMajbmnTbDoMIX5Fedb36ExuLwhHgvokbaR9YoFlIJyquufhEnrYLuO3SfNgEcwBXyxzaRJwIIqae_HSj9uRlj5Cz4AtNAFsyYTcyjeyOaXqvXnxNVHLGsk5FWMItxfq8oN5wYO8Jmur-Dfodz-u0KVK-tlHqHfrWUt1W8M9uvQcXRlDDL47MTBPYg_ngxVBN-GVTJAnnEMHZuZs3q43GT5WpqJ_KbQB1-2Yd1JiNbKOqF7FLYuXt0GITCxt0FO5ZGOHm14otcCFQMWIaWWz3Gx44irBCJBUkrM12sGN6aI5c4sN1LriGca71PapYia57QWg0rmt-IfooTw9C_hANYCtPTblpcaEcNY-a9hfIlJiWwb-Aqz3j3JvUwqfHro0JASFJPe-RSPYBbshQaFjgHgAJx_3LdzajtDyBTCjxHETadglVihKNop31227tcTdgB0hrtbN70FdJZKz5kOlHkbPYtw5a9QBlKh2WZWJkKXr_48p9I7Hx13KlV00zf_rP1A-RkBA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
