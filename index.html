@@ -77,7 +77,7 @@
   .card .label .icon { text-transform: none; margin-right: 6px; font-size: 13px; letter-spacing: 0; }
   .card .value { font-family: "Inter", sans-serif; font-size: 36px;
     font-weight: 700; margin-top: 12px; font-variant-numeric: tabular-nums; line-height: 1.0;
-    letter-spacing: -0.03em; color: var(--text); }
+    letter-spacing: -0.03em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .card .sub2 { color: var(--muted); font-size: 11px; margin-top: 10px; letter-spacing: 0;
     text-transform: none; font-style: normal; font-family: "Inter", sans-serif; font-weight: 400; }
   section { background: var(--panel); border: 1px solid var(--border); border-radius: 0;
@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "YCuE0LfBM6NcmrHi";
-  const CT_B64 = "OH9HpobCQjNsTdwcEUZdy9lujBu4GQAJGsEhhvpczypjiLddi1e2Gc9KdzoO_-OtKiSUwY7cZfsIhmUnZoQPK4J61_g6_pUlNTsuhPmZGYlmO1r99G5_T_gqdFkEq6ZjdoMSZUrmeKfFIFbLKs_Yr-AK6Ax2ZWP8Hl2oSdPCrp9lP7IEMChxGDOWGys-RmdE10nCb7y9bQvrnz2uv7-4CH6H51fZALl6gtuTkF5Fvt3gzdLJdir5XPxd0umasGZ3Zls60Wl3VMRtkgpVcyJM_ltoNaIWF6aEWo46O8JbTXRHlOxotIKvtW0kKI5mBBZeQAh7NFVejuVf9wnowzFDH7wFFddeIanP7eNOKiIwTpzSFmJDtuL2PW2DT6NtbsN8hiW4d4Ku-p83XFoBWx7244BwTt28YSCzwvH-fkbKSeP0bJxNw5Le2zwCEkjgdg7ptiXdcf1lKBIlSR4BK0Cc4oErNJxGHLI106PRqGH02WYv2bkB_QZ0-9IGuMLhpyER-gN4g1Wh4Ek_aQ1lcNn0KWFSUBvVCnVt_j7L4I7BF4qjsfRCtbAPNHcw9kXh-krq_ZaFS3irjtIHWNDhDLIQ_5xmWyLyZxuPAScaSynsCp3NkschWrd3d-wL";
+  const NONCE_B64 = "0143fA2YdY_Gbxcc";
+  const CT_B64 = "Vek7wgsZ2JIvL0n6xPdaNzbb9cNJPMjjCICvxLgiETLY4Skqeaqr8WAGjmYG8ji33TkVFdwy8CkQWVcxZTnhYM66KMgQm4MlZ9hhIScPDQneEyqBaKU9V7zmOkYcWChwl6PKOiFKu3uiuADM2EiEw-NTNi3Q05JykU7m7YOqjvJ2NxX8X_c-zgWCPGWbqyCWJsXaTn5ZNPs3Z9nFeLyAbXtHwS7luixqBYkCiiN8WIxcVM5BHUutxRJ6ovvYBleEB3LWVa41bRDbexh5X_dMP2UCa3Sep5L_Z4TyzdhHkxT0oMpqBY5q6eEIz5WjncDBTlC8G0AixIivB_6mUFfAg3olvalx8kd8vPbq1CpkEIJ1cR2IizKksE9vOhd4k1rRkzX5cZoONQ2dwea-lTVYUUzUJ_LK2Y1DoEkQlL2MWcmvDLSiY-l30GqBphNp29SlBrhuGZkAsGTAl5BLmiL1_hpMjAwGbdFaJnHnOnXUi0eFbuz7RLiKLoVSFfcOdIeCr4Rtv1RFY1UwqsMYjf88tSRo3FWd4svQyRbWoPHKx-5sgAUB2qLEbhr-SeCX1Ww9ZVrlsxovGkQKrgIjNYjAgiYagypHsey_y2CQ9aRH-XpstfSRc2E45kjl";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -452,8 +452,12 @@ function render(sessions, health, errors) {
     const past = lastPast[key];
     if (future) {
       const days = Math.round((new Date(future.date).setHours(0,0,0,0) - todayMs) / 86400000);
-      const lastBit = past ? ` · last ${past.date}` : "";
-      cards.push([label, future.date, `in ${days}d${lastBit}`]);
+      const fmtDate = iso => {
+        const [y, m, d] = iso.split("-").map(Number);
+        return new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+      };
+      const lastBit = past ? ` · last ${fmtDate(past.date)}` : "";
+      cards.push([label, fmtDate(future.date), `in ${days}d${lastBit}`]);
     } else if (past) {
       const daysAgo = Math.round((todayMs - new Date(past.date).setHours(0,0,0,0)) / 86400000);
       cards.push([label, "Pending", `last ${daysAgo}d ago · ${past.date}`]);
@@ -1186,6 +1190,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:15</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:17</div>
 </body>
 </html>
