@@ -62,8 +62,7 @@
   <label>Date</label>
   <input id="date" type="date">
 
-  <label>Category</label>
-  <div class="grid" id="cats"></div>
+  <div id="cats"></div>
 
   <label id="value-label">Value</label>
   <input id="value" type="text" autocomplete="off" autocapitalize="off">
@@ -97,9 +96,10 @@ const CATEGORIES = [
   { name: "Dancing",         type: "number", placeholder: "1", default: "1" },
   { name: "Pilates",         type: "number", placeholder: "1", default: "1" },
   { name: "Jogging",         type: "number", placeholder: "1", default: "1" },
-  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1", dateFocus: true },
+  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1", dateFocus: true, group: "Schedule" },
   { name: "Other",           type: "text", placeholder: "Category: value", custom: true },
 ];
+const DEFAULT_GROUP = "Daily log";
 
 const $ = id => document.getElementById(id);
 const dateEl = $("date");
@@ -121,14 +121,28 @@ function todayStr() {
 
 function renderCats() {
   catsEl.innerHTML = "";
-  CATEGORIES.forEach((c, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "cat" + (c === active ? " active" : "");
-    b.innerHTML = `<span>${c.name}</span>` + (c.unit ? `<span class="sub">${c.unit}</span>` : "");
-    b.onclick = () => { active = c; renderCats(); applyCategory(); };
-    catsEl.appendChild(b);
-  });
+  const groups = new Map();
+  for (const c of CATEGORIES) {
+    const g = c.group || DEFAULT_GROUP;
+    if (!groups.has(g)) groups.set(g, []);
+    groups.get(g).push(c);
+  }
+  for (const [groupName, items] of groups) {
+    const label = document.createElement("label");
+    label.textContent = groupName;
+    catsEl.appendChild(label);
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    for (const c of items) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "cat" + (c === active ? " active" : "");
+      b.innerHTML = `<span>${c.name}</span>` + (c.unit ? `<span class="sub">${c.unit}</span>` : "");
+      b.onclick = () => { active = c; renderCats(); applyCategory(); };
+      grid.appendChild(b);
+    }
+    catsEl.appendChild(grid);
+  }
 }
 
 function applyCategory() {
