@@ -266,8 +266,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "VhP9P9Y3EnYN-MRT";
-  const CT_B64 = "rjXp4mBA-l-wsySStwGyndMiw1udDxAnClcHx-JhyFs5pXKF5c7NkQEshlQsxEPrG9ze7-gSNQktsT2LZRWwLYdLcCWwXnaFG_nlkl2b--NlPObfbLQ9twQgzwO91ZEs29el5cOOuMYOA4_wWocAMXqJonDaZEf5qC3PrNZKJ9lp6fe3L0DZilgd8Sm7mOSoFRLL_8tjOZfAJQgRpHsaWzgNsVGhjFvM_gQYA4tSlfIFodSK0AlHV5dw4dNBug11IZTS_ZmPCVNeXGpzX-GdfbwmT3idvfC6FpI3kHBybBmQYYZ9yDzkIrkfDkMpEZxAkjCDgShQ_zetC1I-teiRGnT1Wq7TeywRA1MWcbZbEq3kqCsx9jlJwi65tuZwVXorqZZRBRcDn4OkgmEvp5BjosgNWEJ1HWznl-9pKenqpM_O6cvD4AKzmpxap_NTCrmp2QauL4h3t83C89kkHX_7Q2KCkyc8_02MIhH52IvU3feDT_gL2mvs3AFAOwO9yrNg5QU2UjGS-Key02aCu48LXguIc7UilWnMPvZ_9XGREWqzvDktQeu-J2IzWf7AbpcTCMbe_kgoGKgV-syx_mVKAM7vi7gmcdjN2Uy65EuXbI57sbunbwYabJOZnW701euJVbQibtlFk6ST1GMdxTo4IH2kWRZ_o6W25sLBVRFRp2laJeMEgluA7VfhuusPz43yb614SYfT2BIuIlo6ce--nuN9kOl1wYTnuM-DDDGiKczjucnJlh7JEA";
+  const NONCE_B64 = "_YVnqIArVpIHnkOd";
+  const CT_B64 = "pdD0kZmos-7qwdnbcFbn95NsZhYSheAMs6WmSZIWxFdzcOVC3DAw5QFkFWrgS7bzw0UjsSmcGrVdhWa9ZM5ZEkYAV2ts6NB9L1Wq9LBxkBiW64TXJBvd3bTYrskj4ctRfV0bGn05JMeq4a57NeLONiIwXO_V-oL1-OwX_KSx-EY8n9bXj624a2T1qqm1x6oVV4HP6ojkp96mofJQN314MMZ8k9V3aNUslT4wbLRht2M9sP2iFwIa2JLL0tW93IrT__NoCW56A_tKFTO_EHOjQTpTjBfwMq-KohTTmNWzxaa2gc_mVpfVTUqG3vUvX9I6Y1HZKfOJTZmDvTpIlDeEaFDnUXePrJ_439J4d64hGQm-gKw9lVWCUyjbzTQO60Qhgqlg_FmYAd7VOu7seFCvEwhF3S_bsOigSW2R6EJkmsyIjqSMbAUZtg2Sm74Udeop73y76SWGkRn8BFcU3-9_QEp8RjmPNXs37hxFeVokEBs-uka8-nzvE7eBSj-oMDBElfK47a2gXNGEycU7VbSkTHvA4lQTcookJ5WxBvqopRI8kyT8CA5L-zIm0xhbCwg8uy7NtVH4YmM4KrsbNseJH1ZswmlLT3eDFXjj8-jQnYZx7_dqEJHje_n06xXCxyf8RvyuSFMOXo-_GugTPtUWVQiaSCv08h7PQAqpvCDatIxZVwmpgaB1x9a7IZWM6zCgmRnYwe0PEmRRhWWqHvovc_2cfmSRr3CIB9ijDvrQUNLX9myVpb8pzQ";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1230,6 +1230,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:48</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:50</div>
 </body>
 </html>
