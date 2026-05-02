@@ -97,7 +97,7 @@ const CATEGORIES = [
   { name: "Dancing",         type: "number", placeholder: "1", default: "1" },
   { name: "Pilates",         type: "number", placeholder: "1", default: "1" },
   { name: "Jogging",         type: "number", placeholder: "1", default: "1" },
-  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1" },
+  { name: "Doctor visit",    type: "number", placeholder: "1", default: "1", dateFocus: true },
   { name: "Other",           type: "text", placeholder: "Category: value", custom: true },
 ];
 
@@ -132,7 +132,11 @@ function renderCats() {
 }
 
 function applyCategory() {
-  labelEl.textContent = active.custom ? "Free text (e.g. 'Walk: 30min')" : `Value (${active.name})`;
+  if (active.dateFocus) {
+    labelEl.textContent = `Value (${active.name}) — set Date above to the appointment date`;
+  } else {
+    labelEl.textContent = active.custom ? "Free text (e.g. 'Walk: 30min')" : `Value (${active.name})`;
+  }
   valEl.type = active.type;
   valEl.placeholder = active.placeholder || "";
   valEl.value = active.default || "";
@@ -143,7 +147,14 @@ function applyCategory() {
     valEl.removeAttribute("inputmode");
     valEl.removeAttribute("step");
   }
-  setTimeout(() => valEl.focus({ preventScroll: true }), 0);
+  setTimeout(() => {
+    if (active.dateFocus) {
+      dateEl.focus({ preventScroll: true });
+      if (dateEl.showPicker) { try { dateEl.showPicker(); } catch {} }
+    } else {
+      valEl.focus({ preventScroll: true });
+    }
+  }, 0);
 }
 
 function setStatus(msg, kind) {
