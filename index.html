@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "iwb_TNGZoLFk2_Du";
-  const CT_B64 = "m6z1d-D_84IsoGbFhZ2v1Mwncn_-5F4oQX7AsGRyQ_MrhBc9xbZPuIBGGWfS3FyFq4lNlQJQCCb1NsrKpSVegzjfe73x9KqVCHAefv-XISsLKskeZOddFLpQ6oR6hksosr0aekvyT5sGSyMmizHQp-hzxDWaWTT7RTpe7ZaqERsb-fHsk93G76wm0yqlEQtMILdZLeZ2z0bmwfC5ol3SBy7fFlrm17hKSypaUb9HEffljO86AyufJ8nRtKZiInQSCL5TjkgBUmh-hv6E-tTMpw1TqkZcGfN80WCZjDGYe9pBdgsw1tEt9ohxJRNKWISZUmtgQIuFxmuFnitf3G56vj1FQHc2xqVVIx5fvVMCtU06vHecIP1__lpczEddU2II3e6MjgO54JrTjsl-eq_9JQr2kx2rlTiW-Xjw9J0ce0-VYZ-HH7xovxjoIkBPqVh60jtdY9yw1MdomYlkq7lVJoLs1yosa_6MNrW-vRZV5JkwcKIJNShQwa2V95Vc8zemeZ8Kxrh58JFjV3ie7ugasSuWpOIEK9jJbjj1GO4LUl6rEuAnRVn0yy0jv5Te0DH4wTqznKqq2LCV0LiY4GJwLtcbf2OGWTEEJ04QH3eRD1rQRkqCCDZniagMYrDbSgHNtjs6ZjH-0xDFlSr8m6qKiA";
+  const NONCE_B64 = "Ytkun-MioBHrh-QN";
+  const CT_B64 = "R-lLT5w40wehSDYfX_dDg_3CanysrMqHRrGq6IcfSoqHhlv2QL1MEEAroA0gEXTio0OGNEayV3TME-CuE0GQD697ZzN6J51wD5vSGiUbQKlgeEtiAsFdtu5Gr04FNF6mjDiHBDSanFGf4lvCJeljnGeSVwwaYfIiNKndUl2NrvGXPHGJR1aI2iXGdBzq6_oCNTqB4eB8c-N55gQOoimneNqySGwNymQwgN4O45UrR9ayfIeWeJo0hHkw0cb4qjmkfFYs2vsGi17nLBA4T9BeNNMRYtLJsz90FtjGsKc7QRjxw3doONLegEicnLjyGs9n2SajN1k7yjXJ3R9_OejJkEN6EGGXcerbxSLHvo4eQQ0Hyv5IF9UDhSuTCEkTmWssOTsNyrNrFj3O9uEo4u2nMdS1HfIz_tmXLySlV4cyMoCMRf1d8_2nMK_wicKTStIf8kiqYxi6oRXvdBObxmpEcn-VtCmVeyaKasHcRq0JTOZuVQNOUlLgQ4ScS7n2JMWv5jYtDZp1jtJGrodBVVkIWvd1TQV_bljySxuF8P2XsEtTNx5uLuc7_jhrZuSZbv1jIUvkQFeorrGtmyMSXKnE6DGolxQpdvTnSgIx4g2ZhuveVVEfPyzZH2G91zoMzonu7I_uQlqfkXtP9NEybfBaOBv818TeXvu-hFXqhMXlmNtQWTQsRj1Zw5A";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1199,6 +1199,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 12:46</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 12:47</div>
 </body>
 </html>
