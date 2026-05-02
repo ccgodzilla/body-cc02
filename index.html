@@ -167,7 +167,7 @@
 <main>
   <div class="masthead">
     <div class="masthead-l">
-      <div class="eyebrow">CC·02 / 2026</div>
+      <div class="eyebrow">CC·02</div>
       <h1>Body</h1>
     </div>
     <div class="sub" id="subtitle">Loading…</div>
@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "Wv-sPLQ_neZgI14s";
-  const CT_B64 = "gzWeNtr0I9nUofQZIzc2YRX7moqs_6TtHgKauo7NNtel1TJ-Trjwy6jhp9b3JZgyuNxmUR8SePoB1VicvrTDZFy9LN7Jj2QFMaZYLxlfVe5_Ka-RO5Dkt4Q1B1mMw8gUpdvA-VjVC23hW3ASSL-Hc2F8vcXY6XFCU2SuqN61ek5ccztFBOB-hqiLBY0vwkM6zsNepo4JaB7UFeMrlb-eSke-uyeBPncbgQV4joRa_ecl8bfjFMgMLmK_VVOwGJdXyHrw0V9A0xFTlj5uJWp3SIZfDGynqzWUD8CsaGmXr2Yd94z0tSWZu4jyl1cD2XQZs2qrwnU_-Tawx-AV4ATMaHIA2aa0QZAq9IYPmFrTBDNu0hhkqoRNcW1hwq8UpJJ9GUkUHTYW4_7zYM3_fXSEZZkNGRgQUoUk3o3OkbEERqJqb6zTLv7xcs-PH6NpnfsOY9T1dXxRw7wBFUrYcB4Y9ry40vw6heedB72bwCJuhIpE5EUWoD2Dh4yrD7Aw89wxntfMY7lsFK2o2Gvk8zFz7Q";
+  const NONCE_B64 = "hjD5EeUGf-A5LhGr";
+  const CT_B64 = "K9qmcCi-v98CybckB0B2tYN9j6FpBJwBDLS7Uns316Kh7aZgnKMo3FyQ2xnsHlJKYpiUC643JrhVlAAk9WzwuVZ1L1pBJvAb8H3Q63cbGJ3ktRdcO85tV0i4CbEZAIm7e1uofYYreB02avjtjosHcRAneiw3M8oGi0xLyP8SDCk8-1KJLKui1zeniY-NJSyR0XHQCapiSfBFbz0fmv1dXrReH8F04WfgOzrLBAi9EC5jw6UuUcqIuvbFwzWuGBSnRWEAXkFYSZL0aneW11fwL7GIBvtVXKfrzfrw_gMP9x06T3q7tuAmeaielmD_ic9S01iWNZvS-rO3uW6IRnhD40q-5RlyJTRw4qLvamgs-5KqQFuuAq1FUflaWxUmhKaHis1JsqAb8kYsKqlqNEvMLl8tAm2r3rDw94f_GHLe4VIhDwnoDM8kkwAWt1x4R6yC7eCuxDUGJj75P2ojI3jZfwJk531ZBJsuEYP2hIZfoiDLZt46ldKtnrqL-LwHRn8EvCheuaofVsMUZneiqZigGQ";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
