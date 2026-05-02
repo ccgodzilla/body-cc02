@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "XTZW3rmnIvI5Y7UU";
-  const CT_B64 = "szqHSbG0af1XqagaTNhIjjjqY0YubDqXTRefH1pZdsm_uUjmZGJmUybgvZAKnLXA4T0443bmCisyMF9T3uWCUnI4Hk6HPe1GJ0ZENgq7iJNAwLaod2b-teupCxZmyOafJth9Tr4hY_JZuLQ0JsU1-exeijud1L1VUwjaIcG76LOmplOCsd3cOuqLYRy8ssFFYCElcK70HclZBPT_Gq0jBACnsTCjqC9fVGZcxT8ClkB2lMRjV30xHYB85x_eAVy_tfoxKYhr2IG_zRUGmyWubkLb9moTrjsTg6UNqUPq-L-RDI0YZWT8eCmFtQRVcepKOMCo7DsXEezszXAALwviWAG6j31JOjXXTy8LpJ1ztAzaH83CuV9zhJzfimoTVekbOpUGDjyTRB9L2GSYMlaXwyaurswhkb_Sl2oaaCWOayJdZwsUNjL6Hh1iNMnkBSsUU1F4kOHhj47rYeLq6fnpkL7sNiC1dtm1jBrWrwY20klTFGtKcEkF-aHVV_Beu4nrGEwWM90Q0glFD0A_puGPeddiwsp4pn_uNs8qHl0iwWNxNTdRLNPafz2Fq70Sm47DQqcYZRebqLq0UR8MzXz4uYMV99xaONDmX3DAbLvn82xexceqv49nDG-U7unUh0Q5vUDF2ZFNLMywQIgQANPTU2JyxxNqWHfgTdVMCFLmgia_hgo6SHxpn54EtkWwKxdtTDJFd705xR4HEkTaeUfByVbR8jldHqepZvBeRmYbaMjy4QFKQESCCw";
+  const NONCE_B64 = "JkstE3uacaIYz6ow";
+  const CT_B64 = "wxITbgclHg-L0c9IqX3u84FNZZwLcmWfoiIQ5KhmdGmbG0YIsjt2IKpihD4IftQ6KmlROLtD9qsRzdhsA6Os1yW7n_zCV14yc4-g2tWCs_2VQg56PCtO7bld68M16ZbWuZRNkMt1jTWc7JGA5oRjxxFgbogOrsMdv6X0Pvb3nX-X8U6QBn8P2BU_h1tVSp2ohMCcUYRMvARk9dkAk74VQMgJ0lL1GuSzLZhkFJb01NoiaxoP9jknbL8ynRFHBCVmZqtwYynmYVOuRdTXeOQIi_P0nbYsSS4IsTE6LXhxa3g5nJnPqLvq26vcEVCwIqv9nDjSQERqerR6S89pdKpbosgzAo4jTwU28hvdV-XhEmR81jfgmKMpQJ7lWciItMmpek5kWlA6OmT1dAOPqBjpPTjDczu5BKkoIpx-Jz1griJcppURW52WZYvw26aaedijnVbp2XkdJ9I3J4eDrN1wmAylocEZmohSlpJk1OQspMq3rvTNOf_vm-MG45OtE8-PX6Nd-j7i_CgLMVOpGcwRdiXuxjqWRE3_0Hs-IZqb9FFGyClI3abMhAYL9I2l_Gkn7EEZn-56YyC0GDbJrrsphPOecTu75xNfa1o1DozbEggIENyDnJ_MyxLBw6pAq2ahBVp2OsJlGzWSCzhi6ma0AGke9R3zqC65fb5k_r-XXz6fVWg9M5PtKPrKOzBdoX-OVY1yHH5wqDikO4QKNRhYQxXh13lXEhonv5iL-qhe7M_y0ZZ0pwu7vw";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
