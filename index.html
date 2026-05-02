@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "Sjl0LtolH5aU2qGU";
-  const CT_B64 = "1mxwBtyzIKVqZdhqdhHYt6g9K2MZKQ5s2YWBJPOw3x7RWKPJROMifeZQJkaB1Zd_oB4OXQiDNf-sA5OCl0HjIx7DdKnN7tDp8Q9i0C66iNTM7fsxSWzi5AvHcZP2UILxGdslpsZUxuUoRKqqgnSVi5WnNL8i5wxXJHSCwMweF46Kuq5T0VDeQq9sk60tGgBT1_kr9-tTOTm5n9PEFKfx6iMh9XPOVMOfp9yWgybeESNrrIuXirAiQLimehZc2Vm5fs8E6f7M-p07D-RROUQ3ElFmjyctnnQuWaVf6dQPHnAVxe5kwNFLIYcUGTmZ8I243vJij-fhNkujbWxAEwgoTVAabsPsL5Lg8zr5HTl6V5TaUQxmmMm4505mRV7vUs_Md1Pc_6BqwoyxbvCUW-ObsnyPsRdXDOhuOwdrUAWQIC3O53y-7f-hb90Q1bL62ZTDmZJhjKv77xr-aFQ9omnNQX37HwpzgIUiyL37L_o2CihMNIMEgXy6bxL_qDqTcmDjMV7eLqywH7Eb5L15rDBkOeujuNaTIE7y5JYBA4wypwYrgz-5QZ7jZcBZo7WfZsE04ro1SqSeRMi_rMo6MfbMrwF_J2zGUWXAWdP28zuKFIpUnUHwkYVSaC0Y";
+  const NONCE_B64 = "sEaKGGfM7pGofIN_";
+  const CT_B64 = "jmEgi1WXwSCOvYETFg2IboNV8te50DWHrcxUXAuEjNVuX0vP4gZyRaUGgx_YMM9pFkQIluGJbuO8cJ-p3OP8zNqeC9nojnmkqW-uUF5av2NOhOSnybjKhYZHbB5U0z_NSvMO_pW6dA1RNo9FCnUbrZGujCK4ZH0GPdoL-Vb4BFf-qTBpOnFmLiQRjPcp47ef05ZHW9blLy4bVmtJ3ghLCplUmXl7gKWAZsllEVogB7kl6-XyEuHpPndRvDMSBU55-cFeLeoJ3T2UMpaXNN551_37yQajLQuo5IVSJs_NRXcCviX1wqpJtgiGJmCrggBY08B8K_zl2yJ9WN20Ks_TcPNm2hfYHPlb7mlMJsJQhS3kLp7F3VloV3V_44Y7x_BZWTpM7lcHwZxjl5mPQLVKFpJcyv4KdKqAXvGWXtdJ9EGauamTDMd3O6qpP7m5WeqnCvjRwBsP_y9CSCQxioMnx-7YWC5C_RhBDz2j9Xx9Ke0I8Ca5XH-1vE1zIwHfVckkyFojmunxOZTPdrzBKzN2cS3nSGeOPQVthlkjokp-S0TRRfm0rANbGCGshLxeSolu9xp7bX1_xHvACAO91UNTuhQizRjmQIX5lWzSzTd4ONk1ecoJAgcnVwgL";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1199,6 +1199,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 18:37</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 11:06</div>
 </body>
 </html>
