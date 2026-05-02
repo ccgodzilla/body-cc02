@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "NZ9V-ScDcDo2O8-J";
-  const CT_B64 = "m4JueJQNzFt0xS1mzpW7snknSKFErJN6DyWOETUF2qhv-euE2nMDolL9Ar0QU6N0v3hIRmfc7H1MJUo0GHULOUC8GjcOu9-mucxfc3TJeXcPrRCRhxdK4y133GxLNpYkv5MxYd0aD29tSEInA0woUtiLtOXXtY1T3BPdlUumwBL7SJRKSfLYpEBfkcDpjVlJaVxHpOmIwvp731rXWTm9E73Ci0E_M7ffZGvMRxgw_XdH6WjSz0Gq1i0NQpxqz2SCObPaszxlvv9AwjkFf4VeDOF0Kbmb0ElW_n1Ym0c5iQJwqXf5HoaQlxve6C4l5Ua_86kvsZ2la_07FZ1Ck5Y6OhRF_8fPICGU8Bi-MW1NiwFT_DKsvulxU4TkOsk1Vk42t-v3cO9A";
+  const NONCE_B64 = "OCoFOwRUpGWDcK5z";
+  const CT_B64 = "o7VMl0M8krLph3Gqigj9rdrP6K3WJl7H9AZ878VifVoBRRcUDv50J0O4Hpw1ztLkelK3U28ezDD-f8qp5lQ_gQmepxUyZ8akp7wqbgIwk18XMp25e5IMor1mjaKAjfTDB9UKDNMKc831sHALaOw2GZSpvejoci1XFagQfHU5L1mXyiQOfmOmDlkicJlkY7wQq0NDsygubKcudmGSDNUAFxqGBRotw1Lc9WsSurqcpsHaOGKbbtwYVmprJ3CS4v8DEIY5RcewXX1heuXtfqSkFY_NYo1Rdh6fkfr8jPVQdr5Yhe80kuyLSwNxa9yVAYjDTLWm4e-Maaz5qyZg4Yp6mvRk1K7Bvld1wLW7sqQ3yhBcl-fFPR-rgrwKqWct2r6d9TQEgXmjBkwvEy034eVFrZ03hnsjsR4N1sOHLO9oygG6BGlOyRsCC_8C62yuR-WUyGHee0p1dVFePo7XW5gwf0BOnhC8zQ";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1177,6 +1177,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 12:24</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:00</div>
 </body>
 </html>
