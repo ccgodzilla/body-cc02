@@ -121,7 +121,6 @@
   .activity-cell { aspect-ratio: 1; min-width: 0; background: var(--border);
     display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; line-height: 1; overflow: hidden; }
   .activity-cell.on { background: var(--panel-2); color: var(--bar); }
-  .activity-cell.today, .habit-cell.today { box-shadow: inset 0 0 0 2px var(--bar); }
   .activity-cell.selected { outline: 2px solid var(--text); outline-offset: 1px; }
   .activity-tot { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
   .activity-empty { color: var(--muted); font-size: 13px; }
@@ -265,8 +264,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "Qa3WJv9UdbDtITKE";
-  const CT_B64 = "izP9v1oqMEZHlYemIYalrDGreDUQ43ufQKytCWvkT9PVPXmhsGvVRF_poXokGLaqcO4Sr04IfjGrMv3AoZjlb25e_pPBSaEZoTeXrl2f9-oW5bpCBohEblbNp2AAKTgCFNyhWyWyHl4hXSoIcZT0Br8Zqeq7LIafwgLQCDCYibHUQMzYoOOioXFnhKK0BMQ26B6fSmh1a__IyVHj3GY0KuyGYLlS6zR3--DJa4e5r1_KukIsnDwVDB2i4nTa4uk-ZtYKl7OohxABnZmfezdoHx_o7gnPGyJDW0OV3-TmP9smo8WVVvVrNXNoznERIdT-Sk0gcsRQNfC_xKZlMD4u7_PiCeWEeRU7oNV2YVi1Dn01c87jp0oqHNO0UE96TlCnh0K_lzrzIreYBU_j-WE04ns2KwRxuIf1Km8nBkrpOmiZbGu7noTQDmEy1DDXztsEjrl2kdHf5qSbvgew1gHCBllpcCwYjxFOzopy4U6GAaAIUJeTXhN2JRszZ84tVR50jKX74xyXig-IE3-9tn8O_0OutgtwBLBxj9_A1e3aavoLIpAU7pZs55sfneKM5O3FV_MQSKP9JHhSikSvCMTHt2QVyp4j9jnD3_FLVkZI2cuX4m2f4u3cXh2Hk2mWdCkzsnqEJn2LWECW2kutWxzlE6OI1Tdsubugt0AwF6CSFc8GJ3iMu1CQq9_y_CnC08cy1OZmAoBX9XMlLfxbs4CxCtJx-jDUdug3-CuzcrMsBdkNygBkdbXnWCrM_cmDEIXBLrNNZ1ACfI2DyQveL_GBKKj56FfSztRyekh_5YMpXdsHuBNLQJ1LNA53PiB8JhLTgMjwb85ym1Az1KhNduGANBALo39Y9bCy1JtrgR6cjNwb3xNEWQ";
+  const NONCE_B64 = "WVsxHQvf2u-NKZfM";
+  const CT_B64 = "JpCWS79rz9UcyDXIFd0OfO32hpGmUbszwWTNIFYCO5Ast99I9fhc78MVLPUx5x_r-9R2Od7yr6-PF68QeQrjpIvVjQ6r9dO-gZQlBcD8PHjOCIfaKIQsYeOnDpeEsiziY1zDvEjjkVa24Rne6cA2RimXWSekf0wcVIR2g0vYM7_r0SDg4j9AtzUDtuMmjK2-zEpXgO8OYO5QW5ObMhgiO5RBS76azERN8AIPMUNGzjGsviHjKK91bxY9E2fi_elGF0cpAJMQLtL4grYqLjeP13-4-asGxXyllUOQRe7H0ib0L3W2JMLKsnz7rD0wQmLVsTNkktvuz4c2YtHBB-ojtJp_OGrxEnN8kJaDb9qBhsfnqLbXwY7PgJprmaDP-VmrMbNyuU6PXGXadJQ6IlxqEj08mEVzTYH81dUgZc0T7ejDgwlAl86qvUHY9KKNFjG0iV1HmElhmnMy27MxU-5QR6msUjxeKMHX4uV5NSj2iIh5vUqNwVnn81ePDqBZDC4vUSaeQWswEOc9Cw6SrvLLD8DbITHwSLDPNgY2Uzbd0ANY9aFHpqQzHjbFfndT3KCDLlkyL1wZxILm7M6fB3vkjvbCHmWo9rkUW8JwStFyQszsF8b_gZIO4SUwHApyRXBNiiClj7BEG1nqWoKGzPjH1SUFbdMTyk7h-khkSbGg6rfaoKeb7vVH3qSxdyWquZ90NGfPT5ukO4aY6XNkE1b3u1FwhNJn6nz8m3drEq8LXLwo59yJslAWlD76SW9JPJFpEUqoxvye2_6zwq19rKsvXanSUbbJX304nZiMG2KM_RS3tlV1DuP1BoyLdimdWva-SdlnzZA3VLfJ1KSFwkTHha4EOWfA8mhl-j5NqyR5_z0zDtmUOg";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -667,7 +666,6 @@ function renderActivities(sessions, activityKeys, month) {
   const days = dayKeys.length;
   const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
   const stripBase = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
-  const todayStr = new Date().toISOString().slice(0, 10);
 
   const rows = activityKeys.map(activity => {
     let countDays = 0, total = 0;
@@ -684,15 +682,13 @@ function renderActivities(sessions, activityKeys, month) {
       }
       const occurred = sumVal > 0;
       if (occurred) { countDays++; total += sumVal; }
-      const isToday = dk === todayStr;
-      return { dk, occurred, sumVal, notes, isToday };
+      return { dk, occurred, sumVal, notes };
     });
     const hasCount = cells.some(c => c.sumVal > 1);
     const icon = iconFor(activity);
     const cellsHtml = cells.map(c => {
       const cls = ["activity-cell"];
       if (c.occurred) cls.push("on");
-      if (c.isToday) cls.push("today");
       const inner = c.occurred ? (c.sumVal > 1 ? c.sumVal : "✓") : "";
       const tip = c.occurred
         ? `${c.dk} · ${activity}: ${c.sumVal}${c.notes.length ? " (" + c.notes.join(", ") + ")" : ""}`
@@ -772,7 +768,6 @@ function renderHabitTracker(sessions, habits, month) {
   const dayKeys = monthDays(month);
   const days = dayKeys.length;
   const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
-  const todayStr = new Date().toISOString().slice(0, 10);
 
   const colors = {
     coffee: "#d97706",
@@ -806,9 +801,8 @@ function renderHabitTracker(sessions, habits, month) {
         label = String(val);
       }
       const warn = WARN_AT[habit] != null && val >= WARN_AT[habit] ? " warn" : "";
-      const today = dk === todayStr ? " today" : "";
       const tipAttr = tip.replace(/"/g, "&quot;");
-      return `<div class="habit-cell${warn}${today}" style="background:${bg}" title="${tipAttr}" data-tip="${tipAttr}" data-habit="${habit}" data-date="${dk}">${label}</div>`;
+      return `<div class="habit-cell${warn}" style="background:${bg}" title="${tipAttr}" data-tip="${tipAttr}" data-habit="${habit}" data-date="${dk}">${label}</div>`;
     }).join("");
     const ic = iconFor(habit);
     const priv = /jerk/i.test(habit) ? " data-private" : "";
@@ -1240,6 +1234,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:00</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:02</div>
 </body>
 </html>
