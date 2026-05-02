@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "sfAVE8veE7tSn9od";
-  const CT_B64 = "ANrzhFT3Zem6sKSQgcsCIcBQIW39fP9--KGDPzq4TqCA7EyCPUhR3qTkm1urYtij3rcjj6AxF9O5diZZ5Bu2vfbu8-fJr2I1kXbemiB6XdDxln5iTNASAMzJeVZEMWo9YCct6-hfZLNTko6uVH_WdnmFUS4gVqbnXnsrWX7AgKzI9gC6otT1lU2WnMVgDFcNjxomu1yvgVpNYQFgAcCg1uXG88A5-aUfGlEcQItqmiAfVqEO8PaIEtaVehypK_Au1SU-2uEHMJOZorl4LqkQbyatlv9exMvv1fU_YbWEZmLBouh4I2NNlEL2-jPLgQ0nNDF_91g0rlbhogwnpKSnLju1XYTG-mcI6D-Mn_hdAAUIrYVsO2QmlmCWMGIbNr4Tgis0elBk_RppDvFKEOWgZgFtiBtjYchTuMzHtJ8YYw42kcO3Ii8_NxjAm7KsJtYf50aVVP4h-8TliQJN0wmGfiTJgzpC0xOB1fpTUSb6ESqA9Da-6DaadiY6KeQFAMgDLUzIB-NDNGCHTxjeWdEaNZ7CKxjY6azftQf__zy3n_Y-cixxtGg6vsSZuAt6kLBlepUXWJKJEles1SAntnw2ubUng8SjOuqQv2d0_eHiYv3qzfnrQJCnSU5WasyJsd5c0qtKyg1uK5sld0zFcZcnuGs2lKmkFjHftIHGsVgybqibEJDiG2KiDAobQRY0uYP3Rjq90BqDC1mp9ofBMGttZYdBfq9Bg9fd5kxX1UZUR8Z5lmb88iZm6MP89n0vc59UGEvsY5H4Ls0aLMScB0VWPBl8IQKZkl8sXPXZLzTpeSGd90-l72jsJhqUKyXBAf5KPZb4sUKEPt3fIL2AseOmUdToLkeRJ5nxCZqc-F7IXX_QGY8EMg";
+  const NONCE_B64 = "Qa3WJv9UdbDtITKE";
+  const CT_B64 = "izP9v1oqMEZHlYemIYalrDGreDUQ43ufQKytCWvkT9PVPXmhsGvVRF_poXokGLaqcO4Sr04IfjGrMv3AoZjlb25e_pPBSaEZoTeXrl2f9-oW5bpCBohEblbNp2AAKTgCFNyhWyWyHl4hXSoIcZT0Br8Zqeq7LIafwgLQCDCYibHUQMzYoOOioXFnhKK0BMQ26B6fSmh1a__IyVHj3GY0KuyGYLlS6zR3--DJa4e5r1_KukIsnDwVDB2i4nTa4uk-ZtYKl7OohxABnZmfezdoHx_o7gnPGyJDW0OV3-TmP9smo8WVVvVrNXNoznERIdT-Sk0gcsRQNfC_xKZlMD4u7_PiCeWEeRU7oNV2YVi1Dn01c87jp0oqHNO0UE96TlCnh0K_lzrzIreYBU_j-WE04ns2KwRxuIf1Km8nBkrpOmiZbGu7noTQDmEy1DDXztsEjrl2kdHf5qSbvgew1gHCBllpcCwYjxFOzopy4U6GAaAIUJeTXhN2JRszZ84tVR50jKX74xyXig-IE3-9tn8O_0OutgtwBLBxj9_A1e3aavoLIpAU7pZs55sfneKM5O3FV_MQSKP9JHhSikSvCMTHt2QVyp4j9jnD3_FLVkZI2cuX4m2f4u3cXh2Hk2mWdCkzsnqEJn2LWECW2kutWxzlE6OI1Tdsubugt0AwF6CSFc8GJ3iMu1CQq9_y_CnC08cy1OZmAoBX9XMlLfxbs4CxCtJx-jDUdug3-CuzcrMsBdkNygBkdbXnWCrM_cmDEIXBLrNNZ1ACfI2DyQveL_GBKKj56FfSztRyekh_5YMpXdsHuBNLQJ1LNA53PiB8JhLTgMjwb85ym1Az1KhNduGANBALo39Y9bCy1JtrgR6cjNwb3xNEWQ";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -622,7 +622,8 @@ function drawStepsChart(sessions, month) {
     const value = typeof v === "number" ? v : (v && v.isCount ? v.value : 0);
     return { date, value };
   });
-  const max = Math.max(1000, ...data.map(d => d.value));
+  const STEPS_TARGET = 10000;
+  const max = Math.max(STEPS_TARGET, ...data.map(d => d.value));
   const niceMax = Math.ceil(max / 1000) * 1000;
   const pad = { l: 44, r: 8, t: 8, b: 22 };
   const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
@@ -633,6 +634,14 @@ function drawStepsChart(sessions, month) {
   svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t + innerH, x2: W - pad.r, y2: pad.t + innerH }));
   svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + 8 }, niceMax.toLocaleString()));
   svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + innerH }, "0"));
+
+  // 10k-step target reference line
+  const targetY = pad.t + innerH - (STEPS_TARGET / niceMax) * innerH;
+  svg.appendChild(svgEl("line", {
+    x1: pad.l, y1: targetY, x2: W - pad.r, y2: targetY,
+    stroke: c, "stroke-dasharray": "4 4", opacity: "0.5",
+  }));
+  svg.appendChild(svgEl("text", { class: "label", x: W - pad.r - 4, y: targetY - 3, "text-anchor": "end" }, "10k target"));
 
   data.forEach((d, i) => {
     if (d.value > 0) {
