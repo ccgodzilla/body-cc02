@@ -50,9 +50,14 @@
   .status.err { color: var(--err); }
   .recent { margin-top: 22px; padding: 12px 14px; background: var(--card);
     border: 1px solid var(--line); border-radius: 12px; font-size: 13px; color: var(--muted); }
-  .recent .row { display: flex; justify-content: space-between; padding: 4px 0; }
+  .recent .row { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
   .recent .row + .row { border-top: 1px dashed var(--line); }
-  .recent .v { color: var(--text); }
+  .recent .v { color: var(--text); flex: 1; }
+  .recent .undo { background: none; border: 1px solid var(--line); color: var(--muted);
+    font-size: 11px; padding: 4px 10px; border-radius: 8px; cursor: pointer; letter-spacing: 0.04em; }
+  .recent .undo:hover, .recent .undo:active { color: var(--err); border-color: var(--err); }
+  .recent .undo:disabled { opacity: 0.4; cursor: not-allowed; }
+  .recent .row.undone .v { text-decoration: line-through; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -77,7 +82,7 @@
 </div>
 
 <script>
-const WORKER_URL = "https://cc02-log.twchou.workers.dev/entry";
+const WORKER_BASE = "https://cc02-log.twchou.workers.dev";
 
 const CATEGORIES = [
   // Body
@@ -185,11 +190,23 @@ function setStatus(msg, kind) {
   statusEl.className = "status" + (kind ? " " + kind : "");
 }
 
-function pushRecent(date, line) {
+function pushRecent(entry) {
   recentEl.hidden = false;
   const row = document.createElement("div");
   row.className = "row";
-  row.innerHTML = `<span>${date}</span><span class="v">${line}</span>`;
+  const dateSp = document.createElement("span");
+  dateSp.textContent = entry.date;
+  const v = document.createElement("span");
+  v.className = "v";
+  v.textContent = `${entry.category}: ${entry.value}`;
+  const undoBtn = document.createElement("button");
+  undoBtn.type = "button";
+  undoBtn.className = "undo";
+  undoBtn.textContent = "Undo";
+  undoBtn.onclick = () => undoEntry(row, undoBtn, entry);
+  row.appendChild(dateSp);
+  row.appendChild(v);
+  row.appendChild(undoBtn);
   recentListEl.prepend(row);
   while (recentListEl.children.length > 5) recentListEl.lastChild.remove();
 }
@@ -217,6 +234,19 @@ async function hmacKey() {
     "raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
 }
 
+async function signedPost(path, entry) {
+  const ts = Date.now();
+  const msg = `${ts}.${entry.date}.${entry.category}.${entry.value}`;
+  const key = await hmacKey();
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(msg));
+  const body = JSON.stringify({ ts, date: entry.date, category: entry.category, value: entry.value, hmac: b64u(sig) });
+  return fetch(WORKER_BASE + path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+  });
+}
+
 async function submit() {
   const entry = buildEntry();
   if (!entry) { setStatus("Enter a value", "err"); return; }
@@ -225,28 +255,38 @@ async function submit() {
   submitEl.disabled = true;
   setStatus("Saving…");
   try {
-    const ts = Date.now();
-    const msg = `${ts}.${entry.date}.${entry.category}.${entry.value}`;
-    const key = await hmacKey();
-    const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(msg));
-    const body = JSON.stringify({ ts, date: entry.date, category: entry.category, value: entry.value, hmac: b64u(sig) });
-    const r = await fetch(WORKER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
-    });
+    const r = await signedPost("/entry", entry);
     if (!r.ok) {
       const t = await r.text().catch(() => "");
       throw new Error(`${r.status} ${t || r.statusText}`);
     }
     setStatus(`Saved: ${entry.category} = ${entry.value}`, "ok");
-    pushRecent(entry.date, `${entry.category}: ${entry.value}`);
+    pushRecent(entry);
     if (!active.default) valEl.value = "";
     if (navigator.vibrate) navigator.vibrate(30);
   } catch (e) {
     setStatus("Failed: " + (e.message || e), "err");
   } finally {
     submitEl.disabled = false;
+  }
+}
+
+async function undoEntry(row, undoBtn, entry) {
+  undoBtn.disabled = true;
+  setStatus("Undoing…");
+  try {
+    const r = await signedPost("/undo", entry);
+    if (!r.ok) {
+      const t = await r.text().catch(() => "");
+      throw new Error(`${r.status} ${t || r.statusText}`);
+    }
+    row.classList.add("undone");
+    undoBtn.textContent = "Undone";
+    setStatus(`Undone: ${entry.category} = ${entry.value}`, "ok");
+    if (navigator.vibrate) navigator.vibrate(30);
+  } catch (e) {
+    undoBtn.disabled = false;
+    setStatus("Undo failed: " + (e.message || e), "err");
   }
 }
 
