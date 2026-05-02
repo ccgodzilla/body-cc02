@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "46F2CTgUnmoBWf8I";
-  const CT_B64 = "Zji92U91Z2k4A1PPpsVgkfLQpbSoZF6gcsayYHBAxsmI-F_eYLpriIlEkKZLXiCZ6ud1KGEG5Ia20251X2uCu-Z0w04t73fGkWCH7N0ytXXR1s4-f4Yk43LyQC-PALvGh2Tz4PorNl0qly5un1IusekZOVESzy8w5Al_Ik3xFgJCmbiW65SfaRklK0Xbbj9pFvMnE6vppQ7lmFg-SgbASCEvyluWGIb2VDb_Sheq0dG9MpN9QjQA8Rx4iFmrsgFNVxtNGAr0wvTlQVIGpBHg9fCVhOcRS96QpkKLEAXW9TABBophYzv-o_GTKYZBTivX-HyfIEVM4aRTLSmDEO_6KDt4L8CRjHBhAWczFymGwn8AWd0bgvuKjG6TmVwjNtnTHznzcKt-2ZpJvymwBy_lKfwlqrAGwJqOC_xAHACITL1ZXg3DfWrbSJ03meibBiFWo-P0HnsKRlQfBzKV0CycgV68lu53dEZGOYwExP4oHNyUbfdVUWgpN1m9R9c0E3pjzseLEp7A7D4_FoTse01X2tpR6MHXIGIIjCCGfOUQJAHjPp71Ty53LjryP0xGwEPhJt223w";
+  const NONCE_B64 = "YCuE0LfBM6NcmrHi";
+  const CT_B64 = "OH9HpobCQjNsTdwcEUZdy9lujBu4GQAJGsEhhvpczypjiLddi1e2Gc9KdzoO_-OtKiSUwY7cZfsIhmUnZoQPK4J61_g6_pUlNTsuhPmZGYlmO1r99G5_T_gqdFkEq6ZjdoMSZUrmeKfFIFbLKs_Yr-AK6Ax2ZWP8Hl2oSdPCrp9lP7IEMChxGDOWGys-RmdE10nCb7y9bQvrnz2uv7-4CH6H51fZALl6gtuTkF5Fvt3gzdLJdir5XPxd0umasGZ3Zls60Wl3VMRtkgpVcyJM_ltoNaIWF6aEWo46O8JbTXRHlOxotIKvtW0kKI5mBBZeQAh7NFVejuVf9wnowzFDH7wFFddeIanP7eNOKiIwTpzSFmJDtuL2PW2DT6NtbsN8hiW4d4Ku-p83XFoBWx7244BwTt28YSCzwvH-fkbKSeP0bJxNw5Le2zwCEkjgdg7ptiXdcf1lKBIlSR4BK0Cc4oErNJxGHLI106PRqGH02WYv2bkB_QZ0-9IGuMLhpyER-gN4g1Wh4Ek_aQ1lcNn0KWFSUBvVCnVt_j7L4I7BF4qjsfRCtbAPNHcw9kXh-krq_ZaFS3irjtIHWNDhDLIQ_5xmWyLyZxuPAScaSynsCp3NkschWrd3d-wL";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
