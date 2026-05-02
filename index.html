@@ -264,8 +264,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "uYr967CJ_dkYN4A9";
-  const CT_B64 = "g3N01BhNMNRP8X6h2htUCfBrQltWnag9HJ9WCM8oSaWvLe5gDuiK8AJxTnfbx0c6PwCLznlcbHvvZPhyhnR0vRpJQeUVTlOr17s-sm3fsrYBTbJ4oS7Wys8jIDSQkLR6jviGqTY1X4Q2vWx7x0yP-aj1H2TylybQTzqEPYLktAXYs89K-37maL67sSG0HukbGItsIV8ZCcX93WXEr4Sj8t2Xg1enpD0JBbkK-UneXv8JhriDKPx9fCTfTv3AWCLAICajRL9PFGVaipnUMwi6V0H_hIkY7H5hnjyKj5qfc2kLk7E48HjGZR4vNfABH_57FpZbWj9u-jzsANirjUxSBlzkiWfNi9F65RHTuBAGl_FWsro7Y7NqygC7de9HvZIs0ooKvIy6TMmbs2T8U_UkFkjuNUwvvugr5YYhh6tpvBO6_B7zxJ44VMVwHk5viObYp921183S-WISr-pvVQGSx6PXWFQ2URBiNpOzHKu9t5U9O3WjRq-sACjZidZk3vxIcIvaPXgjkzs9Ew-MrUlMbV0gr5FQ9xptxVoGsJAnZ4n-_GHJ1BenagNBlJS8fmrbP-_A89CzdRtVqb6UbEek4iPGoRIhxAoBdhZyEbm92whjtJd7KsPwbu0W6mjqlTdpYnOI72B2We9q248ZcBQT3dcM2ULnAXoO3_oGGsgUybhyc-0kGjuQ25ezTIs2HiCEgdzOyEz61U6qX5fzg4SwoVPQx3h9PzNtqwEfth6uqlaVZI3sBcpBVzba_0Q7zSSMaFpropxS8-diWgTpzxP9I3m21ohqwv1KiI51yml5F6z2HefvATpycmAl9iFPfQ";
+  const NONCE_B64 = "r1eWVX8XzCthbFra";
+  const CT_B64 = "gfVuKqzEzvQeyxhP0XrnxdlXUbh5E1CqUTGhmhrwxKBUJ3Os2XAC76d7ad0l8TaDc_RQ9mrauFhRo-lkfYX26CfpVD_qO9QEoqrE_wo_sVGSvC9bPVHrcB8uxeeA8jYgTWfTMjfvvg4raoTmy3TSYSKe7UOgGxm66ikVNuUHplLz0czvLj5OVCIAv78EbWyaUhgrMtblmgz31REiIuXiCti8KiQ6lDRcjluqNNt66y--PUC3VAr1QNO0mGdpTuKMmX-0Ib4IjupstDEOTL3t7WtBCdkrHiOsGinZMXFn4D7q4F4SU4XTv-bjOLHeEXf2yJw4pZwHjSz2DmiSu__SSJubuyebBuKmMVBMq7U1GSOaKKElgm5uzGehYLdtjxIhmKjptgYNMlZS1ThsyqmPJtXrEmH-b1uKySQvresplsw7c-O_gjcpzY91yOHRAYCUcOzo9reAqmIdH3V1wBE-KmsjPY-nfep3Pyc2i9ViKR2I1FcN-XFcR_0jE_QgGiZbXQtZ3WqmtfQZIRHk3wIAXJoqOAnfvI57Tq8iJVT6KCYyJZ7r7I6lSmHsAvyTK74QhW4ZzI6bH6xOgY8gXVe5_CwPx0KcWYnjVuZkSmshlaQSY0wfbB0B1p8xUcVpP04NGuS9Pap41Wq8OdeVXwGUjJJFXAHj0jB2fjx1kCjjUydZUYZnSJikJnOXdQw-EOiHjeABDtssiiGQYjZ6nPvsiGQ1vYF0rUd90HmT5YqAN2-2EeXzQvxyS6Sw9CwceodBce4_hHQH6Ma5Xwcb5JT0-b3mpWKUSXHiDpy4oIaEIGQqbrO_Az866nCtrf0X-Q";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -324,7 +324,7 @@ function parseWorkouts(md) {
       };
       continue;
     }
-    const itemMatch = line.match(/^[-*]\s+([A-Za-z][A-Za-z\s\/]*?):\s*(\d+(?:\.\d+)?)\s*(.*)$/);
+    const itemMatch = line.match(/^[-*]\s+([A-Za-z][A-Za-z\s\/-]*?):\s*(\d+(?:\.\d+)?)\s*(.*)$/);
     if (itemMatch) {
       const key = itemMatch[1].trim().toLowerCase();
       const val = parseFloat(itemMatch[2]);
@@ -742,9 +742,9 @@ const ICON_RULES = [
   [/jerk/i, "🍆"],
   [/blood/i, "🩸"],
   [/colonoscopy/i, "🔬"],
-  [/pushup/i, "💪"],
+  [/push.?up/i, "💪"],
   [/squat/i, "🦵"],
-  [/pull ?up/i, "🧗"],
+  [/pull.?up/i, "🧗"],
   [/badminton/i, "🏸"],
   [/basketball/i, "🏀"],
   [/trampoline/i, "🤸"],
@@ -1234,6 +1234,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:24</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:54</div>
 </body>
 </html>
