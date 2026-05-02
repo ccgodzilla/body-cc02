@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Body — cc02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  /* light blue + peach pink */
+  :root {
+    --bg: #dde9f3;
+    --panel: #e8f0f8;
+    --panel-2: #f1f6fc;
+    --text: #1a2c4d;
+    --muted: #5d6b85;
+    --accent: #f29985;
+    --accent-deep: #d27260;
+    --accent-soft: rgba(242, 153, 133, 0.18);
+    --bar: #d81b85;
+    --bar-sleep: #daa520;
+    --bar2: #1a2c4d;
+    --bar3: #b9cce0;
+    --bar4: #d27260;
+    --line: #1a2c4d;
+    --border: #b9cce0;
+    --border-strong: #7a96b5;
+    --hairline: #1a2c4d;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 400; letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body::before { content: ""; display: block; height: 1px; background: var(--text); }
+  main { max-width: 1080px; margin: 0 auto; padding: 64px 32px 80px; }
+  .masthead { text-align: left; margin-bottom: 56px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    border-bottom: 1px solid var(--text); padding-bottom: 20px; }
+  .masthead-l { display: flex; flex-direction: column; gap: 14px; }
+  .masthead .eyebrow { font-family: "Inter", sans-serif;
+    font-size: 11px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+    margin: 0; font-weight: 500; }
+  @media (max-width: 600px) {
+    .masthead { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .sub { text-align: left; }
+    h1 { font-size: 64px; }
+  }
+  h1 { font-family: "Inter", sans-serif;
+    font-size: 96px; font-weight: 800; font-style: normal;
+    margin: 0; letter-spacing: -0.04em; line-height: 0.9; color: var(--text); }
+  h1 .ornament { display: none; }
+  .sub { color: var(--muted); text-align: right; margin: 0; font-size: 11px;
+    letter-spacing: 0.04em; font-weight: 400; font-family: "Inter", sans-serif;
+    text-transform: none; padding: 0; }
+  .month-picker { display: flex; align-items: center; gap: 8px; margin-bottom: 32px;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; position: relative; }
+  .mp-nav { background: none; border: 1px solid var(--border); color: var(--text);
+    width: 32px; height: 32px; cursor: pointer; font-size: 18px; line-height: 1;
+    font-family: "Inter", sans-serif; padding: 0; transition: border-color 0.2s, background 0.2s; }
+  .mp-nav:hover { border-color: var(--text); background: var(--accent-soft); }
+  .mp-current { background: none; border: 0; color: var(--text);
+    font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; padding: 8px 14px;
+    flex: 1; text-align: center; }
+  .mp-current:hover { color: var(--accent-deep); }
+  .mp-input { position: absolute; opacity: 0; pointer-events: none; left: 50%; bottom: 0; }
+  .mp-input.show { opacity: 1; pointer-events: auto; }
+  .grid { display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 36px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 0;
+    padding: 24px 22px 20px; transition: border-color 0.2s ease; }
+  .card:hover { border-color: var(--text); }
+  .card .label { color: var(--muted); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.16em; font-weight: 500; }
+  .card .label .icon { text-transform: none; margin-right: 6px; font-size: 13px; letter-spacing: 0; }
+  .card .value { font-family: "Inter", sans-serif; font-size: 36px;
+    font-weight: 700; margin-top: 12px; font-variant-numeric: tabular-nums; line-height: 1.0;
+    letter-spacing: -0.03em; color: var(--text); }
+  .card .sub2 { color: var(--muted); font-size: 11px; margin-top: 10px; letter-spacing: 0;
+    text-transform: none; font-style: normal; font-family: "Inter", sans-serif; font-weight: 400; }
+  section { background: var(--panel); border: 1px solid var(--border); border-radius: 0;
+    padding: 28px 28px; margin-bottom: 28px; }
+  section h2 { font-family: "Inter", sans-serif; font-size: 11px; font-weight: 600;
+    margin: 0 0 22px; color: var(--text); letter-spacing: 0.18em; text-transform: uppercase;
+    padding-bottom: 14px; border-bottom: 1px solid var(--text); display: flex;
+    align-items: center; justify-content: space-between; gap: 16px; }
+  .session { display: flex; justify-content: space-between; align-items: baseline;
+    padding: 8px 0; border-bottom: 1px solid var(--border); gap: 16px; }
+  .session:last-child { border-bottom: 0; }
+  .session .date { font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+  .session .items { font-weight: 500; text-align: right; }
+  .chart { width: 100%; height: 180px; display: block; }
+  .chart.tall { height: 220px; }
+  .chart .axis { stroke: var(--border); stroke-width: 1; }
+  .chart .grid-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.5; }
+  .chart .label { fill: var(--muted); font-size: 10px; }
+  .legend { font-size: 12px; color: var(--muted); margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px;
+    border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .habit-row { display: grid; grid-template-columns: 110px 1fr 64px; align-items: center; gap: 8px; margin: 6px 0; }
+  .habit-name { font-size: 13px; color: var(--text); text-transform: capitalize; }
+  .habit-name .icon { text-transform: none; margin-right: 4px; }
+  .habit-cells { display: grid; grid-template-columns: repeat(var(--days, 30), 1fr); gap: 2px; min-width: 0; }
+  .habit-cell { aspect-ratio: 1; border-radius: 3px; min-width: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; color: white; line-height: 1;
+    font-variant-numeric: tabular-nums; overflow: hidden; cursor: pointer; }
+  .habit-cell.warn { box-shadow: 0 0 0 1.5px #b8302a, 0 0 6px rgba(184, 48, 42, 0.55); }
+  .habit-cell.selected { outline: 2px solid var(--text); outline-offset: 1px; }
+  .habit-detail { font-size: 12px; color: var(--text); padding: 6px 8px; margin: 6px 0;
+    border: 1px solid var(--border); border-radius: 4px; background: var(--bg);
+    min-height: 1.4em; }
+  .habit-detail.empty { color: var(--muted); font-style: italic; }
+  .habit-tot { font-size: 12px; color: var(--muted); white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+  .activity-row { display: grid; grid-template-columns: 110px 1fr 48px; align-items: center; gap: 8px; margin: 6px 0; }
+  .activity-name { font-size: 13px; color: var(--text); text-transform: capitalize; }
+  .activity-name .icon { margin-right: 6px; }
+  .activity-cells { display: grid; grid-template-columns: repeat(var(--days, 30), 1fr); gap: 2px; min-width: 0; }
+  .activity-cell { aspect-ratio: 1; min-width: 0; background: var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; line-height: 1; overflow: hidden; }
+  .activity-cell.on { background: var(--panel-2); color: var(--bar); }
+  .activity-cell.future { outline: 1px dashed var(--bar); outline-offset: -1px; }
+  .activity-cell.on.future { background: var(--bg); color: var(--bar); outline-color: var(--bar); }
+  .activity-tot { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .activity-empty { color: var(--muted); font-size: 13px; }
+  @media (max-width: 600px) {
+    .activity-row { grid-template-columns: 1fr auto; gap: 4px; row-gap: 2px; }
+    .activity-name { grid-column: 1; }
+    .activity-tot { grid-column: 2; font-size: 11px; }
+    .activity-cells { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .habit-row { grid-template-columns: 1fr auto; gap: 4px; row-gap: 2px; }
+    .habit-name { grid-column: 1; }
+    .habit-tot { grid-column: 2; font-size: 11px; }
+    .habit-cells { grid-column: 1 / -1; }
+    .habit-cell { font-size: 9px; }
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td.num, th.num { text-align: right; }
+  .error { background: #2a0e0e; color: #f4dada; padding: 12px 14px; border-radius: 0; }
+  code { background: rgba(127,127,127,0.15); padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+  details { margin-top: 8px; }
+  details summary { color: var(--muted); cursor: pointer; font-size: 12px; }
+  .reminders { background: var(--accent-soft); border-color: var(--accent); }
+  .reminders h2 { color: var(--accent); border-bottom-color: var(--accent); }
+  .reminders ul { margin: 0; padding-left: 0; list-style: none; font-size: 16px; line-height: 2;
+    font-family: "Bodoni Moda", serif; font-weight: 400; font-style: italic; }
+  .reminders li { margin: 4px 0; letter-spacing: 0.01em; padding-left: 22px; position: relative; }
+  .reminders li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+  .reminders strong { color: var(--accent); font-weight: 600; font-style: normal; }
+  .private-toggle { background: none; border: 0; color: var(--muted); cursor: pointer;
+    font-size: 16px; padding: 0 4px; opacity: 0.5; line-height: 1; letter-spacing: 0; }
+  .private-toggle:hover { opacity: 1; color: var(--accent); }
+  body.show-private .private-toggle { opacity: 1; color: var(--accent); }
+  [data-private] { display: none; }
+  body.show-private [data-private] { display: revert; }
+  body.show-private .card[data-private] { display: block; }
+  body.show-private .habit-row[data-private] { display: grid; }
+</style>
+</head>
+<body>
+<main>
+  <div class="masthead">
+    <div class="masthead-l">
+      <div class="eyebrow">CC·02 / 2026</div>
+      <h1>Body</h1>
+    </div>
+    <div class="sub" id="subtitle">Loading…</div>
+  </div>
+
+  <div class="month-picker">
+    <button class="mp-nav" id="mpPrev" aria-label="Previous month">‹</button>
+    <button class="mp-current" id="mpCurrent">May 2026</button>
+    <button class="mp-nav" id="mpNext" aria-label="Next month">›</button>
+    <input type="month" id="mpInput" class="mp-input" />
+  </div>
+
+  <div class="grid" id="stats"></div>
+
+  <section>
+    <h2><span data-month-label="Sleep — $M">Sleep</span></h2>
+    <svg class="chart tall" id="sleepChartCc02" preserveAspectRatio="none"></svg>
+  </section>
+
+  <section>
+    <h2><span data-month-label="Steps — $M">Steps</span></h2>
+    <svg class="chart tall" id="stepsChart" preserveAspectRatio="none"></svg>
+  </section>
+
+  <section>
+    <h2><span data-month-label="Activities — $M">Activities</span></h2>
+    <div id="activities"></div>
+  </section>
+
+  <section>
+    <h2><span data-month-label="Daily habits — $M">Daily habits</span><button id="privateToggle" class="private-toggle" title="Toggle private entries">⋯</button></h2>
+    <div id="habitTracker"></div>
+  </section>
+</main>
+
+<script>
+let cachedSessions = null, cachedHealth = null, cachedErrors = [];
+let currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
+const STEPS_KEY = "steps";
+const SLEEP_KEY = "sleep";
+const HABIT_LABELS = { "refined carbs": "refi. carbs" };
+const labelFor = k => HABIT_LABELS[k] || k;
+
+function monthDays(yyyymm) {
+  const [y, m] = yyyymm.split("-").map(Number);
+  const last = new Date(y, m, 0).getDate();
+  return Array.from({length: last}, (_, i) => `${yyyymm}-${String(i + 1).padStart(2, "0")}`);
+}
+function monthLabel(yyyymm) {
+  const [y, m] = yyyymm.split("-").map(Number);
+  return new Date(y, m - 1, 1).toLocaleString("en-US", { month: "long", year: "numeric" });
+}
+function shiftMonth(yyyymm, delta) {
+  const [y, m] = yyyymm.split("-").map(Number);
+  const d = new Date(y, m - 1 + delta, 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+function rerender() {
+  if (cachedSessions) render(cachedSessions, cachedHealth, cachedErrors);
+}
+
+document.getElementById("privateToggle").addEventListener("click", () => {
+  document.body.classList.toggle("show-private");
+});
+
+const mpPrev = document.getElementById("mpPrev");
+const mpNext = document.getElementById("mpNext");
+const mpCurrent = document.getElementById("mpCurrent");
+const mpInput = document.getElementById("mpInput");
+function setMonth(m) {
+  currentMonth = m;
+  mpCurrent.textContent = monthLabel(m);
+  mpInput.value = m;
+  rerender();
+}
+mpPrev.addEventListener("click", () => setMonth(shiftMonth(currentMonth, -1)));
+mpNext.addEventListener("click", () => setMonth(shiftMonth(currentMonth, 1)));
+mpCurrent.addEventListener("click", () => {
+  if (mpInput.showPicker) { try { mpInput.showPicker(); return; } catch {} }
+  mpInput.classList.add("show"); mpInput.focus();
+});
+mpInput.addEventListener("change", e => { setMonth(e.target.value); mpInput.classList.remove("show"); });
+mpInput.addEventListener("blur", () => mpInput.classList.remove("show"));
+mpCurrent.textContent = monthLabel(currentMonth);
+mpInput.value = currentMonth;
+const SVG_NS = "http://www.w3.org/2000/svg";
+function svgEl(name, attrs, text) {
+  const el = document.createElementNS(SVG_NS, name);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  if (text != null) el.textContent = text;
+  return el;
+}
+const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+async function load() {
+  const sub = document.getElementById('subtitle');
+  const stats = document.getElementById('stats');
+  const NONCE_B64 = "NZ9V-ScDcDo2O8-J";
+  const CT_B64 = "m4JueJQNzFt0xS1mzpW7snknSKFErJN6DyWOETUF2qhv-euE2nMDolL9Ar0QU6N0v3hIRmfc7H1MJUo0GHULOUC8GjcOu9-mucxfc3TJeXcPrRCRhxdK4y133GxLNpYkv5MxYd0aD29tSEInA0woUtiLtOXXtY1T3BPdlUumwBL7SJRKSfLYpEBfkcDpjVlJaVxHpOmIwvp731rXWTm9E73Ci0E_M7ffZGvMRxgw_XdH6WjSz0Gq1i0NQpxqz2SCObPaszxlvv9AwjkFf4VeDOF0Kbmb0ElW_n1Ym0c5iQJwqXf5HoaQlxve6C4l5Ua_86kvsZ2la_07FZ1Ck5Y6OhRF_8fPICGU8Bi-MW1NiwFT_DKsvulxU4TkOsk1Vk42t-v3cO9A";
+  const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
+  const keyStr = location.hash.replace(/^#/, '');
+  if (!keyStr) {
+    sub.innerHTML = '<div class="error">Locked. The full URL must include <code>#&lt;key&gt;</code> after it. Ask the person who shared this link for the complete URL.</div>';
+    return;
+  }
+  let plaintext;
+  try {
+    const keyBytes = b64uDecode(keyStr);
+    if (keyBytes.length !== 32) throw new Error('key length ' + keyBytes.length + ' (expected 32)');
+    const iv = b64uDecode(NONCE_B64);
+    const ctBytes = b64uDecode(CT_B64);
+    const cryptoKey = await crypto.subtle.importKey('raw', keyBytes.buffer.slice(keyBytes.byteOffset, keyBytes.byteOffset + keyBytes.byteLength), { name: 'AES-GCM' }, false, ['decrypt']);
+    const buf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv.buffer.slice(iv.byteOffset, iv.byteOffset + iv.byteLength) }, cryptoKey, ctBytes.buffer.slice(ctBytes.byteOffset, ctBytes.byteOffset + ctBytes.byteLength));
+    plaintext = new TextDecoder().decode(buf);
+  } catch (e) {
+    console.error('decrypt failed:', e);
+    sub.innerHTML = '<div class="error">Decrypt failed: ' + (e && e.message ? e.message : e) + '. <br>Key len: ' + (keyStr ? keyStr.length : 0) + '. <br>If on Safari, try Chrome to compare.</div>';
+    return;
+  }
+  const { md, health } = JSON.parse(plaintext);
+  cachedSessions = parseWorkouts(md);
+  cachedHealth = health;
+  cachedErrors = [];
+  render(cachedSessions, cachedHealth, cachedErrors);
+}
+function parseWorkouts(md) {
+  const sessions = [];
+  let cur = null;
+  for (const raw of md.split("\n")) {
+    const line = raw.trim();
+    const dateMatch = line.match(/^##\s+(\d{4}-\d{2}-\d{2})/);
+    if (dateMatch) {
+      if (cur) sessions.push(cur);
+      cur = { date: dateMatch[1], items: {} };
+      continue;
+    }
+    if (!cur) continue;
+    // Sleep period: e.g. "- Sleep: 23:00 → 09:00" or "- Sleep: 23:00-09:00"
+    const sleepPeriod = line.match(/^[-*]\s+sleep:\s*(\d{1,2}):(\d{2})\s*[-–→]\s*(\d{1,2}):(\d{2})\s*(.*)$/i);
+    if (sleepPeriod) {
+      const bH = +sleepPeriod[1], bM = +sleepPeriod[2];
+      const wH = +sleepPeriod[3], wM = +sleepPeriod[4];
+      // Wake-day-anchored offset hours: noon=0, so 8pm prev evening = -4 ... 11am same day = 11
+      // We model on a 24h "wake-anchored" axis where bedtime can go negative or wrap.
+      const bedHour = bH + bM / 60;
+      const wakeHour = wH + wM / 60;
+      // If bedtime > waketime, bedtime was previous evening → subtract 24
+      const bedRel = bedHour > wakeHour ? bedHour - 24 : bedHour;
+      const duration = wakeHour - bedRel;
+      cur.items["sleep"] = {
+        bedtime: `${String(bH).padStart(2,"0")}:${String(bM).padStart(2,"0")}`,
+        waketime: `${String(wH).padStart(2,"0")}:${String(wM).padStart(2,"0")}`,
+        bedRel, wakeHour, duration,
+        isSleep: true,
+      };
+      continue;
+    }
+    const itemMatch = line.match(/^[-*]\s+([A-Za-z][A-Za-z\s\/]*?):\s*(\d+(?:\.\d+)?)\s*(.*)$/);
+    if (itemMatch) {
+      const key = itemMatch[1].trim().toLowerCase();
+      const val = parseFloat(itemMatch[2]);
+      const trailing = (itemMatch[3] || "").trim();
+      if (key.includes("weight")) {
+        cur.items[key] = { value: val, unit: trailing, isMeasurement: true };
+      } else {
+        const prev = cur.items[key];
+        const prevNum = (prev && typeof prev === "object") ? prev.value : (prev || 0);
+        const notes = (prev && prev.notes) ? [...prev.notes] : [];
+        if (trailing) notes.push(trailing);
+        cur.items[key] = notes.length
+          ? { value: prevNum + val, notes, isCount: true }
+          : prevNum + val;
+      }
+    }
+  }
+  if (cur) sessions.push(cur);
+  sessions.sort((a, b) => a.date.localeCompare(b.date));
+  return sessions;
+}
+
+function lastN(arr, n) { return arr.slice(Math.max(0, arr.length - n)); }
+function avg(xs) { return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0; }
+function fmtDur(min) {
+  const h = Math.floor(min / 60), m = Math.round(min % 60);
+  return `${h}h${String(m).padStart(2, "0")}m`;
+}
+
+function render(sessions, health, errors) {
+  const sub = document.getElementById("subtitle");
+  const parts = [];
+  if (health) parts.push(`Apple Health export ${health.generated_at}`);
+  if (errors.length) parts.push(`(${errors.join("; ")})`);
+  sub.textContent = parts.join(" · ");
+
+  const HABIT_KEYS = ["coffee", "alcohol", "fruit", "dessert", "fried foods", "refined carbs", "bowel movement"];
+  const EVENT_KEYS = ["doctor visit"];
+  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging"];
+  const baseOf = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
+  const isHabit = k => HABIT_KEYS.includes(k);
+  const isEvent = k => EVENT_KEYS.includes(k);
+  const isActivity = k => ACTIVITY_KEYS.includes(baseOf(k));
+
+  // Latest weight within the selected month (fallback: most recent ever)
+  const monthPrefix = currentMonth + "-";
+  let latestWeight = null, latestWeightAny = null;
+  for (const s of sessions) {
+    for (const [k, v] of Object.entries(s.items)) {
+      if (v && v.isMeasurement && k.includes("weight")) {
+        latestWeightAny = { ...v, key: k, date: s.date };
+        if (s.date.startsWith(monthPrefix)) latestWeight = { ...v, key: k, date: s.date };
+      }
+    }
+  }
+  if (!latestWeight) latestWeight = latestWeightAny;
+
+  const totals = {};
+  const events = [];
+  for (const s of sessions) {
+    for (const [k, v] of Object.entries(s.items)) {
+      if (isEvent(k)) {
+        const value = typeof v === "number" ? v : (v && v.value != null ? v.value : null);
+        const unit = (v && v.notes && v.notes[0]) || "";
+        events.push({ key: k, value, unit, date: s.date });
+        continue;
+      }
+      if (!s.date.startsWith(monthPrefix)) continue;
+      if (isHabit(k)) continue;
+      if (isActivity(k)) continue;
+      if (k === STEPS_KEY) continue;
+      if (k === SLEEP_KEY) continue;
+      const num = typeof v === "number" ? v : (v && v.isCount ? v.value : null);
+      if (num != null) {
+        const baseKey = baseOf(k);
+        totals[baseKey] = (totals[baseKey] || 0) + num;
+      }
+    }
+  }
+
+  const monthName = monthLabel(currentMonth);
+  const cards = [];
+  if (latestWeight) cards.push([`Weight (${latestWeight.key.replace("weight", "").trim() || "latest"})`,
+    `${latestWeight.value} ${latestWeight.unit}`.trim(), latestWeight.date]);
+
+  // Steps avg for the selected month
+  const stepEntriesMonth = sessions
+    .filter(s => s.date.startsWith(monthPrefix))
+    .map(s => ({ date: s.date, v: s.items[STEPS_KEY] }))
+    .filter(s => s.v != null)
+    .map(s => ({ value: typeof s.v === "number" ? s.v : (s.v.isCount ? s.v.value : 0) }));
+  if (stepEntriesMonth.length) {
+    cards.push(["Steps", Math.round(avg(stepEntriesMonth.map(s => s.value))).toLocaleString(),
+      `${stepEntriesMonth.length}d avg · ${monthName}`]);
+  } else {
+    cards.push(["Steps", "—", `no data · ${monthName}`]);
+  }
+
+  // Sleep avg for the selected month
+  const sleepEntriesMonth = sessions
+    .filter(s => s.date.startsWith(monthPrefix))
+    .map(s => s.items[SLEEP_KEY])
+    .filter(v => v && v.isSleep);
+  if (sleepEntriesMonth.length) {
+    const a = avg(sleepEntriesMonth.map(s => s.duration));
+    cards.push(["Sleep", `${a.toFixed(1)} h`, `${sleepEntriesMonth.length} nights · ${monthName}`]);
+  }
+  // Event cards (e.g. doctor visit) — render before the per-habit totals
+  const todayMs = new Date().setHours(0,0,0,0);
+  const lastEvent = {};
+  for (const ev of events) {
+    if (!lastEvent[ev.key] || ev.date > lastEvent[ev.key].date) lastEvent[ev.key] = ev;
+  }
+  for (const key of EVENT_KEYS) {
+    const ev = lastEvent[key];
+    const labelRaw = "Next " + key;
+    const label = labelRaw.charAt(0).toUpperCase() + labelRaw.slice(1);
+    if (!ev) {
+      cards.push([label, "Pending", "no prior record"]);
+      continue;
+    }
+    const evMs = new Date(ev.date).setHours(0,0,0,0);
+    const daysAgo = Math.round((todayMs - evMs) / 86400000);
+    const lastSub = `Last ${daysAgo}d ago · ${ev.date}`;
+    cards.push([label, "Pending", lastSub]);
+  }
+  for (const [k, v] of Object.entries(totals)) {
+    cards.push([`Total ${k}`, v.toLocaleString(), monthName]);
+  }
+
+  const isPrivateLabel = l => /jerk/i.test(l);
+  document.getElementById("stats").innerHTML = cards.map(([l, v, s]) => {
+    const ic = iconFor(l);
+    const priv = isPrivateLabel(l) ? " data-private" : "";
+    return `<div class="card"${priv}><div class="label">${ic ? `<span class="icon">${ic}</span>` : ""}${l}</div><div class="value">${v}</div>${s ? `<div class="sub2">${s}</div>` : ""}</div>`;
+  }).join("");
+
+  // Update section titles with current month
+  document.querySelectorAll("[data-month-label]").forEach(el => {
+    el.textContent = el.dataset.monthLabel.replace("$M", monthName);
+  });
+
+  renderHabitTracker(sessions, HABIT_KEYS, currentMonth);
+  renderActivities(sessions, ACTIVITY_KEYS, currentMonth);
+  requestAnimationFrame(() => {
+    drawStepsChart(sessions, currentMonth);
+    drawSleepChartCc02(sessions, currentMonth);
+  });
+}
+
+function drawSleepChartCc02(sessions, month) {
+  const { svg, W, H } = setupSvg("sleepChartCc02");
+  const slots = monthDays(month);
+  const days = slots.length;
+  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
+  const data = slots.map(date => ({ date, sleep: (byDate[date] || {})[SLEEP_KEY] }));
+
+  // Single chart: left axis = clock, right axis = total hours
+  const yMinH = -6;   // 6pm prev evening
+  const yMaxH = 12;   // noon today
+  const ySpan = yMaxH - yMinH; // 18 hours of clock range
+  const dMax = 12;
+
+  const pad = { l: 56, r: 56, t: 22, b: 24 };
+  const innerW = W - pad.l - pad.r;
+  const innerH = H - pad.t - pad.b;
+  const slot = innerW / days;
+  const barW = Math.max(2, slot - 2);
+
+  const cBar = cssVar("--bar-sleep") || "#daa520";
+  const cDur = cssVar("--bar") || "#d81b85"; // distinct from clock bars
+
+  // Reversed: noon at top, 6pm prev evening at bottom — bar fills upward as sleep accumulates
+  const clockY = h => pad.t + ((yMaxH - h) / ySpan) * innerH;
+  const durY = d => pad.t + (1 - d / dMax) * innerH;
+  const fmtClock = h => {
+    let H24 = ((Math.round(h) % 24) + 24) % 24;
+    const ampm = H24 < 12 ? "am" : "pm";
+    const H12 = H24 % 12 || 12;
+    return `${H12}${ampm}`;
+  };
+  const fmt12 = hhmm => {
+    const [H, M] = hhmm.split(":").map(Number);
+    const ampm = H < 12 ? "am" : "pm";
+    const H12 = H % 12 || 12;
+    return `${H12}:${String(M).padStart(2,"0")}${ampm}`;
+  };
+
+  // Frame
+  svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t, x2: pad.l, y2: pad.t + innerH }));
+  svg.appendChild(svgEl("line", { class: "axis", x1: W - pad.r, y1: pad.t, x2: W - pad.r, y2: pad.t + innerH }));
+  svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t + innerH, x2: W - pad.r, y2: pad.t + innerH }));
+
+  // LEFT axis: hourly ticks, labels every 2 hours
+  for (let h = yMinH; h <= yMaxH; h++) {
+    const y = clockY(h);
+    const isMajor = (h % 2 === 0);
+    if (isMajor) {
+      svg.appendChild(svgEl("line", { class: "grid-line", x1: pad.l, y1: y, x2: W - pad.r, y2: y }));
+      svg.appendChild(svgEl("text", { class: "label", x: pad.l - 4, y: y + 3, "text-anchor": "end" }, fmtClock(h)));
+    } else {
+      svg.appendChild(svgEl("line", { x1: pad.l, y1: y, x2: pad.l + 4, y2: y, stroke: "currentColor", opacity: "0.25" }));
+    }
+  }
+
+  // RIGHT axis: duration scale (0/4/8/12h)
+  for (const dh of [0, 4, 8, 12]) {
+    const y = durY(dh);
+    // tick mark only on right side (no horizontal grid to avoid duplicating clock grid)
+    svg.appendChild(svgEl("line", { x1: W - pad.r - 4, y1: y, x2: W - pad.r, y2: y, stroke: "currentColor", opacity: "0.5" }));
+    svg.appendChild(svgEl("text", { class: "label", x: W - pad.r + 6, y: y + 3 }, `${dh}h`));
+  }
+  // 8h dashed reference (in duration color so it visually pairs with the line)
+  svg.appendChild(svgEl("line", { x1: pad.l, y1: durY(8), x2: W - pad.r, y2: durY(8),
+    stroke: cDur, "stroke-dasharray": "4 4", opacity: "0.35" }));
+
+  // Period bars (reversed clock axis: y is min for waketime, max for bedtime)
+  data.forEach((d, i) => {
+    const sl = d.sleep;
+    if (!sl || !sl.isSleep) return;
+    const x = pad.l + i * slot + 1;
+    const yA = clockY(Math.max(yMinH, sl.bedRel));
+    const yB = clockY(Math.min(yMaxH, sl.wakeHour));
+    const yTop = Math.min(yA, yB);
+    const yBot = Math.max(yA, yB);
+    const h = Math.max(1, yBot - yTop);
+    const rect = svgEl("rect", { x, y: yTop, width: barW, height: h, fill: cBar, opacity: "0.85" });
+    rect.appendChild(svgEl("title", {}, `${d.date}: ${fmt12(sl.bedtime)} → ${fmt12(sl.waketime)} (${sl.duration.toFixed(1)}h)`));
+    svg.appendChild(rect);
+  });
+
+  // Duration line + dots on RIGHT axis (distinct fuchsia)
+  const linePts = data.map((d, i) => {
+    const sl = d.sleep;
+    if (!sl || !sl.isSleep) return null;
+    const x = pad.l + i * slot + barW / 2 + 0.5;
+    const y = durY(sl.duration);
+    return { x, y, d, sl };
+  }).filter(Boolean);
+  if (linePts.length > 1) {
+    const path = linePts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ");
+    svg.appendChild(svgEl("path", { d: path, fill: "none", stroke: cDur, "stroke-width": 1.5 }));
+  }
+  linePts.forEach(p => {
+    const ring = svgEl("circle", { cx: p.x, cy: p.y, r: 4.5, fill: "var(--bg)", stroke: cDur, "stroke-width": 1.5 });
+    ring.appendChild(svgEl("title", {}, `${p.d.date}: ${p.sl.duration.toFixed(1)}h total`));
+    svg.appendChild(ring);
+  });
+
+  // X-axis date labels
+  data.forEach((d, i) => {
+    if (i === 0 || i === days - 1 || i === Math.floor(days / 2)) {
+      const isLast = i === days - 1;
+      const attrs = { class: "label", x: pad.l + i * slot + (isLast ? barW : barW / 2), y: H - 6 };
+      if (isLast) attrs["text-anchor"] = "end";
+      svg.appendChild(svgEl("text", attrs, d.date.slice(8)));
+    }
+  });
+
+  // Legend
+  svg.appendChild(svgEl("text", { class: "label", x: pad.l, y: pad.t - 6 }, "Clock (left)"));
+  svg.appendChild(svgEl("text", { class: "label", x: W - pad.r, y: pad.t - 6, "text-anchor": "end" }, "Total hours (right)"));
+}
+
+function drawStepsChart(sessions, month) {
+  const { svg, W, H } = setupSvg("stepsChart");
+  const slots = monthDays(month);
+  const days = slots.length;
+  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
+  const data = slots.map(date => {
+    const v = (byDate[date] || {})[STEPS_KEY];
+    const value = typeof v === "number" ? v : (v && v.isCount ? v.value : 0);
+    return { date, value };
+  });
+  const max = Math.max(1000, ...data.map(d => d.value));
+  const niceMax = Math.ceil(max / 1000) * 1000;
+  const pad = { l: 44, r: 8, t: 8, b: 22 };
+  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+  const slot = innerW / days;
+  const barW = Math.max(2, slot - 2);
+  const c = cssVar("--bar");
+
+  svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t + innerH, x2: W - pad.r, y2: pad.t + innerH }));
+  svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + 8 }, niceMax.toLocaleString()));
+  svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + innerH }, "0"));
+
+  data.forEach((d, i) => {
+    if (d.value > 0) {
+      const x = pad.l + i * slot + 1;
+      const h = (d.value / niceMax) * innerH;
+      const rect = svgEl("rect", { x, y: pad.t + innerH - h, width: barW, height: h, fill: c });
+      rect.appendChild(svgEl("title", {}, `${d.date}: ${d.value.toLocaleString()} steps`));
+      svg.appendChild(rect);
+    }
+    if (i === 0 || i === days - 1 || i === Math.floor(days / 2)) {
+      const isLast = i === days - 1;
+      const attrs = { class: "label", x: pad.l + i * slot + (isLast ? barW : barW / 2), y: H - 6 };
+      if (isLast) attrs["text-anchor"] = "end";
+      svg.appendChild(svgEl("text", attrs, d.date.slice(8)));
+    }
+  });
+}
+
+function renderActivities(sessions, activityKeys, month) {
+  const container = document.getElementById("activities");
+  if (!container) return;
+  const dayKeys = monthDays(month);
+  const days = dayKeys.length;
+  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
+  const stripBase = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
+  const todayStr = new Date().toISOString().slice(0, 10);
+
+  const rows = activityKeys.map(activity => {
+    let countDays = 0;
+    const cells = dayKeys.map(dk => {
+      const items = byDate[dk] || {};
+      let occurred = false;
+      for (const k of Object.keys(items)) {
+        if (stripBase(k) === activity) { occurred = true; break; }
+      }
+      if (occurred) countDays++;
+      const isFuture = dk > todayStr;
+      return { dk, occurred, isFuture };
+    });
+    const icon = iconFor(activity);
+    const cellsHtml = cells.map(c => {
+      const cls = ["activity-cell"];
+      if (c.occurred) cls.push("on");
+      if (c.isFuture) cls.push("future");
+      const inner = c.occurred ? "✓" : "";
+      const title = c.occurred
+        ? `${c.dk} — ${activity}${c.isFuture ? " (scheduled)" : ""}`
+        : c.dk;
+      return `<div class="${cls.join(" ")}" title="${title}">${inner}</div>`;
+    }).join("");
+    return `<div class="activity-row" style="--days:${days}">
+      <div class="activity-name"><span class="icon">${icon}</span>${activity}</div>
+      <div class="activity-cells">${cellsHtml}</div>
+      <div class="activity-tot">${countDays}d</div>
+    </div>`;
+  }).join("");
+  container.innerHTML = rows || `<div class="activity-empty">No activities tracked.</div>`;
+}
+
+const ICON_RULES = [
+  [/weight/i, "⚖️"],
+  [/sleep/i, "😴"],
+  [/deep/i, "🌙"],
+  [/resting hr/i, "❤️"],
+  [/hrv/i, "💓"],
+  [/steps/i, "👟"],
+  [/coffee/i, "☕"],
+  [/alcohol/i, "🍺"],
+  [/fruit/i, "🍓"],
+  [/dessert|sugar/i, "🍰"],
+  [/fried/i, "🍟"],
+  [/refined.*carb|carb/i, "🍞"],
+  [/steps/i, "👟"],
+  [/jerk/i, "🍆"],
+  [/blood/i, "🩸"],
+  [/colonoscopy/i, "🔬"],
+  [/pushup/i, "💪"],
+  [/squat/i, "🦵"],
+  [/pull ?up/i, "🧗"],
+  [/badminton/i, "🏸"],
+  [/basketball/i, "🏀"],
+  [/trampoline/i, "🤸"],
+  [/dancing|dance/i, "💃"],
+  [/pilates|yoga/i, "🧘"],
+  [/jogging|run/i, "🏃"],
+  [/doctor/i, "🩺"],
+  [/swim/i, "🏊"],
+  [/sauna/i, "🧖"],
+  [/massage/i, "💆"],
+];
+function iconFor(label) {
+  const m = ICON_RULES.find(([re]) => re.test(label));
+  return m ? m[1] : "";
+}
+
+function renderHabitTracker(sessions, habits, month) {
+  const container = document.getElementById("habitTracker");
+  const dayKeys = monthDays(month);
+  const days = dayKeys.length;
+  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
+
+  const colors = {
+    coffee: "#d97706",
+    alcohol: "#9333ea",
+    "bowel movement": "#16a34a",
+    fruit: "#16a34a",
+    dessert: "#ec4899",
+    "fried foods": "#dc2626",
+    "refined carbs": "#f59e0b",
+    steps: "#0ea5e9",
+  };
+  // value count that triggers the red warning ring (i.e. "too much"); null = never warn
+  const WARN_AT = { coffee: 4, alcohol: 3, dessert: 2, "fried foods": 2, "refined carbs": 2 };
+
+  const rows = habits.map(habit => {
+    let total = 0, daysWith = 0;
+    const cells = dayKeys.map(dk => {
+      const items = byDate[dk] || {};
+      const raw = items[habit];
+      const val = typeof raw === "number" ? raw : (raw && raw.isCount ? raw.value : 0);
+      const notes = raw && raw.notes ? raw.notes.join(", ") : "";
+      if (val) { total += val; daysWith++; }
+      const tip = `${dk}: ${val}${notes ? " (" + notes + ")" : ""}`;
+      const color = colors[habit] || cssVar("--bar");
+      let bg, label = "";
+      if (val === 0) {
+        bg = "var(--border)";
+      } else {
+        const o = Math.min(1, 0.35 + val * 0.22);
+        bg = `color-mix(in srgb, ${color} ${Math.round(o * 100)}%, transparent)`;
+        label = String(val);
+      }
+      const warn = WARN_AT[habit] != null && val >= WARN_AT[habit] ? " warn" : "";
+      const tipAttr = tip.replace(/"/g, "&quot;");
+      return `<div class="habit-cell${warn}" style="background:${bg}" title="${tipAttr}" data-tip="${tipAttr}" data-habit="${habit}" data-date="${dk}">${label}</div>`;
+    }).join("");
+    const ic = iconFor(habit);
+    const priv = /jerk/i.test(habit) ? " data-private" : "";
+    return `<div class="habit-row"${priv} style="--days:${days}">
+      <div class="habit-name">${ic ? `<span class="icon">${ic}</span>` : ""}${labelFor(habit)}</div>
+      <div class="habit-cells">${cells}</div>
+      <div class="habit-tot">${total} / ${daysWith}d</div>
+    </div>`;
+  });
+  container.innerHTML =
+    `<div id="habitDetail" class="habit-detail empty">Tap a cell to see details</div>` +
+    rows.join("") +
+    `<div style="font-size:11px;color:var(--muted);margin-top:8px;">Cell shows daily count; deeper color = larger intake. Red ring = above safe threshold (coffee 4+, alcohol 3+, dessert 2+, fried foods 2+). Right column: month total / days with intake. Tap a cell to pin its details above.</div>`;
+  const detail = container.querySelector("#habitDetail");
+  container.onclick = e => {
+    const cell = e.target.closest(".habit-cell");
+    if (!cell) return;
+    if (cell.classList.contains("selected")) {
+      cell.classList.remove("selected");
+      detail.textContent = "Tap a cell to see details";
+      detail.classList.add("empty");
+      return;
+    }
+    container.querySelectorAll(".habit-cell.selected").forEach(c => c.classList.remove("selected"));
+    cell.classList.add("selected");
+    detail.textContent = `${cell.dataset.date} · ${cell.dataset.habit}: ${cell.dataset.tip.split(": ").slice(1).join(": ")}`;
+    detail.classList.remove("empty");
+  };
+}
+
+function setupSvg(id) {
+  const svg = document.getElementById(id);
+  const W = svg.clientWidth || svg.parentElement.clientWidth || 800;
+  const H = svg.clientHeight || 180;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  return { svg, W, H };
+}
+
+function todaySlots(days = 30) {
+  const today = new Date();
+  const slots = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    slots.push(d.toISOString().slice(0, 10));
+  }
+  return slots;
+}
+
+function drawWorkoutChart(sessions, activityKeys = []) {
+  const { svg, W, H } = setupSvg("workoutChart");
+  const days = 30;
+  const today = new Date();
+  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
+  const stripBase = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
+  const activitiesFor = it => {
+    const found = [];
+    for (const k of Object.keys(it)) {
+      const base = stripBase(k);
+      if (activityKeys.includes(base) && !found.includes(base)) found.push(base);
+    }
+    return found;
+  };
+  const data = [];
+  const num = v => typeof v === "number" ? v : (v && v.isCount ? v.value : 0);
+  const setsFor = (v, total) => {
+    if (!total) return [];
+    const notes = (v && v.notes) ? v.notes.join(" ") : "";
+    const inside = (notes.match(/\(([^)]+)\)/) || [])[1] || notes;
+    if (!inside) return [total];
+    const xMatch = inside.match(/^\s*(\d+)\s*[x×]\s*(\d+)\s*$/i);
+    if (xMatch) {
+      const reps = +xMatch[1], sets = +xMatch[2];
+      return Array(sets).fill(reps);
+    }
+    const parts = inside.split(/[,、]/).map(s => parseInt(s, 10)).filter(n => !isNaN(n) && n > 0);
+    if (parts.length && parts.reduce((a, b) => a + b, 0) === total) return parts;
+    return [total];
+  };
+  const collectChunks = (it, base) => {
+    const aliases = base === "pull ups" ? ["pull ups", "pullups"] : [base];
+    const variants = [];
+    for (const a of aliases) {
+      variants.push({ key: a, time: null });
+      variants.push({ key: a + " day", time: "day" });
+      variants.push({ key: a + " morning", time: "day" });
+      variants.push({ key: a + " afternoon", time: "day" });
+      variants.push({ key: a + " night", time: "night" });
+      variants.push({ key: a + " evening", time: "night" });
+    }
+    const chunks = [];
+    let total = 0;
+    for (const { key, time } of variants) {
+      const raw = it[key];
+      const v = num(raw);
+      if (!v) continue;
+      total += v;
+      chunks.push({ sets: setsFor(raw, v), total: v, time: time || "day" });
+    }
+    chunks.sort((a, b) => (a.time === "day" ? 0 : 1) - (b.time === "day" ? 0 : 1));
+    return { chunks, total };
+  };
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const key = d.toISOString().slice(0, 10);
+    const it = byDate[key] || {};
+    data.push({
+      date: key,
+      pushups: collectChunks(it, "pushups"),
+      squats: collectChunks(it, "squats"),
+      pulls: collectChunks(it, "pull ups"),
+      activities: activitiesFor(it),
+    });
+  }
+  const max = Math.max(10, ...data.map(d => Math.max(d.pushups.total, d.squats.total, d.pulls.total)));
+  const hasActivity = data.some(d => d.activities.length);
+  const pad = { l: 30, r: 8, t: hasActivity ? 28 : 8, b: 22 };
+  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+  const slot = innerW / days;
+  const barW = Math.max(1.5, (slot - 2) / 3);
+  const c1 = cssVar("--bar"), c2 = cssVar("--bar2"), c3 = cssVar("--bar3");
+  const sep = cssVar("--bg") || "#fff";
+
+  svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t + innerH, x2: W - pad.r, y2: pad.t + innerH }));
+  svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + 8 }, max));
+  svg.appendChild(svgEl("text", { class: "label", x: 4, y: pad.t + innerH }, 0));
+
+  const tipPart = (label, info) => {
+    if (!info.chunks.length) return null;
+    const parts = info.chunks.map(ch => `${ch.time} ${ch.total} (${ch.sets.join(", ")})`);
+    return `${label}: ${info.total} — ${parts.join(" + ")}`;
+  };
+
+  data.forEach((d, i) => {
+    const x0 = pad.l + i * slot + 1;
+    const tip = [d.date,
+      tipPart("Pushups", d.pushups),
+      tipPart("Squats", d.squats),
+      tipPart("Pull ups", d.pulls),
+    ].filter(Boolean).join("\n");
+    const cols = [[d.pushups.chunks, c1, 0], [d.squats.chunks, c2, barW], [d.pulls.chunks, c3, barW * 2]];
+    for (const [chunks, baseC, off] of cols) {
+      const x = x0 + off;
+      let yBase = pad.t + innerH;
+      const segments = [];
+      chunks.forEach(ch => ch.sets.forEach(v => segments.push({ v, c: baseC })));
+      segments.forEach((seg, k) => {
+        if (!seg.v) return;
+        const h = (seg.v / max) * innerH;
+        const rect = svgEl("rect", { x, y: yBase - h, width: barW, height: h, fill: seg.c });
+        rect.appendChild(svgEl("title", {}, tip));
+        svg.appendChild(rect);
+        yBase -= h;
+        if (k < segments.length - 1 && h > 1) {
+          svg.appendChild(svgEl("line", { x1: x, y1: yBase, x2: x + barW, y2: yBase, stroke: sep, "stroke-width": 1 }));
+        }
+      });
+    }
+    if (i === 0 || i === days - 1 || i === Math.floor(days / 2)) {
+      const isLast = i === days - 1;
+      const attrs = isLast
+        ? { class: "label", x: W - pad.r, y: H - 6, "text-anchor": "end" }
+        : { class: "label", x: x0, y: H - 6 };
+      svg.appendChild(svgEl("text", attrs, d.date.slice(5)));
+    }
+    if (d.activities.length) {
+      const icons = d.activities.map(a => iconFor(a) || "•").join("");
+      const xMid = x0 + (barW * 3) / 2;
+      const t = svgEl("text", {
+        x: xMid, y: pad.t - 8, "text-anchor": "middle",
+        "font-size": 22, "font-family": "system-ui",
+      }, icons);
+      t.appendChild(svgEl("title", {}, `${d.date}\n${d.activities.join(", ")}`));
+      svg.appendChild(t);
+    }
+  });
+}
+
+function drawSleepChart(nights) {
+  const { svg, W, H } = setupSvg("sleepChart");
+  const days = 30;
+  const today = new Date();
+  const slots = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    slots.push(d.toISOString().slice(0, 10));
+  }
+  const byDate = Object.fromEntries(nights.map(n => [n.date, n]));
+
+  const pad = { l: 36, r: 8, t: 12, b: 30 };
+  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+  const slot = innerW / slots.length;
+  const barW = Math.max(6, slot - 4);
+  const max = Math.max(8 * 60, ...nights.map(n => n.deep_min + n.core_min + n.rem_min));
+  const cDeep = cssVar("--bar4"), cCore = cssVar("--bar"), cREM = cssVar("--bar3");
+
+  for (let h = 0; h <= Math.ceil(max / 60); h += 2) {
+    const y = pad.t + innerH - (h * 60 / max) * innerH;
+    svg.appendChild(svgEl("line", { class: "grid-line", x1: pad.l, y1: y, x2: W - pad.r, y2: y }));
+    svg.appendChild(svgEl("text", { class: "label", x: 4, y: y + 3 }, h + "h"));
+  }
+  svg.appendChild(svgEl("line", { class: "axis", x1: pad.l, y1: pad.t + innerH, x2: W - pad.r, y2: pad.t + innerH }));
+
+  slots.forEach((date, i) => {
+    const x = pad.l + i * slot + (slot - barW) / 2;
+    const n = byDate[date];
+    if (n) {
+      let y = pad.t + innerH;
+      const stack = [[n.deep_min, cDeep], [n.core_min, cCore], [n.rem_min, cREM]];
+      for (const [m, c] of stack) {
+        const h = (m / max) * innerH;
+        if (h > 0) {
+          svg.appendChild(svgEl("rect", { x, y: y - h, width: barW, height: h, fill: c }));
+          y -= h;
+        }
+      }
+    }
+  });
+  const labelEvery = Math.max(1, Math.ceil(50 / slot));
+  slots.forEach((date, i) => {
+    const isLast = i === slots.length - 1;
+    const isInterval = i % labelEvery === 0;
+    if (!isInterval && !isLast) return;
+    // skip last if too close to previous interval label
+    if (isLast && !isInterval) {
+      const lastInterval = i - (i % labelEvery);
+      if (i - lastInterval < labelEvery / 2) return;
+    }
+    const x = pad.l + i * slot + slot / 2;
+    svg.appendChild(svgEl("text", { class: "label", x, y: H - 6, "text-anchor": "middle" }, date.slice(5)));
+  });
+}
+
+function renderSleepTable(nights) {
+  const div = document.getElementById("sleepTable");
+  const rows = [...nights].reverse().map(n =>
+    `<tr><td>${n.date}</td><td>${n.bed}</td><td>${n.wake}</td>` +
+    `<td class="num">${fmtDur(n.deep_min + n.core_min + n.rem_min)}</td>` +
+    `<td class="num">${fmtDur(n.in_bed_min)}</td>` +
+    `<td class="num">${fmtDur(n.deep_min)}</td>` +
+    `<td class="num">${fmtDur(n.rem_min)}</td></tr>`
+  ).join("");
+  div.innerHTML = `<table><thead><tr><th>Date</th><th>Bed</th><th>Wake</th>
+    <th class="num">Asleep</th><th class="num">In bed</th><th class="num">Deep</th><th class="num">REM</th></tr></thead>
+    <tbody>${rows}</tbody></table>`;
+}
+
+function drawActivityChart(days) {
+  const { svg, W, H } = setupSvg("activityChart");
+  const slots = todaySlots(30);
+  const byDate = Object.fromEntries(days.map(d => [d.date, d]));
+  const pad = { l: 44, r: 44, t: 12, b: 22 };
+  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+  const slot = innerW / slots.length;
+  const barW = Math.max(2, slot - 2);
+  const stepsMax = Math.max(10000, ...days.map(d => d.steps));
+  const exMax = Math.max(30, ...days.map(d => d.exercise_min));
+  const c1 = cssVar("--bar"), c2 = cssVar("--bar2");
+
+  for (let f = 0; f <= 4; f++) {
+    const y = pad.t + (innerH * f / 4);
+    svg.appendChild(svgEl("line", { class: "grid-line", x1: pad.l, y1: y, x2: W - pad.r, y2: y }));
+    const stepsLabel = Math.round(stepsMax * (1 - f / 4) / 1000) + "k";
+    const exLabel = Math.round(exMax * (1 - f / 4)) + "m";
+    svg.appendChild(svgEl("text", { class: "label", x: 4, y: y + 3 }, stepsLabel));
+    svg.appendChild(svgEl("text", { class: "label", x: W - 36, y: y + 3 }, exLabel));
+  }
+
+  slots.forEach((date, i) => {
+    const d = byDate[date];
+    if (!d) return;
+    const x = pad.l + i * slot + 1;
+    const h = (d.steps / stepsMax) * innerH;
+    if (h > 0) svg.appendChild(svgEl("rect", { x, y: pad.t + innerH - h, width: barW, height: h, fill: c1, opacity: 0.85 }));
+  });
+
+  // exercise min as line (skip gaps where no data)
+  let path = "", first = true;
+  slots.forEach((date, i) => {
+    const d = byDate[date];
+    if (!d) { first = true; return; }
+    const x = pad.l + i * slot + slot / 2;
+    const y = pad.t + innerH - (d.exercise_min / exMax) * innerH;
+    path += (first ? "M" : "L") + x + "," + y;
+    first = false;
+  });
+  if (path) svg.appendChild(svgEl("path", { d: path, fill: "none", stroke: c2, "stroke-width": 2 }));
+  slots.forEach((date, i) => {
+    const d = byDate[date];
+    if (!d) return;
+    const x = pad.l + i * slot + slot / 2;
+    const y = pad.t + innerH - (d.exercise_min / exMax) * innerH;
+    svg.appendChild(svgEl("circle", { cx: x, cy: y, r: 2.5, fill: c2 }));
+  });
+
+  const labelEvery = Math.max(1, Math.floor(slots.length / 6));
+  slots.forEach((date, i) => {
+    if (i % labelEvery === 0 || i === slots.length - 1) {
+      const x = pad.l + i * slot + slot / 2;
+      svg.appendChild(svgEl("text", { class: "label", x, y: H - 6, "text-anchor": "middle" }, date.slice(5)));
+    }
+  });
+}
+
+function drawHeartChart(rhr, hrv) {
+  const { svg, W, H } = setupSvg("heartChart");
+  if (!rhr.length && !hrv.length) return;
+  const dates = todaySlots(30);
+  const pad = { l: 36, r: 36, t: 12, b: 22 };
+  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+  const xFor = i => pad.l + (dates.length === 1 ? innerW / 2 : (i / (dates.length - 1)) * innerW);
+  const rhrMin = Math.min(...rhr.map(r => r.value)) - 2;
+  const rhrMax = Math.max(...rhr.map(r => r.value)) + 2;
+  const hrvMin = Math.min(...hrv.map(r => r.value)) - 2;
+  const hrvMax = Math.max(...hrv.map(r => r.value)) + 2;
+  const c1 = cssVar("--bar"), c2 = cssVar("--bar2");
+
+  for (let f = 0; f <= 4; f++) {
+    const y = pad.t + (innerH * f / 4);
+    svg.appendChild(svgEl("line", { class: "grid-line", x1: pad.l, y1: y, x2: W - pad.r, y2: y }));
+    svg.appendChild(svgEl("text", { class: "label", x: 4, y: y + 3 }, Math.round(rhrMax - (rhrMax - rhrMin) * f / 4)));
+    svg.appendChild(svgEl("text", { class: "label", x: W - 30, y: y + 3 }, Math.round(hrvMax - (hrvMax - hrvMin) * f / 4)));
+  }
+
+  const drawLine = (samples, valMin, valMax, color) => {
+    const byDate = Object.fromEntries(samples.map(s => [s.date, s.value]));
+    let path = "", first = true;
+    dates.forEach((dt, i) => {
+      const v = byDate[dt];
+      if (v == null) { first = true; return; }
+      const x = xFor(i);
+      const y = pad.t + innerH - ((v - valMin) / (valMax - valMin)) * innerH;
+      path += (first ? "M" : "L") + x + "," + y;
+      first = false;
+    });
+    if (path) svg.appendChild(svgEl("path", { d: path, fill: "none", stroke: color, "stroke-width": 2 }));
+    samples.forEach(s => {
+      const i = dates.indexOf(s.date);
+      if (i < 0) return;
+      const x = xFor(i);
+      const y = pad.t + innerH - ((s.value - valMin) / (valMax - valMin)) * innerH;
+      svg.appendChild(svgEl("circle", { cx: x, cy: y, r: 2, fill: color }));
+    });
+  };
+  if (rhr.length) drawLine(rhr, rhrMin, rhrMax, c1);
+  if (hrv.length) drawLine(hrv, hrvMin, hrvMax, c2);
+
+  const labelEvery = Math.max(1, Math.floor(dates.length / 6));
+  dates.forEach((d, i) => {
+    if (i % labelEvery === 0 || i === dates.length - 1) {
+      svg.appendChild(svgEl("text", { class: "label", x: xFor(i), y: H - 6, "text-anchor": "middle" }, d.slice(5)));
+    }
+  });
+}
+
+function drawTempChart(samples, unit) {
+  if (!samples || !samples.length) return;
+  document.getElementById("tempSection").style.display = "";
+  const { svg, W, H } = setupSvg("tempChart");
+  const slots = todaySlots(30);
+  const byDate = Object.fromEntries(samples.map(s => [s.date, s.value]));
+  const pad = { l: 36, r: 8, t: 12, b: 22 };
+  const innerW = W - pad.l - pad.r, innerH = H - pad.t - pad.b;
+  const vals = samples.map(s => s.value);
+  const vMin = Math.min(...vals) - 0.1, vMax = Math.max(...vals) + 0.1;
+  const c = cssVar("--line");
+  const xFor = i => pad.l + (slots.length === 1 ? innerW / 2 : (i / (slots.length - 1)) * innerW);
+
+  for (let f = 0; f <= 4; f++) {
+    const y = pad.t + (innerH * f / 4);
+    svg.appendChild(svgEl("line", { class: "grid-line", x1: pad.l, y1: y, x2: W - pad.r, y2: y }));
+    svg.appendChild(svgEl("text", { class: "label", x: 4, y: y + 3 }, (vMax - (vMax - vMin) * f / 4).toFixed(2)));
+  }
+
+  let path = "", first = true;
+  slots.forEach((date, i) => {
+    const v = byDate[date];
+    if (v == null) { first = true; return; }
+    const x = xFor(i);
+    const y = pad.t + innerH - ((v - vMin) / (vMax - vMin)) * innerH;
+    path += (first ? "M" : "L") + x + "," + y;
+    svg.appendChild(svgEl("circle", { cx: x, cy: y, r: 2, fill: c }));
+    first = false;
+  });
+  if (path) svg.appendChild(svgEl("path", { d: path, fill: "none", stroke: c, "stroke-width": 2 }));
+
+  const labelEvery = Math.max(1, Math.floor(slots.length / 6));
+  slots.forEach((date, i) => {
+    if (i % labelEvery === 0 || i === slots.length - 1) {
+      svg.appendChild(svgEl("text", { class: "label", x: xFor(i), y: H - 6, "text-anchor": "middle" }, date.slice(5)));
+    }
+  });
+  svg.parentElement.querySelector("h2").textContent = `Sleeping wrist temperature${unit ? ` (${unit})` : ""}`;
+}
+
+function renderWatchWorkouts(workouts) {
+  const div = document.getElementById("watchWorkouts");
+  const filtered = (workouts || []).filter(w => !(/walk/i.test(w.type) && w.duration_min < 10));
+  if (!filtered.length) { div.textContent = "No qualifying workouts in export."; return; }
+  div.innerHTML = [...filtered].reverse().map(w =>
+    `<div class="session"><span class="date">${w.start}</span>` +
+    `<span class="items">${w.type} · ${w.duration_min} min</span></div>`
+  ).join("");
+}
+
+load();
+let rerenderTimer = null;
+function doRerender() {
+  if (!cachedSessions) return;
+  // double rAF so layout has flushed before we read clientWidth
+  requestAnimationFrame(() => requestAnimationFrame(rerender));
+}
+function scheduleRerender(delay = 100) {
+  clearTimeout(rerenderTimer);
+  rerenderTimer = setTimeout(doRerender, delay);
+}
+// ResizeObserver on the SVGs is the only reliable way on iOS Safari —
+// it fires when the actual rendered size changes, regardless of orientation/event quirks.
+if (window.ResizeObserver) {
+  const ro = new ResizeObserver(() => scheduleRerender(50));
+  // observe once cache is populated
+  const observeCharts = () => {
+    document.querySelectorAll(".chart").forEach(el => ro.observe(el));
+  };
+  if (document.readyState === "complete") observeCharts();
+  else window.addEventListener("load", observeCharts);
+}
+// Belt and suspenders for older browsers
+window.addEventListener("resize", () => scheduleRerender(150));
+window.addEventListener("orientationchange", () => scheduleRerender(400));
+</script>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 12:24</div>
+</body>
+</html>
