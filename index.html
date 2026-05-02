@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "It7X4qHHjKa5X5ir";
-  const CT_B64 = "IXUYs_o0mWTcTrBPvYIEeqlS7X_waufWaUGfJKCCYX3-hRBYRrmQDZiug22n5hp1a8bLObO8j4Ztiu-keIac1K5d9l29n8To2u0ImyFXevQ3Du8RFWD2aeHDPhxKM58Nx1u5Nir71VxrCJlJcQLCSCTRQ86W11ITupVIsTR0KNziGFWd7ZLPtnJnw45dMLIutEcmyrGhAclUsjjP1k8qXNENBj3Gz34FOF6SYijAzmt_JCTQRy2DoUASKw6982FwDzf3w-NjWyZIdWY7N6jA2iIsMX-z9m4IXx99F3a3W9ZfVKPWoWSTFmd5ybTgf214Kwbf3K8lf5F_JUm4HONDrbEd2uuL2e_EE2hHRMGFaiPhWV1J9_pEEBxjLVJjI_QtLb2Zptc0Nckl-QDLoQmJGnJDY7Rsx2q1hgq0zw3wVy-w-UUmQh3ES7f7BrfIfV5ZxpgcUcq5TJplUg0WKvSntARKvPvSFHzrVT9Vm9jDRZZfbqOeVPplk2MEcT9Vvw1pkO4vju1Q3yEIwyuqTuIKdg";
+  const NONCE_B64 = "46F2CTgUnmoBWf8I";
+  const CT_B64 = "Zji92U91Z2k4A1PPpsVgkfLQpbSoZF6gcsayYHBAxsmI-F_eYLpriIlEkKZLXiCZ6ud1KGEG5Ia20251X2uCu-Z0w04t73fGkWCH7N0ytXXR1s4-f4Yk43LyQC-PALvGh2Tz4PorNl0qly5un1IusekZOVESzy8w5Al_Ik3xFgJCmbiW65SfaRklK0Xbbj9pFvMnE6vppQ7lmFg-SgbASCEvyluWGIb2VDb_Sheq0dG9MpN9QjQA8Rx4iFmrsgFNVxtNGAr0wvTlQVIGpBHg9fCVhOcRS96QpkKLEAXW9TABBophYzv-o_GTKYZBTivX-HyfIEVM4aRTLSmDEO_6KDt4L8CRjHBhAWczFymGwn8AWd0bgvuKjG6TmVwjNtnTHznzcKt-2ZpJvymwBy_lKfwlqrAGwJqOC_xAHACITL1ZXg3DfWrbSJ03meibBiFWo-P0HnsKRlQfBzKV0CycgV68lu53dEZGOYwExP4oHNyUbfdVUWgpN1m9R9c0E3pjzseLEp7A7D4_FoTse01X2tpR6MHXIGIIjCCGfOUQJAHjPp71Ty53LjryP0xGwEPhJt223w";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -433,24 +433,33 @@ function render(sessions, health, errors) {
     const a = avg(sleepEntriesMonth.map(s => s.duration));
     cards.push(["Sleep", `${a.toFixed(1)} h`, `${sleepEntriesMonth.length} nights · ${monthName}`]);
   }
-  // Event cards (e.g. doctor visit) — render before the per-habit totals
+  // Event cards (e.g. doctor visit) — render before the per-habit totals.
+  // Past entries = history; future-dated entries = scheduled.
   const todayMs = new Date().setHours(0,0,0,0);
-  const lastEvent = {};
+  const lastPast = {}, nextFuture = {};
   for (const ev of events) {
-    if (!lastEvent[ev.key] || ev.date > lastEvent[ev.key].date) lastEvent[ev.key] = ev;
+    const evMs = new Date(ev.date).setHours(0,0,0,0);
+    if (evMs <= todayMs) {
+      if (!lastPast[ev.key] || ev.date > lastPast[ev.key].date) lastPast[ev.key] = ev;
+    } else {
+      if (!nextFuture[ev.key] || ev.date < nextFuture[ev.key].date) nextFuture[ev.key] = ev;
+    }
   }
   for (const key of EVENT_KEYS) {
-    const ev = lastEvent[key];
     const labelRaw = "Next " + key;
     const label = labelRaw.charAt(0).toUpperCase() + labelRaw.slice(1);
-    if (!ev) {
+    const future = nextFuture[key];
+    const past = lastPast[key];
+    if (future) {
+      const days = Math.round((new Date(future.date).setHours(0,0,0,0) - todayMs) / 86400000);
+      const lastBit = past ? ` · last ${past.date}` : "";
+      cards.push([label, future.date, `in ${days}d${lastBit}`]);
+    } else if (past) {
+      const daysAgo = Math.round((todayMs - new Date(past.date).setHours(0,0,0,0)) / 86400000);
+      cards.push([label, "Pending", `last ${daysAgo}d ago · ${past.date}`]);
+    } else {
       cards.push([label, "Pending", "no prior record"]);
-      continue;
     }
-    const evMs = new Date(ev.date).setHours(0,0,0,0);
-    const daysAgo = Math.round((todayMs - evMs) / 86400000);
-    const lastSub = `Last ${daysAgo}d ago · ${ev.date}`;
-    cards.push([label, "Pending", lastSub]);
   }
   for (const [k, v] of Object.entries(totals)) {
     cards.push([`Total ${k}`, v.toLocaleString(), monthName]);
@@ -1177,6 +1186,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:13</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:15</div>
 </body>
 </html>
