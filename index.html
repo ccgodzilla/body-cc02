@@ -266,8 +266,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "8aBNygkHI_m59Y2o";
-  const CT_B64 = "POJpATYvAXnIC2ugik97Nw34Wwyg4ZUbj_vNAxhlJrlvtQpt88wP3hVDyfjlx4OAa2UfRWT27rc6eyZpy7yYv987rKysj-ZLhFohLQSsRPpiW1BGpkqvzMMjyUaQ2Rmh6QfkMEddeF5cK4XxJnYnw1Jhf2UNL4xvkdJLkwpc0znerIaGI8kIX9Ml2dcXSevNkOcs37xDVbMdAWUj5SxMdZWsEAkVTPfAnnK64uGSwNZr1fbD-91iuQ5dBvXK-MdkXjPjJ7oCZ0fsZv-v_hqh7w5O4Uf1JLg4WVHtDrDRAGXGLFOCG9SFbzhg8T7P78DBcYXD20h6bDYCNrvCB8WqHVPw7jfetuc_EzPxDf98S5SeVwS99vrEitIFS9pzKs79sUXsj7X1alqim5lQGN1oXPIiwY4xVxmReR88626wnZqiMEMeSvutdQc4ttQRnpp1M_NvvEwlc7DAvdpf2OAr-bhC2_KyhNMq8l3ZZY7r59hat78E_BkW43SJcO-GUtgRCj9ayPUD0B1WHNRP7YwSTQruQO2jJlzu_w4v8zD3PsnrmZMhLfsvZUS-RgsTZQILHs8s4leDLDDeECRP1Uow2XHDIZ1Kuwzbh__0UIjWGmuiyiOp4jCJUn9gCT731bJfwghwXhn1I5pudfGNKRIOZI3bef8P8zQtNK471YGiY0AjGYvgqcKeEzKpzdFmqHTMxboR1cjl8OYZNedWegaNqc_tiEtGmRMZutJgrGMxIjPjMXUUrEICZA";
+  const NONCE_B64 = "VhP9P9Y3EnYN-MRT";
+  const CT_B64 = "rjXp4mBA-l-wsySStwGyndMiw1udDxAnClcHx-JhyFs5pXKF5c7NkQEshlQsxEPrG9ze7-gSNQktsT2LZRWwLYdLcCWwXnaFG_nlkl2b--NlPObfbLQ9twQgzwO91ZEs29el5cOOuMYOA4_wWocAMXqJonDaZEf5qC3PrNZKJ9lp6fe3L0DZilgd8Sm7mOSoFRLL_8tjOZfAJQgRpHsaWzgNsVGhjFvM_gQYA4tSlfIFodSK0AlHV5dw4dNBug11IZTS_ZmPCVNeXGpzX-GdfbwmT3idvfC6FpI3kHBybBmQYYZ9yDzkIrkfDkMpEZxAkjCDgShQ_zetC1I-teiRGnT1Wq7TeywRA1MWcbZbEq3kqCsx9jlJwi65tuZwVXorqZZRBRcDn4OkgmEvp5BjosgNWEJ1HWznl-9pKenqpM_O6cvD4AKzmpxap_NTCrmp2QauL4h3t83C89kkHX_7Q2KCkyc8_02MIhH52IvU3feDT_gL2mvs3AFAOwO9yrNg5QU2UjGS-Key02aCu48LXguIc7UilWnMPvZ_9XGREWqzvDktQeu-J2IzWf7AbpcTCMbe_kgoGKgV-syx_mVKAM7vi7gmcdjN2Uy65EuXbI57sbunbwYabJOZnW701euJVbQibtlFk6ST1GMdxTo4IH2kWRZ_o6W25sLBVRFRp2laJeMEgluA7VfhuusPz43yb614SYfT2BIuIlo6ce--nuN9kOl1wYTnuM-DDDGiKczjucnJlh7JEA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -365,7 +365,7 @@ function render(sessions, health, errors) {
 
   const HABIT_KEYS = ["coffee", "alcohol", "fruit", "dessert", "fried foods", "refined carbs", "bowel movement"];
   const EVENT_KEYS = ["doctor visit"];
-  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging", "wall push-up", "dead hang"];
+  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging", "wall push", "dead hang"];
   const baseOf = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
   const isHabit = k => HABIT_KEYS.includes(k);
   const isEvent = k => EVENT_KEYS.includes(k);
@@ -1230,6 +1230,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:47</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:48</div>
 </body>
 </html>
