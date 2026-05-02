@@ -265,8 +265,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "hjD5EeUGf-A5LhGr";
-  const CT_B64 = "K9qmcCi-v98CybckB0B2tYN9j6FpBJwBDLS7Uns316Kh7aZgnKMo3FyQ2xnsHlJKYpiUC643JrhVlAAk9WzwuVZ1L1pBJvAb8H3Q63cbGJ3ktRdcO85tV0i4CbEZAIm7e1uofYYreB02avjtjosHcRAneiw3M8oGi0xLyP8SDCk8-1KJLKui1zeniY-NJSyR0XHQCapiSfBFbz0fmv1dXrReH8F04WfgOzrLBAi9EC5jw6UuUcqIuvbFwzWuGBSnRWEAXkFYSZL0aneW11fwL7GIBvtVXKfrzfrw_gMP9x06T3q7tuAmeaielmD_ic9S01iWNZvS-rO3uW6IRnhD40q-5RlyJTRw4qLvamgs-5KqQFuuAq1FUflaWxUmhKaHis1JsqAb8kYsKqlqNEvMLl8tAm2r3rDw94f_GHLe4VIhDwnoDM8kkwAWt1x4R6yC7eCuxDUGJj75P2ojI3jZfwJk531ZBJsuEYP2hIZfoiDLZt46ldKtnrqL-LwHRn8EvCheuaofVsMUZneiqZigGQ";
+  const NONCE_B64 = "It7X4qHHjKa5X5ir";
+  const CT_B64 = "IXUYs_o0mWTcTrBPvYIEeqlS7X_waufWaUGfJKCCYX3-hRBYRrmQDZiug22n5hp1a8bLObO8j4Ztiu-keIac1K5d9l29n8To2u0ImyFXevQ3Du8RFWD2aeHDPhxKM58Nx1u5Nir71VxrCJlJcQLCSCTRQ86W11ITupVIsTR0KNziGFWd7ZLPtnJnw45dMLIutEcmyrGhAclUsjjP1k8qXNENBj3Gz34FOF6SYijAzmt_JCTQRy2DoUASKw6982FwDzf3w-NjWyZIdWY7N6jA2iIsMX-z9m4IXx99F3a3W9ZfVKPWoWSTFmd5ybTgf214Kwbf3K8lf5F_JUm4HONDrbEd2uuL2e_EE2hHRMGFaiPhWV1J9_pEEBxjLVJjI_QtLb2Zptc0Nckl-QDLoQmJGnJDY7Rsx2q1hgq0zw3wVy-w-UUmQh3ES7f7BrfIfV5ZxpgcUcq5TJplUg0WKvSntARKvPvSFHzrVT9Vm9jDRZZfbqOeVPplk2MEcT9Vvw1pkO4vju1Q3yEIwyuqTuIKdg";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -723,7 +723,7 @@ function renderHabitTracker(sessions, habits, month) {
     steps: "#0ea5e9",
   };
   // value count that triggers the red warning ring (i.e. "too much"); null = never warn
-  const WARN_AT = { coffee: 4, alcohol: 3, dessert: 2, "fried foods": 2, "refined carbs": 2 };
+  const WARN_AT = { coffee: 4, alcohol: 3, dessert: 2, "fried foods": 2, "refined carbs": 3 };
 
   const rows = habits.map(habit => {
     let total = 0, daysWith = 0;
@@ -758,7 +758,7 @@ function renderHabitTracker(sessions, habits, month) {
   container.innerHTML =
     `<div id="habitDetail" class="habit-detail empty">Tap a cell to see details</div>` +
     rows.join("") +
-    `<div style="font-size:11px;color:var(--muted);margin-top:8px;">Cell shows daily count; deeper color = larger intake. Red ring = above safe threshold (coffee 4+, alcohol 3+, dessert 2+, fried foods 2+). Right column: month total / days with intake. Tap a cell to pin its details above.</div>`;
+    `<div style="font-size:11px;color:var(--muted);margin-top:8px;">Cell shows daily count; deeper color = larger intake. Red ring = above safe threshold (coffee 4+, alcohol 3+, dessert 2+, fried foods 2+, refi. carbs 3+). Right column: month total / days with intake. Tap a cell to pin its details above.</div>`;
   const detail = container.querySelector("#habitDetail");
   container.onclick = e => {
     const cell = e.target.closest(".habit-cell");
@@ -1177,6 +1177,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:11</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 14:13</div>
 </body>
 </html>
