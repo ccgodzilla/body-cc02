@@ -159,6 +159,26 @@ function renderCats() {
   }
 }
 
+function formatHint(c) {
+  if (c.default) return `預設 1 次，直接按 Save 即可`;
+  if (c.group === "Habits" && c.type === "text") {
+    return `格式：[數量] [內容]，例如 ${c.placeholder}`;
+  }
+  if (c.group === "Activities") {
+    return `格式：次數，例如 ${c.placeholder}`;
+  }
+  if (c.name.startsWith("Weight")) {
+    return `格式：公斤數，例如 ${c.placeholder}（自動加上 kg）`;
+  }
+  if (c.name === "Sleep") {
+    return `格式：就寢 → 起床，例如 ${c.placeholder}`;
+  }
+  if (c.name === "Steps") {
+    return `格式：步數，例如 ${c.placeholder}`;
+  }
+  return "";
+}
+
 function applyCategory() {
   if (active.dateFocus) {
     labelEl.textContent = `Value (${active.name}) — set Date above to the appointment date`;
@@ -168,15 +188,7 @@ function applyCategory() {
   valEl.type = active.type;
   valEl.placeholder = active.placeholder || "";
   valEl.value = active.default || "";
-  if (active.group === "Habits" && active.type === "text") {
-    hintEl.textContent = `格式：[數量] [內容]，例如 ${active.placeholder}`;
-  } else if (active.group === "Activities") {
-    hintEl.textContent = active.default
-      ? `預設 1 次，直接按 Save 即可`
-      : `格式：次數，例如 ${active.placeholder}`;
-  } else {
-    hintEl.textContent = "";
-  }
+  hintEl.textContent = formatHint(active);
   if (active.type === "number") {
     valEl.inputMode = "decimal";
     valEl.step = "any";
