@@ -8,25 +8,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=Inter:wght@300;400;500;600&display=swap">
 <style>
-  /* light blue + peach pink */
+  /* Ghibli pastoral: cream sky, sage greens, warm clay */
   :root {
-    --bg: #dde9f3;
-    --panel: #e8f0f8;
-    --panel-2: #f1f6fc;
-    --text: #1a2c4d;
-    --muted: #5d6b85;
-    --accent: #f29985;
-    --accent-deep: #d27260;
-    --accent-soft: rgba(242, 153, 133, 0.18);
-    --bar: #d81b85;
-    --bar-sleep: #daa520;
-    --bar2: #1a2c4d;
-    --bar3: #b9cce0;
-    --bar4: #d27260;
-    --line: #1a2c4d;
-    --border: #b9cce0;
-    --border-strong: #7a96b5;
-    --hairline: #1a2c4d;
+    --bg: #eef0d8;
+    --panel: #f6f3df;
+    --panel-2: #fbf8e8;
+    --text: #2a3d3a;
+    --muted: #6e7c6a;
+    --accent: #c47a5e;
+    --accent-deep: #9d5e44;
+    --accent-soft: rgba(196, 122, 94, 0.16);
+    --bar: #6a8e5e;
+    --bar-sleep: #d4a85a;
+    --bar2: #2a3d3a;
+    --bar3: #c5cdb5;
+    --bar4: #c47a5e;
+    --line: #2a3d3a;
+    --border: #c5cdb5;
+    --border-strong: #8a957a;
+    --hairline: #2a3d3a;
+    --sky: #b8d4cc;
+    --hill: #8aa874;
+    --hill-deep: #5e7d52;
+    --cloud: #fbf8e8;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
@@ -160,40 +164,77 @@
   body.show-private [data-private] { display: revert; }
   body.show-private .card[data-private] { display: block; }
   body.show-private .habit-row[data-private] { display: grid; }
-  /* spring: sakura branch artifact */
-  .spring-deco { position: fixed; pointer-events: none; z-index: 0;
-    opacity: 0.35; mix-blend-mode: multiply; }
-  .spring-deco.tr { top: -40px; right: -60px; width: 360px; height: 360px;
-    transform: rotate(15deg); }
-  .spring-deco.bl { bottom: -50px; left: -70px; width: 300px; height: 300px;
-    transform: rotate(200deg); opacity: 0.22; }
+  /* Ghibli sky: cumulus clouds + rolling hills at horizon */
+  .ghibli-sky { position: fixed; top: 0; left: 0; right: 0; height: 320px;
+    pointer-events: none; z-index: 0; opacity: 0.55; }
+  .ghibli-hills { position: fixed; left: 0; right: 0; bottom: 0; height: 220px;
+    pointer-events: none; z-index: 0; opacity: 0.35; }
   main { position: relative; z-index: 1; }
   @media (max-width: 600px) {
-    .spring-deco.tr { width: 220px; height: 220px; top: -30px; right: -50px; }
-    .spring-deco.bl { width: 180px; height: 180px; bottom: -30px; left: -50px; }
+    .ghibli-sky { height: 200px; opacity: 0.45; }
+    .ghibli-hills { height: 140px; opacity: 0.30; }
   }
 </style>
 </head>
 <body>
-<svg class="spring-deco tr" viewBox="0 0 200 200" aria-hidden="true">
-  <g fill="none" stroke="#5d3a2a" stroke-width="2" stroke-linecap="round">
-    <path d="M 10 180 Q 60 140 100 110 T 180 50" />
-    <path d="M 70 130 Q 90 115 110 90" />
-    <path d="M 130 90 Q 145 80 165 70" />
+<svg class="ghibli-sky" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+  <!-- Ghibli-style cumulus clouds: stacked rounded shapes with soft outline -->
+  <g fill="#fbf8e8" stroke="#8aa6a0" stroke-width="1.5">
+    <g transform="translate(140,80)">
+      <ellipse cx="0" cy="0" rx="58" ry="28"/>
+      <ellipse cx="-40" cy="-8" rx="36" ry="22"/>
+      <ellipse cx="38" cy="-12" rx="42" ry="26"/>
+      <ellipse cx="10" cy="-26" rx="32" ry="22"/>
+      <ellipse cx="-22" cy="-30" rx="24" ry="18"/>
+    </g>
+    <g transform="translate(520,60)">
+      <ellipse cx="0" cy="0" rx="72" ry="32"/>
+      <ellipse cx="-52" cy="-8" rx="40" ry="24"/>
+      <ellipse cx="50" cy="-10" rx="48" ry="28"/>
+      <ellipse cx="14" cy="-30" rx="38" ry="24"/>
+      <ellipse cx="-30" cy="-32" rx="28" ry="20"/>
+      <ellipse cx="44" cy="-34" rx="26" ry="18"/>
+    </g>
+    <g transform="translate(940,110)">
+      <ellipse cx="0" cy="0" rx="64" ry="30"/>
+      <ellipse cx="-46" cy="-8" rx="38" ry="22"/>
+      <ellipse cx="44" cy="-10" rx="44" ry="26"/>
+      <ellipse cx="12" cy="-28" rx="34" ry="22"/>
+      <ellipse cx="-26" cy="-30" rx="24" ry="18"/>
+    </g>
+    <g transform="translate(340,200) scale(0.7)">
+      <ellipse cx="0" cy="0" rx="58" ry="28"/>
+      <ellipse cx="-40" cy="-8" rx="36" ry="22"/>
+      <ellipse cx="38" cy="-12" rx="42" ry="26"/>
+    </g>
+    <g transform="translate(800,220) scale(0.6)">
+      <ellipse cx="0" cy="0" rx="58" ry="28"/>
+      <ellipse cx="38" cy="-12" rx="42" ry="26"/>
+      <ellipse cx="10" cy="-26" rx="32" ry="22"/>
+    </g>
   </g>
-  <g>
-    <g transform="translate(40,160)"><circle r="9" fill="#f5b8c8"/><circle r="9" cx="-7" cy="-5" fill="#f5b8c8"/><circle r="9" cx="7" cy="-5" fill="#f5b8c8"/><circle r="9" cy="-12" fill="#f5b8c8"/><circle r="9" cx="-4" cy="6" fill="#f5b8c8"/><circle r="9" cx="4" cy="6" fill="#f5b8c8"/><circle r="3" fill="#e89aaf"/></g>
-    <g transform="translate(85,125)"><circle r="8" fill="#f7c4d2"/><circle r="8" cx="-6" cy="-4" fill="#f7c4d2"/><circle r="8" cx="6" cy="-4" fill="#f7c4d2"/><circle r="8" cy="-10" fill="#f7c4d2"/><circle r="8" cx="-4" cy="5" fill="#f7c4d2"/><circle r="8" cx="4" cy="5" fill="#f7c4d2"/><circle r="2.5" fill="#e89aaf"/></g>
-    <g transform="translate(125,95)"><circle r="9" fill="#f5b8c8"/><circle r="9" cx="-7" cy="-5" fill="#f5b8c8"/><circle r="9" cx="7" cy="-5" fill="#f5b8c8"/><circle r="9" cy="-12" fill="#f5b8c8"/><circle r="9" cx="-4" cy="6" fill="#f5b8c8"/><circle r="9" cx="4" cy="6" fill="#f5b8c8"/><circle r="3" fill="#e89aaf"/></g>
-    <g transform="translate(165,68)"><circle r="7" fill="#f7c4d2"/><circle r="7" cx="-5" cy="-3" fill="#f7c4d2"/><circle r="7" cx="5" cy="-3" fill="#f7c4d2"/><circle r="7" cy="-9" fill="#f7c4d2"/><circle r="7" cx="-3" cy="4" fill="#f7c4d2"/><circle r="7" cx="3" cy="4" fill="#f7c4d2"/><circle r="2" fill="#e89aaf"/></g>
+  <!-- a small bird in the distance -->
+  <g fill="none" stroke="#2a3d3a" stroke-width="1.5" stroke-linecap="round">
+    <path d="M 700 150 Q 706 144 712 150 Q 718 144 724 150"/>
+    <path d="M 760 175 Q 765 170 770 175 Q 775 170 780 175"/>
   </g>
 </svg>
-<svg class="spring-deco bl" viewBox="0 0 200 200" aria-hidden="true">
-  <g>
-    <g transform="translate(50,140) rotate(20)"><ellipse rx="6" ry="10" fill="#f5b8c8"/><ellipse rx="6" ry="10" cx="9" fill="#f5b8c8"/></g>
-    <g transform="translate(110,80) rotate(-30)"><ellipse rx="5" ry="9" fill="#f7c4d2"/></g>
-    <g transform="translate(150,150) rotate(60)"><ellipse rx="6" ry="10" fill="#f5b8c8"/></g>
-    <g transform="translate(80,40) rotate(-15)"><ellipse rx="5" ry="9" fill="#f7c4d2"/></g>
+<svg class="ghibli-hills" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <!-- Far hill -->
+  <path d="M 0 220 L 0 130 Q 200 80 400 110 T 800 100 Q 1000 80 1200 120 L 1200 220 Z"
+        fill="#a4be9a" stroke="#5e7d52" stroke-width="1.5"/>
+  <!-- Mid hill -->
+  <path d="M 0 220 L 0 170 Q 180 130 380 155 Q 580 180 780 150 Q 980 125 1200 165 L 1200 220 Z"
+        fill="#8aa874" stroke="#5e7d52" stroke-width="1.5"/>
+  <!-- Near hill with a single tree -->
+  <path d="M 0 220 L 0 195 Q 240 175 480 195 Q 720 215 960 190 Q 1080 178 1200 195 L 1200 220 Z"
+        fill="#6a8e5e" stroke="#3e5a36" stroke-width="1.5"/>
+  <!-- Lone camphor-style tree on near hill -->
+  <g transform="translate(880,180)">
+    <rect x="-2" y="0" width="4" height="14" fill="#5d3a2a"/>
+    <ellipse cx="0" cy="-4" rx="14" ry="12" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
+    <ellipse cx="-8" cy="-2" rx="8" ry="7" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
+    <ellipse cx="7" cy="-3" rx="8" ry="7" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
   </g>
 </svg>
 <main>
@@ -297,8 +338,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "8-U3QsT8Aec0tcdZ";
-  const CT_B64 = "BMuJ3yFcawhOvmnRbgJPecT6vEtm9Wjy5jYLpvrULa1gZ7pl2qhUHlIJZ43ArtsM3WPpqNHDIxI31cL-5ZZdgvas58vG15xg-Q3PThVNADGbQpH8aveWFf63y45lY9MAIsyJdmC5Ho9F0onZaIK5ev9q2Uo3_2Mbye8LfR1ehJcQhf_0SYxQVE-FTSfJWD2cRc73-dp4AzUQ-B0a28518lG4bKzCMg52oZFb44jcbTu1EYCW-iVEPbp42ZE_RGWwE5fK-cZQZgXXqT403L5F0OBIGbkPvoEtTR3UqX1OxPu4YvXV0YOuCsxCGHTO_lXktoCWoUBAU1YoewAo3Q4ktKzfeoFv9gyPZjDHqTTK3eaXFZQLZCI7IeIt0bRhpYI-HYvsMmcTiMGdnxImMc4qa1-emlfBkX9p7LPoT8FaG7cxMOs63up_gjeIcGV5SJwre_t2M5a8CGi98lQlwl0INEDIRbeBnnSZ_KF4Up80bsEZ3ot0llWpotcjTYpVMO3eyMXusr4ufEC0vkwLthzNYO0K4_5ZP81jFW-SuCtr2RDNbf69cetX7uDClx8HijDV__EqtqPad4Hwn_rUktzcnZf2b2AcTqtRMXtGbnuoOY7ZF8adQd1u1KVlIfhjgbQ4Qy6RbpjGVqSxRca7IIbgwIhx8lK_-zFGEF9sk4fbjDaP_-JTZCaRQwGFCOMZ9zu8IR_k-9MgExyiNTcrV5HAGsrqCYpGynLJsaJGtkobFVtzJ63bUQUC82uGBdYcB3EXkjlEY83mZf6Z8mPB_4XTsB9QgoQ8q0GrcuX4RIvnD4Ii0-wNqUHYoFBBZ6zkpoA-tkePyFaKzy4o4qU5UFRiQyXirDKjkdJk4QD-_bzuKHyX0axFtdMHpI0hB6Izgx4TauzIHBlDH4-8GyeEEOeZABUbEUw0NSKWee7NxtNxhH090RMk7uegib02XUElF9VYI9ShX-UxXfLoX0xaMH0i7CimU3DeLbibbljy0HYT3hzZBql_P9oTcNgBXQq9jK0fFzm3KbkcZyXpJju-Z8QcLEIQ6CjDF7B4JppznIVsr_4aYom3r117clzccXksP_-Lv_ZmvTYNay0rRZgCpoGRbBMtz7rzdbUn-NWMeUjXlR0Q-6NAosLdGiDNxQj1CE3Cpy_JBuLs1Zif2k5UPnmiYSSNygIiYLa2KO4qiXFQbzEzXQtRTh7a86j1lmw1WAdF13GrFa4d_OWFdOB_oyplPNGWUcjLnPCPBGC9vYK_";
+  const NONCE_B64 = "FF0rtancGxzjWpb4";
+  const CT_B64 = "7aBMMORjuiH79v8oorIXFsVh4W0dtd7s52TJF9P1OLd6D5El0hl9lT5GS5CUtiFLCvBPDFvGHxELoBpwIpa_qiA_t5wHIKQ59dFRViUzdVPSpoP_6YNQrEjTSVNMkduCx_l9b_pPbXTKMa6PIqRtrV3BJpxoHMgGvqIKd81HXaFsw2bz2JwYpj_KlVGr2yEL3dsoHst91kPj3bxHjOnafb201kMEJ_KTC7xJ8BN4FdJ9UhRx4TwZZIeGhB6fTPYxlzkJcyvM7clVXqbvyHQG8PKlsBDUtoJLXxdDZTMOYe3dVf9Wp58jaxh53p7-xKLLEcNU9mBXxQEttCZiBPZPmVOzuJUTAIaX2YelCVxKxiVHshHkkxCkUS1e7rTWHZQUUbWZwyXEelaltCdhQeM7-W6DCdMD3lIwIpmm2RuQcwb6-3knkVjkP4jR2EtmJsFMifsMAkTFCE3oKN5AxSxtiyXUoOl0N11LeU4ZZs-1cO0D2bWTyu6W-gZucYQS-7PAuXWRdno6p5E0Ql4I-mM1lE_FHY3IQEdEwHfaq25mj6_XrSn2QpnWv9kdAvY1Yrl1fOknuLq0M-e2AA5Fol87ENsUT_-i5VgyOrX0dS_81z_jic18_CYyEyoeJl8kltn0dBzeHwvlisUX6VbpQDf9PjJggq1VUNjWcgvJop7Xkg0dhV786F6N7wW3HkAQLWl6w3VYO8oPHGZC64JkpNVHwZVKpinHhrgGq3juKgY8SfFcgU4OMm-zF8PCbKtcJWEzq4i-1e960iK1_ELWqbeMJ5JrC9zdmGLX4gddTIF-Q5KbkjWPCOe_Y4kbdIUxCbxj9KmzmUJp_UgW5leaVIRDc3gZAXLAEGxa8R3en5kyT9caeHoKjzp9_udmlb49y4BtsLeb2cP4SkGVeYg4n-oMTermVCXolqvhOWvwCUdtpzeZLEd6TEA58CHwklvtHwPtWXMn9TL9YuqdHWeemt47fDRJtQq4vuMBxwI2-Ks-bPRd3s2U-aA-81PXowwLd-VPcNORMHH-ynvtjhY7qPnDGaMGSJU5vrcSOc46OLn3Jke6gmwVpe0UevJDcxyKDQajHfAotS73Pr2_1cyjfKc3k1_fx32OrSeiajxkafZu0mISnYM1oraeRD46DWyR13hr81rYyfnmvf1SFiBZo_dUKsE-xNkz2RNh1HSeaE62keXpTxWyn2uAQLnw0HT5mZcD1C1RuxDs-v0F0XSRnDsz1KKpWkdICqpr25L_Lcdv";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1267,6 +1308,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:19</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:22</div>
 </body>
 </html>
