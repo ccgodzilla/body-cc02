@@ -170,6 +170,10 @@ function applyCategory() {
   valEl.value = active.default || "";
   if (active.group === "Habits" && active.type === "text") {
     hintEl.textContent = `格式：[數量] [內容]，例如 ${active.placeholder}`;
+  } else if (active.group === "Activities") {
+    hintEl.textContent = active.default
+      ? `預設 1 次，直接按 Save 即可`
+      : `格式：次數，例如 ${active.placeholder}`;
   } else {
     hintEl.textContent = "";
   }

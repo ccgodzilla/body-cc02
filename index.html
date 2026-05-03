@@ -264,8 +264,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "CIKHEOWUeS2EZ57O";
-  const CT_B64 = "DdtY49QC2Su-Ya8XhBGPjrw2zBGCMKhxLRkYwCzi7SigvmcMnrWNXNREJGQ4_vpQ9H3Gr9l6DikoMOc6h3ABYxAp2jfsfyfl5qOPQQhcqQrQLQhEPoziSPL3NooQM5tkiaD-N3pL1uccjrinYrzDi4qrC86T86iTXRDqUG-zVFs1Lj6kRzsUKNsNrNf7SGuQV7Cxq7nJDDKGgBlbC2S7BfBYcXFt7TdnyE44Vqh7BsxTsOs2XiRWx-e3I2DQGlkmxOUR5bUnH15Zn7qWENtZ2n5fFBZmnhSUVRnZebrf1Zg5ULtJEibQHlaOBWy4cro0a2LEfiwXTrZXd4juLhKI7biw9G0J3-A5YPO-yTA_NZ3TNFmJI3Lh5vSsd0lwy1CntQ1lvnFpVm0HarKFcBzzmKzQ69lE7qSG0tTFHkNeTC2d-7I_64kT2elHaQU2PZOoKzeJlpvRoVqYlHSYYkYpz9HZ7lw4pvGVNZEhl19vsiht6H3kVcu6qF6Umq9FXiqINprXGiep21tYnc2NI4JB-7ZIUhvNGH7RWdeHfegyAus-5eCSXRpOEHft6ARuiUdqZbxcyEOMz22P7E-vvm2VSAVLbY0-2xSkZdfu-mtUXrYHbHU1zCA0jgxqbnsxY8v-MtVapi4p1jTfQQNzRzsPsBZ0ERVCEt4IGFH5q5hNwcdIuOUj7YlhwVzzlsEmXgsBbb4FFuiOsGFtw8JfFZXDreH8b9npTUiYucMBzThqmzfPQgNyR9agxsgyL5ni2iqc3RcBJyzMOj_O-5HPdTIHnek2XxsA8ni05obgLY3pU4NcFSHbHObKy3eN8YPWd_wcyW_nLdqzJzcvPAF9qBOp9bG4xkfgMWv5FI1gewp8S57oz0M9RpUqThEjeymffq9eKvBIA_ayKPA9kYOV1Vy_isvkhmGMDdaY75kaHxqndnUaxARYfGIzALHVstvzhu2eNT6-RTOSuu2XO2TW-WOSGjQ-Dot3PPYmx6dPejUgq1NNy8CcV2lN3FF5CnDN5TwAMbk8CJLKO1z7u8u-uniqBdBOnfyMuAJbjG_a2FmDQq_JCYfBshE6wCK8ryciZLj-XoqY_fqWrIXhGW8MD_gYinDrhjLCSiHFNoQN3yvAtpHvq7WtDTG5oTfpv3pY42oIeh5tgeX3ngamvFpqXBiJBp3vchJGWjuQb78_x8MhGHVHIHi5K58fu_AzRNJRRZ07UckZe9Og59rO8HsMbbJwrc94eramDuTskI91NPO1";
+  const NONCE_B64 = "TaOkvCZ53wUq1ZRS";
+  const CT_B64 = "d6BmWnqo711o1bdjTouHV619c5pyjBRCYwfaB2RT0UO7seqt662L_Klbk_gpyQBL1e6rPEt0BpW9BaF5gwVtDmswKrZuizVLucsU2ERi-A-YBwCHfovjCNUgc3dD8GaGBogvPjZJLI9sEOZy6Wz5FZhaY4B8f7zrDxhmo1gAVWdk3_tkGGWH_F64JjZXR9smrTSTg-pmQ6X5fo5m-68Ca-xAjmrVP76YcHzocSf2d_wLCeOcb704Znd6OZGAtxEBNBEKb5QTXNHVECRoFjIQWdqOdz_fT8GwKt0Jl2rpZZBYndnWodfBAF_up-KoDky68Ny3oaq01n9_p9Tg-H_Ae1ciBp9i4QKcbfjUk5PTxTERyuY8T0uyX0fY-jooVm-HdRX5T48j76BXc5fWVct9Yb4vrpOXdpg3A-V1qt_js5cz-zEUs2ZszZYZOmMYKm6iBKOR5ASvXeYn7Msi9akCrD9ipJfVTS9sjumqFeZxn0BoqM7BHmvk5J93jNwfMR0pO6-td07YYPvRG9rR89zAjiS-0tOg9EWGHCM0Y79JgjTBAOiIAJxchul7UUcmUIM3x8LtdWkOvkFzo5WmKMMpe3nNOXAtpRfDneIcWnTGYMdMhZjsK8rGemvzTPAcrPcJxtwZxDv96gXv2gAYXT9hwDD3LrbCjCBpnBHppZ2HLcfweafE2QdaSPDWLm9LmQPAoaIMO0KAI3HuNH1eQkYDlXUlC00jKH_k1e3cBPstdbmSYrpwE1Qj_d7zf0Pj3UBIrcCpYdjvnAUUDpfbnS-s4RKZSRJehd5fw8shVfLb5fGzjeyiLjVuGsGQyNuuk5i461jlRpQRxPwbG9tH0DsUPKncV8yEX0zqh5NfB1OaLtuARp_yxKQ5UdYtxR1xTBDWlNC4yCUezsEzRwFYwB1s1HJvsufTC7fyppOyeOi2JD_JKhUbRK8T5g-RnHu2XxxnyvSHSqKEtjw2LwbnksMucVJ_AzQPj5jlvIQJOmbF7CBf6f4xSvgrJn9G4-qMF_0FemV56ZzJUDA7c1ywTPVuuiFS447_6jcPt7Y1-th9jiH9eP3sJBLdntunMirFtpnGhzUlDtS0kUaP3uOazymjK3fmZJ-fmMdFjeCmoiVu_f9efE6ONFYg43f_hO-u9xPzL4lTfRf104qqOQgnSuJ9AN-NKyqQmOC1KkOhxLby5JlydFpNog8TLEkWV_EZ73PVt2E76L-cQZH9ZTG7mV4NPy_zwL-rH43plhsKnXCL";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1234,6 +1234,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:10</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:12</div>
 </body>
 </html>
