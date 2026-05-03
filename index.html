@@ -236,6 +236,33 @@
     <ellipse cx="-8" cy="-2" rx="8" ry="7" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
     <ellipse cx="7" cy="-3" rx="8" ry="7" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
   </g>
+  <!-- Totoro sitting on the near hill -->
+  <g transform="translate(280,178)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="22" ry="26" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4"/>
+    <!-- Ears -->
+    <path d="M -11 -23 L -8 -36 L -4 -23 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M 4 -23 L 8 -36 L 11 -23 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4" stroke-linejoin="round"/>
+    <!-- Belly -->
+    <ellipse cx="0" cy="6" rx="14" ry="17" fill="#f3ead2"/>
+    <!-- Chevron markings -->
+    <path d="M -6 0 L 0 4 L 6 0" fill="none" stroke="#2a3338" stroke-width="1"/>
+    <path d="M -6 9 L 0 13 L 6 9" fill="none" stroke="#2a3338" stroke-width="1"/>
+    <!-- Eyes -->
+    <circle cx="-6" cy="-9" r="2.8" fill="#fff" stroke="#2a3338" stroke-width="0.9"/>
+    <circle cx="6" cy="-9" r="2.8" fill="#fff" stroke="#2a3338" stroke-width="0.9"/>
+    <circle cx="-6" cy="-9" r="1.2" fill="#2a3338"/>
+    <circle cx="6" cy="-9" r="1.2" fill="#2a3338"/>
+    <!-- Nose -->
+    <ellipse cx="0" cy="-3" rx="1.6" ry="1.1" fill="#2a3338"/>
+    <!-- Whiskers -->
+    <g stroke="#2a3338" stroke-width="0.7" stroke-linecap="round">
+      <line x1="-8" y1="-4" x2="-17" y2="-5"/>
+      <line x1="-8" y1="-2" x2="-17" y2="-1"/>
+      <line x1="8" y1="-4" x2="17" y2="-5"/>
+      <line x1="8" y1="-2" x2="17" y2="-1"/>
+    </g>
+  </g>
 </svg>
 <main>
   <div class="masthead">
@@ -338,8 +365,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "mja4SsQQlgif_xFv";
-  const CT_B64 = "7b2RS9EtqStCEJvUYlkMNbNjPn6AyfLaEftzc5TWMUkmvN35aeGska2NjLE722-b_bdT1E-p0t12CwE2NS_ugAOZaKrNCwQkkiGgBwlmK3wBtz_jeO7PiqnujoNLQgWEiHfUjowmGmQFNb79elXPcJQcZmYFXvJsQje4M3w4Adjut3_RGBX-GOBifWjacdX7wCwz0qbB9UHuWokk_eHAr3eoxWvxOAlIlgRuGOVeFWefFdpSb3nNGOG3dnlko8D5l3MiZ6p5w6dWpCdMH5bEUDgux-KFiHhaSVf-NMZxY9FDJwUg2SuVLoueH_N-SojjN4IpF6j3k0ahA8ASaVrBnwPsiH0wy32Rgxc4pt31JEUehvfkTi7uxmso5KJMapKigd5jUK5HC0TPgjdMWS9JqKLoqJgqQ9jH7h_hJ5UwQqfMWtswzqQyvfDiIUJpuVaO-wBIPXAc9mRObojNh86dV9E324sE6VmnctcKEOoU-R7iOytDwGWLbxy4EBc4LBdxXqpdppKx0U4RPQ224ml5Z9C2Mo3Kv_6P3BgDai6E5DFvASeEqLQmWTmAbmZD7CJFemcKPz84zJEAYbncxcNB86fS9epenH5SkQ2u8CWc0h8T50z4k-Pdn3aMCwla_ogOsdZOtUBSRoPdZED2Qh_cJmjJiU6RQ-kwH8Z0l-wBwS3xuSFhooZmAjOlyNMY1UdTpE033yI5E-OeYa4XVAx4BaNj8UVhZMZvrybsRX9CZa0M8_lvJ-jNYhXHTTzrS9sbbu7J_YNuJ7f0fALZx7xfWOaHAKSBe4oLLVL3mRmFsPziorAkLOU7t-bV-bU2kLmQFhSToEG7Sh-o80DOSQ8OKa8XtcpKWCT1qQdashZLMDxUC5o5fLkQyCeFJJAEMPlu73AI6f5jW0FkdCWcVHd49a78TAb6avTHXsrPnINKI5LWS9RY4VmCcurtInGUBvQX-IuTsTi4R2xrL4hXl4Eq_ZI0ZtyedRehrhTsNK66HT2ug-g1yptqCM8YtPv9SDkD5II1oxq5nfM_VH9Nav5pSMiRJBMIiWP687bFXFRiLq3hfe2jTJBpBZrJcKnrSveNpf_jj3WCoxDAgO_YFXjz7qmHNdZFTmEBPTvVwuqroatuiN36CS8yY3lU1W3BrTAO9-EN6W6tb6FxD9OIcPg3X_QFhbXjv4VM30rdxL3mh3T1GmXjuWAl0Y0HlpyHV7m47RHOpLO2axxnMzdhLqS9oSn90q-DBmv2PEgBbY_p";
+  const NONCE_B64 = "p_5svWCsFStG8KMC";
+  const CT_B64 = "Q37L7v3c0hto8rdvd0FLyzI3QsLTTNp_O99jH0YCCu6Ca1XiCtyzpgwIYh3LjwjI2fls__0FpvcEz-MsHIgpzl2_4oUpkE3PmXZLfi2GiP1dhUK3lGJgwmCQcXWGqX65HMA5xp3C3ZUEhIzGYwM9KQkrfe6CXgdGyOR8oZPI71hoMw-OGrubAOsVAzc1EX8b138hB8NxnqR5VpXDYmy7h3Dytwdp0ZIZO5P9xIY6XmFhKbS8vbW-ELuInGsCxEsAzvNS7l_HM6Xqz9dZKtWuDHKqzSTqiAVpddZUIc-Ht8Qoq1WT1avZ07_6MNi2xA8Y4JtTXekVaoE66T3QMk58GXGRBwymjTV787_msEjDxW-a3Is4P9n1veVxuixOC-ubA-sONOH2UeZNMUZuDn2RpvknHGGxi5yzkVGrK_t8JZ914UpQAxC4l-rLzBs-INAktM328PKxkk33e9BcXGIsiPbhgOSFaQonBjhAPb2H8KVID7HQtoTN1UdifmMwdmqKHSJBIpl8Gu8ihqQaugKxMAyT8skQ-aGXHbdNfG7UfRTYgDY5j_xJta_zHJramau_cQG_6WDa1oRlNdKrCS2miQ4hrALLN25nPwqcPLp8y1vPeIIKIryQ4Mso3qolbouxCBRhzViZsAXID7w9dhEqN9IKXwABIOL-6OTAMGjASer6_3uwZqYzYx94xRZzxr9AMuBMf5CxlrA4iFiYDbfM_Ag3sC_KmV-UUFPmBnZ4lzdz3NuKsb7QLwK0S2C41EbN8I3060bKf_7z5NpEQqZB2sfBa6ysZTrMRJi34zILtQ5ra0s-b3-2-QautV33THx2RwdCUQgvnZdqxcgMhsiwy1mWfujNjIrx6CQA9hWEnARE8Z1Nu5BE09kvog77TFyeg3tfQPYx5bBM1YcUB9-D0Sgl13y0AEoSCZeCzgd5tqIXw21OPv19XK7gCdkvxN3TmkXpBzkVdmy38psadPrSaHJyUtkARP4tIez-Vx2IJdy1wChvXRvI6WSfpMwGb901-zKdniiQQqfg6QTIvfExSV9Udie8BAr7bJtMViaMfen0FGKYe_Qphjp2jwHv3IuabfYbI7KVenhDtC8YXZqpQsHj9_gpJf8GWxzRailYBaFmvW-_A07jYxqC9LYOqf3b20hbfS24lkWgkYStM1CPe9eksLMnpz5X_X8beWLXZ5_mi7_Vm0SaDjjto0dSzpiNyFQvDIM6oEYj35xKTrX7YXjIOfs-wTMon86YDjOh";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1308,6 +1335,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:25</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:27</div>
 </body>
 </html>
