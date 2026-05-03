@@ -264,8 +264,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "r1eWVX8XzCthbFra";
-  const CT_B64 = "gfVuKqzEzvQeyxhP0XrnxdlXUbh5E1CqUTGhmhrwxKBUJ3Os2XAC76d7ad0l8TaDc_RQ9mrauFhRo-lkfYX26CfpVD_qO9QEoqrE_wo_sVGSvC9bPVHrcB8uxeeA8jYgTWfTMjfvvg4raoTmy3TSYSKe7UOgGxm66ikVNuUHplLz0czvLj5OVCIAv78EbWyaUhgrMtblmgz31REiIuXiCti8KiQ6lDRcjluqNNt66y--PUC3VAr1QNO0mGdpTuKMmX-0Ib4IjupstDEOTL3t7WtBCdkrHiOsGinZMXFn4D7q4F4SU4XTv-bjOLHeEXf2yJw4pZwHjSz2DmiSu__SSJubuyebBuKmMVBMq7U1GSOaKKElgm5uzGehYLdtjxIhmKjptgYNMlZS1ThsyqmPJtXrEmH-b1uKySQvresplsw7c-O_gjcpzY91yOHRAYCUcOzo9reAqmIdH3V1wBE-KmsjPY-nfep3Pyc2i9ViKR2I1FcN-XFcR_0jE_QgGiZbXQtZ3WqmtfQZIRHk3wIAXJoqOAnfvI57Tq8iJVT6KCYyJZ7r7I6lSmHsAvyTK74QhW4ZzI6bH6xOgY8gXVe5_CwPx0KcWYnjVuZkSmshlaQSY0wfbB0B1p8xUcVpP04NGuS9Pap41Wq8OdeVXwGUjJJFXAHj0jB2fjx1kCjjUydZUYZnSJikJnOXdQw-EOiHjeABDtssiiGQYjZ6nPvsiGQ1vYF0rUd90HmT5YqAN2-2EeXzQvxyS6Sw9CwceodBce4_hHQH6Ma5Xwcb5JT0-b3mpWKUSXHiDpy4oIaEIGQqbrO_Az866nCtrf0X-Q";
+  const NONCE_B64 = "Rg1Lhlm2j7nJORiY";
+  const CT_B64 = "Hackaf7zEGpn9xoWgaDeJX-F0_euukZoapG_XFeLU3tS6a6jdlJfeSrgYZlfijGYRdpTK5S7jqXyrPJ7M4zOLYc4kdQkeI4tJI-LL9epNkESGzXE3NQR-L7VnZKoKuJ0Ji2k02Z8skBoOCdaBkQU243vIAj8Jjq4dbbvPJnO1T_vUuaBkeM5VlFA6K8IROvCtJ1npDt_Z8XUCFIpj7Kytp3wG48-kJBnScbzmUDY14mJpmj6dotwShemiNf6xDOWXE6dfrDmZujP1UerNXM_bJfKWM_b3PMc7pVzKa1phbTzfC456lYzrrR5SG2i0MAuueNlPk64GGR76cPmzj1QyUZHLhzIikEKKb7yfsMuaT31456syc1Q08lJe5D5z3OuFSrYTP6GKYCxh4zwRw7xpdBCRMWyysG-TMhvW7vXV__8UILt0Z-VWwLKEBre2LXqEBYLSLEnWnthpR_8x9dig5hUsDqct9I30CnWo4akYUV2ulhwjVoDce-ncbCdeQNXaKqWCo_PQhfHHVycpKuuZVzb-zIvFD6LLHlFh0UFNS1nsU4JEilyw5k891XuqXMAY0wLiM6wBhk1Sz3gKeOJw4UShkdHxpPWW-tltTCDLMzWRGfin1PyKLycDcR9wXoJdeOcRoZiSKM6TSi7AuvwJN_i08jLZs3Lt_6gjNGVVAuOMKj6q6ioK-Rnch3kniiwlvImcePH4l-SSNrLsj3vAc6bxYM1-TzSBWzM9Xk-c5ULRskn_Bfi9RDcVXHBztqHxZt2eRjscuO-vXJtBjFe6gekPvI8gOllv7TzpDmnaH852VLzCg4yU_y1MWOqK67C8RKP7NMH0w0Bw5BUVOYTT2q0zIWiKA-evINQTX-a1ibBYk2LdPvtW9Ab";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1234,6 +1234,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-02 15:54</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 04:01</div>
 </body>
 </html>
