@@ -264,8 +264,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "j6RlP_3OnxMUB6yK";
-  const CT_B64 = "PEQ_UBNi9IzD7a60TlcQjY33b3JsPvYyr1sv_ZWFE6JXd-LIm3PxGRHGoqBN1VIFOaFG5jj4jT5ef-EUOoopcHB-sQvz6hH6CXPGRvirXigDKR2S534cKDTOHmSWdc4DSOpa8qPbWSutAOm5FhxHFMpsirO8IHyfBODKiY2FyuyT0OWNwMN_HZWrd4wxRe5_3saUwhl585LA3UXILomrqBoJBXC0j14bH4oHfuIjYDRFDOr_rsoIxzqUR23xccGa6oBMjLS04MRut9D7t_lzNW2bK68Dkk0lzNxzpeFJkJmCI24lXDK0xTTL8M9QEUGW6K17f61aQq3lMIm46VyTGd4IytB237sc89kks6uVxp3hOli9dpCVW1BLit3HNQk8DepD5PNbfCX1iC7ORwTbJxGPSR_8dBPRtod43zeRT0eqaUKv1OOP9kcbrWvcfAF6WuxMnoEkE7qTi8_6egazUc0ZRU917gkvTfIC6sFvqGo6Ir1dOpPpKbRQsO0lQRk6u_ifNLuXa-PcUTpxSrYWA0V-l4g4OPTBLttBHKBnhHvbCPsvhzyFl1WL6l5PVMkNlSCafFxLsjCpCjiEqhZXZayexBke9E8z_zoZ7ezx-zl-PHtDDPBtFWalJ8ippXwq3nurbL22SOnxEVN_r8vZ1mdMRriNZjiEWzU-qJhbys3dMAR6sEcZTLTYki0-XWWaIZa-J09mxORx991UA0Jb-deGEwXpxzG9U3RLI1rij8fIEYMYExNiFKn62C1mpivBpRc_ffA7wDvFx7zJ5SjNTyPvgZg5SvjnPn621Nqi_c7fIn-MDTn7b-iL8x0TikAkngq1EhKCw_ee-dKPIPn3xJdr99k2QL93sixEn_BqtUAjUfUsEXc8jG_HOdeiovsiRTbXp4wHucoR8s-QXWJPTFC9TBiFlgHF60vvxhfejWESiBvx9fVYOe3kSfKY2u124DNMRawlZNf1wKLjv01Elcm2pL2bP0Apvnp8lU_NGyfRN-wvpP-2pPimcNluwD9ol3nI5RQEwv1s401P";
+  const NONCE_B64 = "BcmXIQ1fM3hLtWUf";
+  const CT_B64 = "rpe29KADlT7F9jywsfWC8BXXReJ7Lln-0PGG9xo4xW-mtb9WchaxLJ5ITcWK4r2BNQHUp5o3vKnqi8vIJDSMKK8I074bLQrSUDZjOtQCvT5QOhSGqfTR9loKO3tsYZDR5ibQceJrOC4cfeaJeiANR6RB0DGt0sTDUCrtB-oArRkis8SeTE3VQHxyP8QU-yp6lQlFbmiWd0cJS2yefpKu_MIytjAH_fHDucJG2AlBLS2GbdejgL-uLAQ4zvcToIVInOlcWr-DoUuuXEo7DBcLkuwzWD9vlpzZJdJFqa2AJz6YLZ4_E1-Nx6hGIIux7B_jS8xtfPTRN1j992umMNnrWV16J3VQjOySKlxWCBuSAj-Inewd8-eulJGH1qOrgQ46g1DQDEgqxj9G6jrVNG1ieFo3igrXQ2pFRhHxGPw2YLGItjID1TeAZ1IU7i9MWKc9xLMC2IxUko82k5y577O3wHzGhjAVIlkRYxmKJr0SyRjHCWNMogUmIm9HierTvXJ2JBvqmD3_8lZvNKrI51OqhShg4vIpeBbLEX_T-Gs0jR3tZ7CVdhXn3wo9yloXhijpf4ekkCthmKi2FLXeKpiKg20QzyeQOFId2fVdh85GfX7Il2rzV26NzoX9JysoCL8-a2mwUMwC3j5bdAwlQABkvqNQYLYhZOXVJJpt-WD0T52Rl2VSSJ3zvZugwU5SJUPxFqWMCFihwZ8aJpY7QOMaZwzj9lcptklbc1JPPcRHSknTn_9hbzhmfiNfgE9Aep75LO2Se9ElrCj1wripC0oOP9dOn_di3PU0jNAA_hVD7l99QWr9WaMUYudllND68GOtcY22i7PZZn5mDNvFhVth7HrnbD_iHBORNx2NnMv_w4rVrIsnd2MDqLhYfthQEziToKOuDQRIzVQR3ggnH3b2NdlldpZ3U0_k0IUAtQIdAD8r9gPM7B9g7X0T74FZftvVYFa7H69klYjywuW_zmL5irChPVxUWHKA358YoyB4QtkwT81VSps0JcNSEB4Gqm1TS0kRrhfv00gwtdc02m2AWbqb09xUHHgMSn10vA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1234,6 +1234,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 04:08</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 07:37</div>
 </body>
 </html>
