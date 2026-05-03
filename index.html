@@ -218,6 +218,55 @@
     <path d="M 700 150 Q 706 144 712 150 Q 718 144 724 150"/>
     <path d="M 760 175 Q 765 170 770 175 Q 775 170 780 175"/>
   </g>
+  <!-- Totoro floating among the clouds, holding an umbrella -->
+  <g transform="translate(220,180)">
+    <ellipse cx="0" cy="0" rx="22" ry="26" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4"/>
+    <path d="M -11 -23 L -8 -36 L -4 -23 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M 4 -23 L 8 -36 L 11 -23 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4" stroke-linejoin="round"/>
+    <ellipse cx="0" cy="6" rx="14" ry="17" fill="#f3ead2"/>
+    <path d="M -6 0 L 0 4 L 6 0" fill="none" stroke="#2a3338" stroke-width="1"/>
+    <path d="M -6 9 L 0 13 L 6 9" fill="none" stroke="#2a3338" stroke-width="1"/>
+    <circle cx="-6" cy="-9" r="2.8" fill="#fff" stroke="#2a3338" stroke-width="0.9"/>
+    <circle cx="6" cy="-9" r="2.8" fill="#fff" stroke="#2a3338" stroke-width="0.9"/>
+    <circle cx="-6" cy="-9" r="1.2" fill="#2a3338"/>
+    <circle cx="6" cy="-9" r="1.2" fill="#2a3338"/>
+    <ellipse cx="0" cy="-3" rx="1.6" ry="1.1" fill="#2a3338"/>
+    <g stroke="#2a3338" stroke-width="0.7" stroke-linecap="round">
+      <line x1="-8" y1="-4" x2="-17" y2="-5"/>
+      <line x1="-8" y1="-2" x2="-17" y2="-1"/>
+      <line x1="8" y1="-4" x2="17" y2="-5"/>
+      <line x1="8" y1="-2" x2="17" y2="-1"/>
+    </g>
+    <!-- Umbrella above head: tilted slightly, scalloped canopy with panel ribs -->
+    <g transform="translate(2,-36) rotate(-8)">
+      <!-- Handle: from canopy down past Totoro's grip -->
+      <line x1="0" y1="-2" x2="0" y2="22" stroke="#8b6f47" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Crook -->
+      <path d="M 0 22 Q -2 26 -6 24" fill="none" stroke="#8b6f47" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Canopy with scalloped bottom edge -->
+      <path d="M -30 -2
+               Q -30 -22 0 -24
+               Q 30 -22 30 -2
+               Q 25 3 20 -2
+               Q 15 3 10 -2
+               Q 5 3 0 -2
+               Q -5 3 -10 -2
+               Q -15 3 -20 -2
+               Q -25 3 -30 -2 Z"
+            fill="#4a6a64" stroke="#1f2a26" stroke-width="1.2" stroke-linejoin="round"/>
+      <!-- Panel ribs on canopy surface -->
+      <g fill="none" stroke="#1f2a26" stroke-width="0.6" opacity="0.75">
+        <path d="M 0 -24 Q -8 -14 -10 -2"/>
+        <path d="M 0 -24 Q -3 -14 -5 -2"/>
+        <path d="M 0 -24 Q 3 -14 5 -2"/>
+        <path d="M 0 -24 Q 8 -14 10 -2"/>
+        <path d="M 0 -24 Q -16 -14 -20 -2"/>
+        <path d="M 0 -24 Q 16 -14 20 -2"/>
+      </g>
+      <!-- Top finial -->
+      <line x1="0" y1="-24" x2="0" y2="-29" stroke="#1f2a26" stroke-width="1.4" stroke-linecap="round"/>
+    </g>
+  </g>
 </svg>
 <svg class="ghibli-hills" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
   <!-- Far hill -->
@@ -235,33 +284,6 @@
     <ellipse cx="0" cy="-4" rx="14" ry="12" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
     <ellipse cx="-8" cy="-2" rx="8" ry="7" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
     <ellipse cx="7" cy="-3" rx="8" ry="7" fill="#4e6e44" stroke="#3e5a36" stroke-width="1.2"/>
-  </g>
-  <!-- Totoro sitting on the near hill -->
-  <g transform="translate(280,178)">
-    <!-- Body -->
-    <ellipse cx="0" cy="0" rx="22" ry="26" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4"/>
-    <!-- Ears -->
-    <path d="M -11 -23 L -8 -36 L -4 -23 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4" stroke-linejoin="round"/>
-    <path d="M 4 -23 L 8 -36 L 11 -23 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.4" stroke-linejoin="round"/>
-    <!-- Belly -->
-    <ellipse cx="0" cy="6" rx="14" ry="17" fill="#f3ead2"/>
-    <!-- Chevron markings -->
-    <path d="M -6 0 L 0 4 L 6 0" fill="none" stroke="#2a3338" stroke-width="1"/>
-    <path d="M -6 9 L 0 13 L 6 9" fill="none" stroke="#2a3338" stroke-width="1"/>
-    <!-- Eyes -->
-    <circle cx="-6" cy="-9" r="2.8" fill="#fff" stroke="#2a3338" stroke-width="0.9"/>
-    <circle cx="6" cy="-9" r="2.8" fill="#fff" stroke="#2a3338" stroke-width="0.9"/>
-    <circle cx="-6" cy="-9" r="1.2" fill="#2a3338"/>
-    <circle cx="6" cy="-9" r="1.2" fill="#2a3338"/>
-    <!-- Nose -->
-    <ellipse cx="0" cy="-3" rx="1.6" ry="1.1" fill="#2a3338"/>
-    <!-- Whiskers -->
-    <g stroke="#2a3338" stroke-width="0.7" stroke-linecap="round">
-      <line x1="-8" y1="-4" x2="-17" y2="-5"/>
-      <line x1="-8" y1="-2" x2="-17" y2="-1"/>
-      <line x1="8" y1="-4" x2="17" y2="-5"/>
-      <line x1="8" y1="-2" x2="17" y2="-1"/>
-    </g>
   </g>
 </svg>
 <main>
@@ -365,8 +387,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "p_5svWCsFStG8KMC";
-  const CT_B64 = "Q37L7v3c0hto8rdvd0FLyzI3QsLTTNp_O99jH0YCCu6Ca1XiCtyzpgwIYh3LjwjI2fls__0FpvcEz-MsHIgpzl2_4oUpkE3PmXZLfi2GiP1dhUK3lGJgwmCQcXWGqX65HMA5xp3C3ZUEhIzGYwM9KQkrfe6CXgdGyOR8oZPI71hoMw-OGrubAOsVAzc1EX8b138hB8NxnqR5VpXDYmy7h3Dytwdp0ZIZO5P9xIY6XmFhKbS8vbW-ELuInGsCxEsAzvNS7l_HM6Xqz9dZKtWuDHKqzSTqiAVpddZUIc-Ht8Qoq1WT1avZ07_6MNi2xA8Y4JtTXekVaoE66T3QMk58GXGRBwymjTV787_msEjDxW-a3Is4P9n1veVxuixOC-ubA-sONOH2UeZNMUZuDn2RpvknHGGxi5yzkVGrK_t8JZ914UpQAxC4l-rLzBs-INAktM328PKxkk33e9BcXGIsiPbhgOSFaQonBjhAPb2H8KVID7HQtoTN1UdifmMwdmqKHSJBIpl8Gu8ihqQaugKxMAyT8skQ-aGXHbdNfG7UfRTYgDY5j_xJta_zHJramau_cQG_6WDa1oRlNdKrCS2miQ4hrALLN25nPwqcPLp8y1vPeIIKIryQ4Mso3qolbouxCBRhzViZsAXID7w9dhEqN9IKXwABIOL-6OTAMGjASer6_3uwZqYzYx94xRZzxr9AMuBMf5CxlrA4iFiYDbfM_Ag3sC_KmV-UUFPmBnZ4lzdz3NuKsb7QLwK0S2C41EbN8I3060bKf_7z5NpEQqZB2sfBa6ysZTrMRJi34zILtQ5ra0s-b3-2-QautV33THx2RwdCUQgvnZdqxcgMhsiwy1mWfujNjIrx6CQA9hWEnARE8Z1Nu5BE09kvog77TFyeg3tfQPYx5bBM1YcUB9-D0Sgl13y0AEoSCZeCzgd5tqIXw21OPv19XK7gCdkvxN3TmkXpBzkVdmy38psadPrSaHJyUtkARP4tIez-Vx2IJdy1wChvXRvI6WSfpMwGb901-zKdniiQQqfg6QTIvfExSV9Udie8BAr7bJtMViaMfen0FGKYe_Qphjp2jwHv3IuabfYbI7KVenhDtC8YXZqpQsHj9_gpJf8GWxzRailYBaFmvW-_A07jYxqC9LYOqf3b20hbfS24lkWgkYStM1CPe9eksLMnpz5X_X8beWLXZ5_mi7_Vm0SaDjjto0dSzpiNyFQvDIM6oEYj35xKTrX7YXjIOfs-wTMon86YDjOh";
+  const NONCE_B64 = "8sw591IfLUlrAEzz";
+  const CT_B64 = "6f8qBc1PDFjgodxYTwkTT8CHO8AURmgMveL0cijR14PvXLh8AeWso2uzyK3W5lr1rB1jwlUfsDcblGguMsIPl_1YAkWA5n2IpInF-Ucjg0LMkl5TfGqrwcnuYu_spXkU_M5M1Kb75hNq49zz4PRXmvknvub97-0juJl6msq9bJkN7fB2X73vm72dGxufvDOOBbNRbqFBCw4yxsYHORn4yofX04GwdkryF05gRH7gwG6mALJUgfR-W3sRibQ5VMg8GiH8Lwrl3W2Pe44V1HM8hL4wl0ogyGPJ4yGa4GJalqPEvKxR4A0DC4V59ZezzbgnW2bheZiq1U69t565kFEl50IjSeVTJhBZLMYnMrSrEbm-0m2DoHz5KbA9iKntiEQ0zyOngI9_BQNIX2KyvExmdQbCGc72I1J6Qa5k2S-sG-GvVDNkJlY8CdhLojs9nGE-bbVLgT-04B8ZVQ1-XmDxsQifY16q25ycVCrxfmbQUrvv9_ldh9gX-vjccxWPZALhMo7YTERZ8YDkHXQGaZVoTPKBCitK02xJ5aDghotEOeFt580gVRheqF0kYeKch5jZ8WmFChQR8YBb8Z5p0Y_H90Tgh6mDl_62IE0nr2yHCbOp-A5KcUIyVPsgqhXNOcQNxT603V8MJdDjYQkegaKlVqsgf0HerPstxWLW2OVFz2Z0c1QUizvjfAEULcm-LW1rG2Khm_3ME7Zjq5f1J6zkZ1jamvndengjN1kk5K40YpSmu-J_FIroHRvkI0K8Zbqfdvyu6_SyrRIjxZo4Dwfey_BoZcBNenvdXTs65nQXbq4h4blqItZFi_YqanHb8IWNzeRPg5_zZWwmFTaJupOPUI8ffh8klqKxRWXkAqtBCBNqoyx7lWa6bc1M3qtu2ELMNCytLLF2dbtJJkIJqvna0JeCSZ2NC2Dr3oJ29nPhdbKf8GS-pE8YyI-1Tn12vGm1zx2hX6iU3FN7AzROqowMt1zMSOziR_hJbLQK2Y99PHtww7y7jVr0Rc2sMSz4OHT5I41Fl7zDR-rs7O0T_knFG2HMXSy5nMQEkl1VkUFKAis1g9jUsYB69bs4gRyJPO-NDI1OdpmJ95a0vlbM_rA9S33oDN5TfxIfqjTj6Sk7LSO0R-OfVCT49S165Y-bEf-rCOaa5nI-DsEU73vgVzrRY1vRAC8CUAJ0iaE9XNh-Wcu9huBV2kefxITYZuTVJsvL23pnoxsv0sE8sjzygCGM49HWhw-imcsnp1FY3jvt";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1335,6 +1357,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:27</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:31</div>
 </body>
 </html>
