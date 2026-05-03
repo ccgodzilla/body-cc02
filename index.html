@@ -237,31 +237,29 @@
       <line x1="8" y1="-4" x2="17" y2="-5"/>
       <line x1="8" y1="-2" x2="17" y2="-1"/>
     </g>
-    <!-- Umbrella above head: tilted slightly, scalloped canopy with panel ribs -->
-    <g transform="translate(2,-36) rotate(-8)">
-      <!-- Handle: from canopy down past Totoro's grip -->
-      <line x1="0" y1="-2" x2="0" y2="22" stroke="#8b6f47" stroke-width="1.8" stroke-linecap="round"/>
-      <!-- Crook -->
-      <path d="M 0 22 Q -2 26 -6 24" fill="none" stroke="#8b6f47" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Umbrella held above head (clear gap, scalloped canopy, panel ribs) -->
+    <g transform="translate(2,-58) rotate(-8)">
+      <!-- Handle: visible stick from canopy bottom down past ears -->
+      <line x1="0" y1="-2" x2="0" y2="22" stroke="#8b6f47" stroke-width="1.6" stroke-linecap="round"/>
       <!-- Canopy with scalloped bottom edge -->
-      <path d="M -30 -2
-               Q -30 -22 0 -24
-               Q 30 -22 30 -2
-               Q 25 3 20 -2
-               Q 15 3 10 -2
-               Q 5 3 0 -2
-               Q -5 3 -10 -2
-               Q -15 3 -20 -2
-               Q -25 3 -30 -2 Z"
+      <path d="M -28 -2
+               Q -28 -22 0 -24
+               Q 28 -22 28 -2
+               Q 23 3 18 -2
+               Q 14 3 9 -2
+               Q 4 3 0 -2
+               Q -4 3 -9 -2
+               Q -14 3 -18 -2
+               Q -23 3 -28 -2 Z"
             fill="#4a6a64" stroke="#1f2a26" stroke-width="1.2" stroke-linejoin="round"/>
       <!-- Panel ribs on canopy surface -->
       <g fill="none" stroke="#1f2a26" stroke-width="0.6" opacity="0.75">
-        <path d="M 0 -24 Q -8 -14 -10 -2"/>
-        <path d="M 0 -24 Q -3 -14 -5 -2"/>
-        <path d="M 0 -24 Q 3 -14 5 -2"/>
-        <path d="M 0 -24 Q 8 -14 10 -2"/>
-        <path d="M 0 -24 Q -16 -14 -20 -2"/>
-        <path d="M 0 -24 Q 16 -14 20 -2"/>
+        <path d="M 0 -24 Q -7 -14 -9 -2"/>
+        <path d="M 0 -24 Q -3 -14 -4 -2"/>
+        <path d="M 0 -24 Q 3 -14 4 -2"/>
+        <path d="M 0 -24 Q 7 -14 9 -2"/>
+        <path d="M 0 -24 Q -14 -14 -18 -2"/>
+        <path d="M 0 -24 Q 14 -14 18 -2"/>
       </g>
       <!-- Top finial -->
       <line x1="0" y1="-24" x2="0" y2="-29" stroke="#1f2a26" stroke-width="1.4" stroke-linecap="round"/>
@@ -387,8 +385,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "8sw591IfLUlrAEzz";
-  const CT_B64 = "6f8qBc1PDFjgodxYTwkTT8CHO8AURmgMveL0cijR14PvXLh8AeWso2uzyK3W5lr1rB1jwlUfsDcblGguMsIPl_1YAkWA5n2IpInF-Ucjg0LMkl5TfGqrwcnuYu_spXkU_M5M1Kb75hNq49zz4PRXmvknvub97-0juJl6msq9bJkN7fB2X73vm72dGxufvDOOBbNRbqFBCw4yxsYHORn4yofX04GwdkryF05gRH7gwG6mALJUgfR-W3sRibQ5VMg8GiH8Lwrl3W2Pe44V1HM8hL4wl0ogyGPJ4yGa4GJalqPEvKxR4A0DC4V59ZezzbgnW2bheZiq1U69t565kFEl50IjSeVTJhBZLMYnMrSrEbm-0m2DoHz5KbA9iKntiEQ0zyOngI9_BQNIX2KyvExmdQbCGc72I1J6Qa5k2S-sG-GvVDNkJlY8CdhLojs9nGE-bbVLgT-04B8ZVQ1-XmDxsQifY16q25ycVCrxfmbQUrvv9_ldh9gX-vjccxWPZALhMo7YTERZ8YDkHXQGaZVoTPKBCitK02xJ5aDghotEOeFt580gVRheqF0kYeKch5jZ8WmFChQR8YBb8Z5p0Y_H90Tgh6mDl_62IE0nr2yHCbOp-A5KcUIyVPsgqhXNOcQNxT603V8MJdDjYQkegaKlVqsgf0HerPstxWLW2OVFz2Z0c1QUizvjfAEULcm-LW1rG2Khm_3ME7Zjq5f1J6zkZ1jamvndengjN1kk5K40YpSmu-J_FIroHRvkI0K8Zbqfdvyu6_SyrRIjxZo4Dwfey_BoZcBNenvdXTs65nQXbq4h4blqItZFi_YqanHb8IWNzeRPg5_zZWwmFTaJupOPUI8ffh8klqKxRWXkAqtBCBNqoyx7lWa6bc1M3qtu2ELMNCytLLF2dbtJJkIJqvna0JeCSZ2NC2Dr3oJ29nPhdbKf8GS-pE8YyI-1Tn12vGm1zx2hX6iU3FN7AzROqowMt1zMSOziR_hJbLQK2Y99PHtww7y7jVr0Rc2sMSz4OHT5I41Fl7zDR-rs7O0T_knFG2HMXSy5nMQEkl1VkUFKAis1g9jUsYB69bs4gRyJPO-NDI1OdpmJ95a0vlbM_rA9S33oDN5TfxIfqjTj6Sk7LSO0R-OfVCT49S165Y-bEf-rCOaa5nI-DsEU73vgVzrRY1vRAC8CUAJ0iaE9XNh-Wcu9huBV2kefxITYZuTVJsvL23pnoxsv0sE8sjzygCGM49HWhw-imcsnp1FY3jvt";
+  const NONCE_B64 = "HNJEkJE-Xeu5LcHr";
+  const CT_B64 = "0LEPD_QR8KLNQrd9ak50_5LqzjH4FXajxb728MywMxVGG0IAsB9JKh9wXroXHbWw-iM7MevkeLN2fhqu0ohioIajJczSEICxc8FtTmFKqwHjYc1PTQIVbrHwQNrAY6cgp3goqFqGJcmqdvzPd0i2UROOimcTPCbPfHQbqwQ_wj-_thQfjqll6lLG0p_QPSe7lttMVspDQ1_6qbp2954w3b9pgf4sjC0diy_QcsdWSXXkjXNs_kZZO92H9F_pSPwzguTfqxzF9-DtClx9JCV0XrmY76U9RQy43rs_lvmZE9VN7thBLI8buv-KGxe9RF756JQ1g41U15tQ3OYMl5FJulNlrY1p5uuddUO8M3i_Zi-_o2DbQeSaMk5fX4Yz9Z7ShOJYoOi72MLQR0Vha7vjbu5WYjvG64tjqV8ykchJrScOzOoohoxIvcmE5BlWvBy6_dzRaX3rGQdAS_cl7siw2Os-ECkkztRcge7ko7kwK4cblIxC-tFV7_nMWXGyJQg76Oc-PLao2-3gyrfyEBIjqris7dOryKxsflgKvYvyiI_4y0Phb-Q-gDHsp0p0zGucBACFTKQ8TYrxadKiwxYXkIMgnwhkY3iybfdnkw99-pSHQYAB6NGhZabHwm-MuQRMLbXpkbRHtKzWhBArnl7GxLBS-eNH_L_igOitheMedR-DEvZmQ8rZ2lAeEFxQY4Oc6TTUbfzYJViAxuttYUxxD5sq5q5TkhA2yH9sTuc37YVdn0fWnFz2Oem07JsU3FLhfh2KBMvbx2sIesSQvzdqRjr11KMuReEno3RSs99ce2bBuhaOpq2284J_5OPTsZPTgLiMBbVopmiUhMg0NlwbDTbPvfj1YPjjAQqSUuygDC-rbRv0ifP6bi1cOrtHOuDxh-7XUDnUkh_ZgkzSsrjBsnFREXv3CsLfwpDphf3-WC3fRuIVs-vYkpjQxCOWgK9H0I1zZMIKE0gwtvE6FKY8G0te47_jjk_dR6kZzHOiySdbQzz8D7fn9Kj-4fvcE0rrW_QvcQmksJ9jqHp0U4oV5hBNgxCah9tJ1zJURawq--GZV8l7bxnI5vbcHmnEVG_OueeEkGgn1EeQoRPp9kcrPUgtIW1XNX-gjbfsibi9Rkzub84ilu2KfUsRWJhBLQE3IZiy94BhELzy6KARWWNQPvsMxPtALnqKXk0mnuXFVy8EvJ1Xzlp576280dASv-he5RhWS4rEZot56p0435qcAqZZJsRynqSSh4d-J4cW";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1357,6 +1355,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:31</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:34</div>
 </body>
 </html>
