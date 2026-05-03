@@ -76,7 +76,7 @@
     letter-spacing: 0.16em; font-weight: 500; }
   .card .label .icon { text-transform: none; margin-right: 6px; font-size: 13px; letter-spacing: 0; }
   .card .value { font-family: "Inter", sans-serif; font-size: 36px;
-    font-weight: 700; margin-top: 12px; font-variant-numeric: tabular-nums; line-height: 1.0;
+    font-weight: 700; margin-top: 12px; font-variant-numeric: tabular-nums; line-height: 1.2;
     letter-spacing: -0.03em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .card .sub2 { color: var(--muted); font-size: 11px; margin-top: 10px; letter-spacing: 0;
     text-transform: none; font-style: normal; font-family: "Inter", sans-serif; font-weight: 400; }
@@ -160,9 +160,42 @@
   body.show-private [data-private] { display: revert; }
   body.show-private .card[data-private] { display: block; }
   body.show-private .habit-row[data-private] { display: grid; }
+  /* spring: sakura branch artifact */
+  .spring-deco { position: fixed; pointer-events: none; z-index: 0;
+    opacity: 0.35; mix-blend-mode: multiply; }
+  .spring-deco.tr { top: -40px; right: -60px; width: 360px; height: 360px;
+    transform: rotate(15deg); }
+  .spring-deco.bl { bottom: -50px; left: -70px; width: 300px; height: 300px;
+    transform: rotate(200deg); opacity: 0.22; }
+  main { position: relative; z-index: 1; }
+  @media (max-width: 600px) {
+    .spring-deco.tr { width: 220px; height: 220px; top: -30px; right: -50px; }
+    .spring-deco.bl { width: 180px; height: 180px; bottom: -30px; left: -50px; }
+  }
 </style>
 </head>
 <body>
+<svg class="spring-deco tr" viewBox="0 0 200 200" aria-hidden="true">
+  <g fill="none" stroke="#5d3a2a" stroke-width="2" stroke-linecap="round">
+    <path d="M 10 180 Q 60 140 100 110 T 180 50" />
+    <path d="M 70 130 Q 90 115 110 90" />
+    <path d="M 130 90 Q 145 80 165 70" />
+  </g>
+  <g>
+    <g transform="translate(40,160)"><circle r="9" fill="#f5b8c8"/><circle r="9" cx="-7" cy="-5" fill="#f5b8c8"/><circle r="9" cx="7" cy="-5" fill="#f5b8c8"/><circle r="9" cy="-12" fill="#f5b8c8"/><circle r="9" cx="-4" cy="6" fill="#f5b8c8"/><circle r="9" cx="4" cy="6" fill="#f5b8c8"/><circle r="3" fill="#e89aaf"/></g>
+    <g transform="translate(85,125)"><circle r="8" fill="#f7c4d2"/><circle r="8" cx="-6" cy="-4" fill="#f7c4d2"/><circle r="8" cx="6" cy="-4" fill="#f7c4d2"/><circle r="8" cy="-10" fill="#f7c4d2"/><circle r="8" cx="-4" cy="5" fill="#f7c4d2"/><circle r="8" cx="4" cy="5" fill="#f7c4d2"/><circle r="2.5" fill="#e89aaf"/></g>
+    <g transform="translate(125,95)"><circle r="9" fill="#f5b8c8"/><circle r="9" cx="-7" cy="-5" fill="#f5b8c8"/><circle r="9" cx="7" cy="-5" fill="#f5b8c8"/><circle r="9" cy="-12" fill="#f5b8c8"/><circle r="9" cx="-4" cy="6" fill="#f5b8c8"/><circle r="9" cx="4" cy="6" fill="#f5b8c8"/><circle r="3" fill="#e89aaf"/></g>
+    <g transform="translate(165,68)"><circle r="7" fill="#f7c4d2"/><circle r="7" cx="-5" cy="-3" fill="#f7c4d2"/><circle r="7" cx="5" cy="-3" fill="#f7c4d2"/><circle r="7" cy="-9" fill="#f7c4d2"/><circle r="7" cx="-3" cy="4" fill="#f7c4d2"/><circle r="7" cx="3" cy="4" fill="#f7c4d2"/><circle r="2" fill="#e89aaf"/></g>
+  </g>
+</svg>
+<svg class="spring-deco bl" viewBox="0 0 200 200" aria-hidden="true">
+  <g>
+    <g transform="translate(50,140) rotate(20)"><ellipse rx="6" ry="10" fill="#f5b8c8"/><ellipse rx="6" ry="10" cx="9" fill="#f5b8c8"/></g>
+    <g transform="translate(110,80) rotate(-30)"><ellipse rx="5" ry="9" fill="#f7c4d2"/></g>
+    <g transform="translate(150,150) rotate(60)"><ellipse rx="6" ry="10" fill="#f5b8c8"/></g>
+    <g transform="translate(80,40) rotate(-15)"><ellipse rx="5" ry="9" fill="#f7c4d2"/></g>
+  </g>
+</svg>
 <main>
   <div class="masthead">
     <div class="masthead-l">
@@ -264,8 +297,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "ZTyly1HvRGKkOO8K";
-  const CT_B64 = "LssiZRZvbHue5gY55N9-sLgK21rnqC89HAgTMlUD5s13G3pkrtUNYecNrOUNC0-celC6K1TrSWhmZfnMjvISR_hlCvWqlBjvi5Mc_Oc9SQEnB4Sddq_Hez7rohvpm9I5UFTkoeb2T_tlw02azTV9xZPk4XeItteAkYEcRMQp06wI3bY0zsWJBZqN81M71K1OunaosiEG0vzAg8si7Nf0utbcpfoDcPVGf3eEAeERMZylEKaz-f0AY356dvsmlB75q2o3lZErygNJbscjkKpNPQi0Hs873Q0bsQZcCF8mpOjSclRR3ZC8T0sn7ZuEcC2e8-q2NLyquEn4ZMKnNbBy1MfwotNl00a1GF99jndU3Cp9Ig4aOlFCXDnh-shPqcoL00CN6uwHnJju6cu7O2KNnGaBy7ghNKHS6zbakDt9u6JO2m78IGff1q_iX4Z2cBs5PRnF8jC7p_Xwrmb347WC_pVlLtEKYfgYIuSld8zRgTbCFFQ8P3it_ZUY4SrYmJIq9hmJiY6lNqdyejvqOOPZk7zA6TsGRLu92q0GIOnBcsl63KOYE6WoAMpn-DP-nh0rDlZiyYKxUssEG06PSvJHFvgrDDyVDAUoI17K3XJFSl6NPAZf3lXzdvqnijNyPVhTpM7pEQRiVulmFnD_4W_wqt1nDReR_3xNxQywM40YyX11f3DQINkmhhNNGdh0Yu-5mH_DiUxyDqwh5JzvBALqNvEZ_92ynY-KxkwvyqpaxS99gvW2cPDiBe9cd6YDrjjqmo-meYcIqPtuq1l0kdy1ypWWDkqWRvizQEM56nwrazOYXbTEMK2WMqNSo9MFSh2QURFMOmJR0ABOTk-EkfZpnhHH2p5hKxTBIG5D-brheFc2ZWYNn0ge0kPmFD46TpyaSSPcQAQyNx0Fbb42Q6McN3fV0h5wN69tYN1M3U5hZHtAIVfgaZ8M9uIkyE8OdiOihBJ0yHY9bQUv4gV8HTD5UcJK5Isa9Ij_oO247-kDUqP0yP40CwtYsKOhHjp5aRsoGOnZ1MCfYQ2-jFo6aMzE5Uk_yi5b5BssbyG5tp7YuGbnTEmH_Ks78hL2VKLC9Yqx-Qq-J0jY_Vz61o8c_GJMHVYou6FCVThLYrXgH5PnUpTB2hPRCD2wS2dPfYFJgTxtcvMEAdtlvj9pqQZS9TjrTCVrHQWueB_ALM7nw8vEC7OSriz6KfDBKGRYwZu1-GSajtjZ3W7FbMCZOrriFTZ7mMoxaMDnbwMU9IGUqK3q";
+  const NONCE_B64 = "8-U3QsT8Aec0tcdZ";
+  const CT_B64 = "BMuJ3yFcawhOvmnRbgJPecT6vEtm9Wjy5jYLpvrULa1gZ7pl2qhUHlIJZ43ArtsM3WPpqNHDIxI31cL-5ZZdgvas58vG15xg-Q3PThVNADGbQpH8aveWFf63y45lY9MAIsyJdmC5Ho9F0onZaIK5ev9q2Uo3_2Mbye8LfR1ehJcQhf_0SYxQVE-FTSfJWD2cRc73-dp4AzUQ-B0a28518lG4bKzCMg52oZFb44jcbTu1EYCW-iVEPbp42ZE_RGWwE5fK-cZQZgXXqT403L5F0OBIGbkPvoEtTR3UqX1OxPu4YvXV0YOuCsxCGHTO_lXktoCWoUBAU1YoewAo3Q4ktKzfeoFv9gyPZjDHqTTK3eaXFZQLZCI7IeIt0bRhpYI-HYvsMmcTiMGdnxImMc4qa1-emlfBkX9p7LPoT8FaG7cxMOs63up_gjeIcGV5SJwre_t2M5a8CGi98lQlwl0INEDIRbeBnnSZ_KF4Up80bsEZ3ot0llWpotcjTYpVMO3eyMXusr4ufEC0vkwLthzNYO0K4_5ZP81jFW-SuCtr2RDNbf69cetX7uDClx8HijDV__EqtqPad4Hwn_rUktzcnZf2b2AcTqtRMXtGbnuoOY7ZF8adQd1u1KVlIfhjgbQ4Qy6RbpjGVqSxRca7IIbgwIhx8lK_-zFGEF9sk4fbjDaP_-JTZCaRQwGFCOMZ9zu8IR_k-9MgExyiNTcrV5HAGsrqCYpGynLJsaJGtkobFVtzJ63bUQUC82uGBdYcB3EXkjlEY83mZf6Z8mPB_4XTsB9QgoQ8q0GrcuX4RIvnD4Ii0-wNqUHYoFBBZ6zkpoA-tkePyFaKzy4o4qU5UFRiQyXirDKjkdJk4QD-_bzuKHyX0axFtdMHpI0hB6Izgx4TauzIHBlDH4-8GyeEEOeZABUbEUw0NSKWee7NxtNxhH090RMk7uegib02XUElF9VYI9ShX-UxXfLoX0xaMH0i7CimU3DeLbibbljy0HYT3hzZBql_P9oTcNgBXQq9jK0fFzm3KbkcZyXpJju-Z8QcLEIQ6CjDF7B4JppznIVsr_4aYom3r117clzccXksP_-Lv_ZmvTYNay0rRZgCpoGRbBMtz7rzdbUn-NWMeUjXlR0Q-6NAosLdGiDNxQj1CE3Cpy_JBuLs1Zif2k5UPnmiYSSNygIiYLa2KO4qiXFQbzEzXQtRTh7a86j1lmw1WAdF13GrFa4d_OWFdOB_oyplPNGWUcjLnPCPBGC9vYK_";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1234,6 +1267,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:14</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-03 15:19</div>
 </body>
 </html>
