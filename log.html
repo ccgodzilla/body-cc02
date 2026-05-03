@@ -72,6 +72,7 @@
 
   <label id="value-label">Value</label>
   <input id="value" type="text" autocomplete="off" autocapitalize="off">
+  <div id="value-hint" style="font-size:12px;color:var(--muted);margin-top:6px;min-height:16px;"></div>
 
   <button class="submit" id="submit">Save</button>
   <div class="status" id="status"></div>
@@ -118,6 +119,7 @@ const dateEl = $("date");
 const catsEl = $("cats");
 const valEl = $("value");
 const labelEl = $("value-label");
+const hintEl = $("value-hint");
 const submitEl = $("submit");
 const statusEl = $("status");
 const recentEl = $("recent");
@@ -166,6 +168,11 @@ function applyCategory() {
   valEl.type = active.type;
   valEl.placeholder = active.placeholder || "";
   valEl.value = active.default || "";
+  if (active.group === "Habits" && active.type === "text") {
+    hintEl.textContent = `格式：[數量] [內容]，例如 ${active.placeholder}`;
+  } else {
+    hintEl.textContent = "";
+  }
   if (active.type === "number") {
     valEl.inputMode = "decimal";
     valEl.step = "any";
