@@ -67,6 +67,8 @@
     pointer-events: none; z-index: 0; opacity: 0.50; }
   .ghibli-hills-log { position: fixed; left: 0; right: 0; bottom: 0; height: 90px;
     pointer-events: none; z-index: 0; opacity: 0.32; }
+  .totoro-deco { position: fixed; pointer-events: none; z-index: 0;
+    left: 66%; top: 80px; width: 64px; height: 100px; opacity: 0.7; }
   .wrap { position: relative; z-index: 1; }
 </style>
 </head>
@@ -118,48 +120,46 @@
     <path d="M 560 120 Q 566 114 572 120 Q 578 114 584 120"/>
     <path d="M 1140 130 Q 1145 125 1150 130 Q 1155 125 1160 130"/>
   </g>
-  <!-- Totoro floating in the sky, holding an umbrella -->
-  <g transform="translate(920,140)">
-    <ellipse cx="0" cy="0" rx="18" ry="22" fill="#6e7a82" stroke="#2a3338" stroke-width="1.2"/>
-    <path d="M -9 -19 L -7 -30 L -3 -19 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M 3 -19 L 7 -30 L 9 -19 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.2" stroke-linejoin="round"/>
-    <ellipse cx="0" cy="5" rx="11" ry="14" fill="#f3ead2"/>
-    <path d="M -5 0 L 0 3 L 5 0" fill="none" stroke="#2a3338" stroke-width="0.9"/>
-    <path d="M -5 7 L 0 10 L 5 7" fill="none" stroke="#2a3338" stroke-width="0.9"/>
-    <circle cx="-5" cy="-7" r="2.3" fill="#fff" stroke="#2a3338" stroke-width="0.8"/>
-    <circle cx="5" cy="-7" r="2.3" fill="#fff" stroke="#2a3338" stroke-width="0.8"/>
-    <circle cx="-5" cy="-7" r="1" fill="#2a3338"/>
-    <circle cx="5" cy="-7" r="1" fill="#2a3338"/>
-    <ellipse cx="0" cy="-2.5" rx="1.3" ry="0.9" fill="#2a3338"/>
-    <g stroke="#2a3338" stroke-width="0.6" stroke-linecap="round">
-      <line x1="-7" y1="-3" x2="-14" y2="-4"/>
-      <line x1="-7" y1="-1" x2="-14" y2="0"/>
-      <line x1="7" y1="-3" x2="14" y2="-4"/>
-      <line x1="7" y1="-1" x2="14" y2="0"/>
+</svg>
+<svg class="totoro-deco" viewBox="-32 -78 64 100" aria-hidden="true">
+  <ellipse cx="0" cy="0" rx="18" ry="22" fill="#6e7a82" stroke="#2a3338" stroke-width="1.2"/>
+  <path d="M -9 -19 L -7 -30 L -3 -19 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M 3 -19 L 7 -30 L 9 -19 Z" fill="#6e7a82" stroke="#2a3338" stroke-width="1.2" stroke-linejoin="round"/>
+  <ellipse cx="0" cy="5" rx="11" ry="14" fill="#f3ead2"/>
+  <path d="M -5 0 L 0 3 L 5 0" fill="none" stroke="#2a3338" stroke-width="0.9"/>
+  <path d="M -5 7 L 0 10 L 5 7" fill="none" stroke="#2a3338" stroke-width="0.9"/>
+  <circle cx="-5" cy="-7" r="2.3" fill="#fff" stroke="#2a3338" stroke-width="0.8"/>
+  <circle cx="5" cy="-7" r="2.3" fill="#fff" stroke="#2a3338" stroke-width="0.8"/>
+  <circle cx="-5" cy="-7" r="1" fill="#2a3338"/>
+  <circle cx="5" cy="-7" r="1" fill="#2a3338"/>
+  <ellipse cx="0" cy="-2.5" rx="1.3" ry="0.9" fill="#2a3338"/>
+  <g stroke="#2a3338" stroke-width="0.6" stroke-linecap="round">
+    <line x1="-7" y1="-3" x2="-14" y2="-4"/>
+    <line x1="-7" y1="-1" x2="-14" y2="0"/>
+    <line x1="7" y1="-3" x2="14" y2="-4"/>
+    <line x1="7" y1="-1" x2="14" y2="0"/>
+  </g>
+  <g transform="translate(2,-50) rotate(-8)">
+    <line x1="0" y1="-2" x2="0" y2="20" stroke="#8b6f47" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M -22 -2
+             Q -22 -18 0 -20
+             Q 22 -18 22 -2
+             Q 18 2 14 -2
+             Q 11 2 7 -2
+             Q 4 2 0 -2
+             Q -4 2 -7 -2
+             Q -11 2 -14 -2
+             Q -18 2 -22 -2 Z"
+          fill="#4a6a64" stroke="#1f2a26" stroke-width="1" stroke-linejoin="round"/>
+    <g fill="none" stroke="#1f2a26" stroke-width="0.5" opacity="0.75">
+      <path d="M 0 -20 Q -5 -11 -7 -2"/>
+      <path d="M 0 -20 Q -2 -11 -3 -2"/>
+      <path d="M 0 -20 Q 2 -11 3 -2"/>
+      <path d="M 0 -20 Q 5 -11 7 -2"/>
+      <path d="M 0 -20 Q -11 -11 -14 -2"/>
+      <path d="M 0 -20 Q 11 -11 14 -2"/>
     </g>
-    <!-- Umbrella held above head (clear gap, scalloped canopy, panel ribs) -->
-    <g transform="translate(2,-50) rotate(-8)">
-      <line x1="0" y1="-2" x2="0" y2="20" stroke="#8b6f47" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M -22 -2
-               Q -22 -18 0 -20
-               Q 22 -18 22 -2
-               Q 18 2 14 -2
-               Q 11 2 7 -2
-               Q 4 2 0 -2
-               Q -4 2 -7 -2
-               Q -11 2 -14 -2
-               Q -18 2 -22 -2 Z"
-            fill="#4a6a64" stroke="#1f2a26" stroke-width="1" stroke-linejoin="round"/>
-      <g fill="none" stroke="#1f2a26" stroke-width="0.5" opacity="0.75">
-        <path d="M 0 -20 Q -5 -11 -7 -2"/>
-        <path d="M 0 -20 Q -2 -11 -3 -2"/>
-        <path d="M 0 -20 Q 2 -11 3 -2"/>
-        <path d="M 0 -20 Q 5 -11 7 -2"/>
-        <path d="M 0 -20 Q -11 -11 -14 -2"/>
-        <path d="M 0 -20 Q 11 -11 14 -2"/>
-      </g>
-      <line x1="0" y1="-20" x2="0" y2="-24" stroke="#1f2a26" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
+    <line x1="0" y1="-20" x2="0" y2="-24" stroke="#1f2a26" stroke-width="1.2" stroke-linecap="round"/>
   </g>
 </svg>
 <svg class="ghibli-hills-log" viewBox="0 0 1400 90" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
