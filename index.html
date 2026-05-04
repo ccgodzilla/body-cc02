@@ -171,12 +171,13 @@
     pointer-events: none; z-index: 0; opacity: 0.35; }
   /* Totoro decoration: fixed-position so it sits consistently across viewports */
   .totoro-deco { position: fixed; pointer-events: none; z-index: 0;
-    left: 66%; top: 130px; width: 96px; height: 150px; opacity: 0.7; }
+    right: 4%; top: 60px; width: 320px; height: auto;
+    mix-blend-mode: multiply; }
   main { position: relative; z-index: 1; }
   @media (max-width: 600px) {
     .ghibli-sky { height: 200px; opacity: 0.45; }
     .ghibli-hills { height: 140px; opacity: 0.30; }
-    .totoro-deco { left: 64%; top: 100px; width: 64px; height: 100px; }
+    .totoro-deco { right: 0; top: 40px; width: 200px; }
   }
 </style>
 </head>
@@ -223,98 +224,7 @@
     <path d="M 760 175 Q 765 170 770 175 Q 775 170 780 175"/>
   </g>
 </svg>
-<svg class="totoro-deco" viewBox="-55 -115 110 170" aria-hidden="true">
-  <!-- Plump teardrop body, wider at the bottom -->
-  <path d="M 0 -44
-           Q -36 -42 -40 -14
-           Q -44 28 -28 42
-           Q 0 50 28 42
-           Q 44 28 40 -14
-           Q 36 -42 0 -44 Z"
-        fill="#7a8a96" stroke="#1a1f24" stroke-width="1.5"/>
-  <!-- Small pointy ears -->
-  <path d="M -17 -42 L -11 -54 L -5 -43 Z" fill="#7a8a96" stroke="#1a1f24" stroke-width="1.4" stroke-linejoin="round"/>
-  <path d="M 5 -43 L 11 -54 L 17 -42 Z" fill="#7a8a96" stroke="#1a1f24" stroke-width="1.4" stroke-linejoin="round"/>
-  <!-- Cream belly patch (large) -->
-  <path d="M -26 -22
-           Q -32 4 -22 32
-           Q 0 40 22 32
-           Q 32 4 26 -22
-           Q 0 -28 -26 -22 Z"
-        fill="#f1e5c0"/>
-  <!-- ^-shaped chevron markings: 3 columns × 4 rows scattered down belly -->
-  <g fill="none" stroke="#1a1f24" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M -17 -10 L -13 -14 L -9 -10"/>
-    <path d="M -4 -10 L 0 -14 L 4 -10"/>
-    <path d="M 9 -10 L 13 -14 L 17 -10"/>
-    <path d="M -19 1 L -15 -3 L -11 1"/>
-    <path d="M -4 1 L 0 -3 L 4 1"/>
-    <path d="M 11 1 L 15 -3 L 19 1"/>
-    <path d="M -17 13 L -13 9 L -9 13"/>
-    <path d="M -4 13 L 0 9 L 4 13"/>
-    <path d="M 9 13 L 13 9 L 17 13"/>
-    <path d="M -13 25 L -10 21 L -7 25"/>
-    <path d="M -3 25 L 0 21 L 3 25"/>
-    <path d="M 7 25 L 10 21 L 13 25"/>
-  </g>
-  <!-- Eyes: small dark dots with tiny highlight -->
-  <circle cx="-10" cy="-28" r="3" fill="#1a1f24"/>
-  <circle cx="10" cy="-28" r="3" fill="#1a1f24"/>
-  <circle cx="-9" cy="-29" r="0.9" fill="#fff"/>
-  <circle cx="11" cy="-29" r="0.9" fill="#fff"/>
-  <!-- Small nose -->
-  <ellipse cx="0" cy="-21" rx="2.2" ry="1.4" fill="#1a1f24"/>
-  <!-- Subtle smile -->
-  <path d="M -4 -16 Q 0 -13 4 -16" fill="none" stroke="#1a1f24" stroke-width="1" stroke-linecap="round"/>
-  <!-- Thick whiskers, 3 per side -->
-  <g stroke="#1a1f24" stroke-width="1.2" stroke-linecap="round" fill="none">
-    <line x1="-13" y1="-25" x2="-23" y2="-27"/>
-    <line x1="-13" y1="-22" x2="-25" y2="-22"/>
-    <line x1="-13" y1="-19" x2="-23" y2="-17"/>
-    <line x1="13" y1="-25" x2="23" y2="-27"/>
-    <line x1="13" y1="-22" x2="25" y2="-22"/>
-    <line x1="13" y1="-19" x2="23" y2="-17"/>
-  </g>
-  <!-- Left stubby paw -->
-  <ellipse cx="-29" cy="2" rx="6" ry="10" fill="#7a8a96" stroke="#1a1f24" stroke-width="1.2"/>
-  <g fill="none" stroke="#1a1f24" stroke-width="0.9" stroke-linecap="round">
-    <line x1="-32" y1="10" x2="-34" y2="13"/>
-    <line x1="-29" y1="12" x2="-30" y2="15"/>
-    <line x1="-26" y1="11" x2="-26" y2="14"/>
-  </g>
-  <!-- Right paw, raised to grip umbrella handle -->
-  <ellipse cx="26" cy="-12" rx="6" ry="9" fill="#7a8a96" stroke="#1a1f24" stroke-width="1.2"/>
-  <g fill="none" stroke="#1a1f24" stroke-width="0.9" stroke-linecap="round">
-    <line x1="29" y1="-20" x2="30" y2="-23"/>
-    <line x1="26" y1="-21" x2="26" y2="-25"/>
-    <line x1="23" y1="-20" x2="22" y2="-23"/>
-  </g>
-  <!-- Umbrella held over head, handle reaching the right paw -->
-  <g transform="translate(2,-72) rotate(-12)">
-    <!-- Handle: from canopy down to where the right paw grips it -->
-    <line x1="0" y1="0" x2="22" y2="62" stroke="#8b6f47" stroke-width="1.8" stroke-linecap="round"/>
-    <!-- Canopy with scalloped bottom edge -->
-    <path d="M -34 0
-             Q -34 -24 0 -26
-             Q 34 -24 34 0
-             Q 28 5 22 0
-             Q 17 5 11 0
-             Q 5 5 0 0
-             Q -5 5 -11 0
-             Q -17 5 -22 0
-             Q -28 5 -34 0 Z"
-          fill="#4a6a64" stroke="#1a2620" stroke-width="1.2" stroke-linejoin="round"/>
-    <g fill="none" stroke="#1a2620" stroke-width="0.6" opacity="0.75">
-      <path d="M 0 -26 Q -8 -14 -11 0"/>
-      <path d="M 0 -26 Q -3 -14 -5 0"/>
-      <path d="M 0 -26 Q 3 -14 5 0"/>
-      <path d="M 0 -26 Q 8 -14 11 0"/>
-      <path d="M 0 -26 Q -16 -14 -22 0"/>
-      <path d="M 0 -26 Q 16 -14 22 0"/>
-    </g>
-    <line x1="0" y1="-26" x2="0" y2="-32" stroke="#1a2620" stroke-width="1.4" stroke-linecap="round"/>
-  </g>
-</svg>
+<img class="totoro-deco" src="totoro.png" alt="" aria-hidden="true">
 <svg class="ghibli-hills" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
   <!-- Far hill -->
   <path d="M 0 220 L 0 130 Q 200 80 400 110 T 800 100 Q 1000 80 1200 120 L 1200 220 Z"
@@ -434,8 +344,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "ECgzxwfX6QATtDHG";
-  const CT_B64 = "zHA3v7UcLRJcI-zpnsUyk7w-WJIDI-3WBkpy0vNC0NdS-d0kJJT9Aw1_cWUmhNs4pIMs4x7GBKK5FgSqjCp_zvzO3vTLBF71hS5CkIdVAhuH6WDTSLI8ePh7t3ctwdhEJFB2Tuvo6KUJFnC8XGMdHTLD_-XxSoBxFljDe_QGYtaCj87m2_F5MDrDNT-Mb4cQkuSM47qAo_Ladnx-S2MgE21dKEPzVV3iNnqETsgzCj_iqG1mO-y4OeiX2tl0MoGCFwNAMozvbjcALy65gK3ptbDXfM1rBJz4mPpodUupWJaNtHPUzlVaKZJOSdbJAMur2yNTUFD-3PQnWYuKHLVVPZeSK0780siU7hAOvOP6wlvcjOyGQCdxnKsGioevgUWGwvj76EDZiyUG-F_qvpfrl4FbibqyRuh0VwX7gbNDyF8KYkz46ZOdyendS7uLylawFwVWx2g5SpO-VCZsDoC9hauxySG8_cyQO3Hlhxpn3YHsKp8PaYfwIRcwNSUTw-hWzXnVIgi2o_xL_-s2O9gB9sDudcokFpCb8vvnVIWJmsd2F34rZ1co2tX7D53yoZg2-LFD6-8gLNIxFvufPPPWRiPYB3MHPsn6rp-o385q8bsCh691hGbOoE2j9WK7X035c0N4G8Jaux9kteAM5VYsYVCdhMAUAyViadQ8ts4rgmgmBNI111gj8n0K-nZrWreM-FZZRzFtnqnyJHNr1ERfd35U0STUbqJfzR1Chh8bj1c2MwhyAcxnzBGoXU4ldClCf_oSoCOpIpq_WE6JtMGL553jQ7SeQkgy16yXRrlmZOgoZG4sKAPJOuCeruHpIBUuN70Yi6YGcw6bUu03p_Tpwacw_TuoYN7acecdPGqMlV21VLnaQry29UDluoOE_3mQEX3f-jzvzaNSdXJu6ohcN34w2C3t3r8a1fod9htTOn4ahMrILmY0o_yENrRMxkE-SHvj4SOQmhpMrFKu2T6aTDBJuRa61t-hZSOEU08iC2i4AOADzhjTMxrBGISvEiv5upVhZKUM6ztOxXYVG3sjEqGVcJ6sxVA-xV1U2nq3QUooLWhQT4HB6MI8WhZNbw2ofQSShGJoHrrzJcBrUMW1mNIm-vS9EZfStKMowE174YSYRQo5zaLSShyR6p6j3Ccl3qNG1-pwr0bRqO5Jwq2s9hWKc3CjcA3E6XKRRsdwgihS98aOzYnaSIHSMAe5gT9ZchFUSjqpdjsL_6d_TCxeDgkVc1WnWvA_F6WoWu1fXfnmOCvwmkiLlknK-79dzQ_9vlbm_i6Px6z7YzwQzfzgmleT5TDxNslEGMGfajTgIrW9oRRTAzbsMs1ZeQymbGTYlQGtuP2EWik6nKLPww84teYUrDU9bNwZynWlEUvOZCdbPZzUjunojDLPV2szKwD_fcavolStNVwZnf50tsgoDa6sQ9h20_FJeHCNp1CEMtk4r0kbwp3orNoPrJEEHT5b5cV6qZ4i6Q4xw9kq4-mR97x7WNAPqQJ0ola6TnlFEfAS";
+  const NONCE_B64 = "qKQpVG1XG2OWpby5";
+  const CT_B64 = "OQlpJRTQSkPzqiGjapuWJfbIquZoj0mik9rdvwFLZrlKPx80lThQz2Em0s4QlFo6rPlOqVm0k00S5jV2xZxcbnFlCE6yAxJrc48f_0rJ7qqKBl2Jiq8SwFAGRpCvMOUHo-ytNyobP2ieOkOg1Vzu3nVfXk7fMPhzUETLQyU7aHJSo3cyaonlqU4G9hea_0UC3gW-J4hpUBAX7OaYEPekvTX6oPfdb8spQjXgzCb6z9rjhRmp5Xp_V2NyjWQD-BiRCsWiF2FpRpcoCsv-38jpU5yLb5r0Z-lCjyq5hnf4ZccujfhczslwsfgJ4OLxcUgklTHqpDtNwp4KqMrGpyvkhNVJ8wQPBhh4koMCGNXApoKAWxfN-GrbUd4yVvzZLN3kIC9obBQax9-cJF4gAWgvMzpz2jRcWJX5h689Xv_HCQfzUqcyj2YJUovJo-SskLRiyms8L5pWQEXrIEXkm0DykiET2AKRGqhA3QA9nwKBk64FuDCXAl42DSxRD69_kQKl84mF7MavdB9ReVJtiRl9meVW_KLH9YGp5K25c1HeTmBzhHIZHyAud18wof5u-naI-QUv1VaB3pZKHpcdxT8HUUGbGqsm4EczpQASNXpxpyvlrBw1R7IKIQSsrTTItSsVEdCjkR9CyXTe1TKOoQJ9mWzvpPPjW1vTBiKTlTbjxc6OPZbpiSA5IPAdKlVf_INLONuaVz67pNyGNI16lTzdvOgxupMAE8sTs1htM24JQ6i80cPc1cHT3lhKb-fLvSlv-_IzXQYUS69kxMQqPsZg4xfNSYHiJPClMBLL5DaSgWeySMHi10mmXxGi0y_UkmETE8SnVRxdtLnDY9K_--E6hOzv5sjuLRuBtLZBel6IE_U9gBLcMvGlohpNpe_HmajF-CM-8Ty99BFeXqIQb6Anz7cwKP6KcuZOwXoVazMVo94A77CIaAxxoFtJbVA66ArP9sgsqnUAbpbnukUAmRxFJ0mxd9vp8UHcoMyA4R3OjuXIIYRu0xnQgeB7yoc5Cp3DpD9SiUdWuS9CEA6huQ4jmqnX8urcJyZhGBnL35ne0XpFPtL2ZVvHyGNLaHWaQ_VepzlXJ3MzM6wpZJBOuNskYYRxARvNcBX9TfzhUnrP-DIwnxIoUOynR3cBiHB4ZP-navYZx-IaonV4Invo0TxjR0rZ3kpeTaTeT9W_Aj7ec4I2bG-EWIfVtXuV9FPYHPB_iNL0WzvMIIl-34rtAmnawT5zMQLBRayZ3G1vXQGbx7H79jwH162Zf6I8qqFEY49wNoi3h7EybT1FVPzKysbrTsyv8bBRQFFm0s2eTsqR1IH_s5-xar1a0dPoSVzMQRbrlYJZxwbfL1R9La9KaAjPnPQ0rIL24sImLENy1kXwe0goqMeM1BdyYRGZ7SprsgyiFDdpoCbW6LT4dHVIsvN21D47WGvWDEJeV31_q7s7uhg9OM6w7Rq11d-tH8GBrwriL6B9EDTNPD2iPNuHxqIpJ0dOcPrMl_Q6_VjH6NaSvYKA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1404,6 +1314,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-04 14:11</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-04 14:46</div>
 </body>
 </html>
