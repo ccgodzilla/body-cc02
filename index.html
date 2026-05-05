@@ -49,11 +49,11 @@
   @media (max-width: 600px) {
     .masthead { flex-direction: column; align-items: flex-start; gap: 16px; }
     .sub { text-align: left; }
-    h1 { font-size: 64px; }
+    h1 { font-size: 40px; }
   }
   h1 { font-family: "Inter", sans-serif;
-    font-size: 96px; font-weight: 800; font-style: normal;
-    margin: 0; letter-spacing: -0.04em; line-height: 0.9; color: var(--text); }
+    font-size: 64px; font-weight: 800; font-style: normal;
+    margin: 0; letter-spacing: -0.04em; line-height: 0.95; color: var(--text); }
   h1 .ornament { display: none; }
   .sub { color: var(--muted); text-align: right; margin: 0; font-size: 11px;
     letter-spacing: 0.04em; font-weight: 400; font-family: "Inter", sans-serif;
@@ -344,8 +344,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "LkNFu97tD8cmS6L7";
-  const CT_B64 = "tuEYwxxcUep3M-kjQ9z1fjHrJ5zYHKCmUhvGYd6ytcU5lfvS_J1XSbq6SJ_oj0M97SIvltYfUETozOvin6v7XfeQP0vSeFpBI5M41OgweVOCjy9YUK06WFTzxWRIj7hW8vmXnrsLYAqCgOSzzkPoTJfI1adIuuI96pFqP0KeMkYaL_Vck4Z9g4nuk0P7thsaAZLADykbnwwkF49yuBYdmWdQFmCp7c6urOCTGVMN1bD_D5tbCcd3dyVWC4Usl0Qucr1n3zSCCBtH0Zfu5-_iFo6fvsVzWzVqHD2W0eE9hC39hyEkL3LGHbN6IBjORsAtMnwPgYsg2Yx6_uqw8y8bfCSNiv8JSc2PZWOBEknPkimUiRHZ-2tFpf5j-8AzyoPAdn2ahbgBF4fTx_BKE_sP8lez4IolvT-jWCv5eQy1ZFC37V1y8WS53NDOnXzHavesx1iOOc7QjHVdOccqtmwLTNcB7VYxCIWhgZm02y5SGh0F9P3_pFSibG3AuOR6p1Hb0VH-pO_H3tiQV-1kORvVN0LHTjCg2QcUoLS4lIi420Uztg1gng2Fgon3k6hSvvJibGXhPpVV6UhPHsyLd3ATt260T5INbTLxx1WBvrw2Lzuq6TcgsxUE9Ep1iAjAjK2VamhlFXYet3DlSZ4ruH_fVhvipY6qyl3fJ1ThPImsyyxzO0gv0epqNeEvKR_K5cbLMuigXFwHUFPTXtXak6lKcsDdSYBg1IA87j6hk3IcF0Dg4b3M0gUr0tLIbBsYnimlgyyaYO2NHIcD4AVRP__i3SLZ-jHFPBJxP0lW8IEO74DIyZZUU86zQb4msvVVHXLoAs33Po6_Nm4L5XGLAH1Cnp3YIkTVQyy-AUloCnznZMd4XB72ii5NIivgeP7K1-yODbJdj-ueTuHaef4smkBU1SA29JPtaxy00ZnGJ5ahIPXMAOlvEcTP-oORNmujOof1zR_6_TUFVP2-PIeQ08aADAMYZ0lYEB6pMq8S3I6jDSi5OxxNujCpwDAPMQni8izykSrCfBarGRwQzJboqPQucC7SK5abS1Gzc_byn4r00Z9pSzVLrS_N92_gu3AUVyZKn6LXKz2eCdd6Ehel_S3pAfavIIAAaR_oO0I-aSpPUvYJbnDnBK40dl7A1W9Gbqer6pjxhSxn9cBgVWImUXzVY57hXAjQjp_sxE4CzwIn19hNNQTgPUh6l1s9Apt5aW_fVOgQFpdo4LyA6Q9A6QCjU986V5Bg96D-B7NA1RYJuGa5ATIqcWrmoUfCN8KU_8ZTp6r4FhanhfF8Fgiqz5VdRmZFWVe1IVHKxqlmzkmP3RHW0qWQM6dXTkGQXUmEikpVRJkHRbooSPe5bJLNV5ceI3vouvAr_DNiA_zE7Crha5HJlSIrWgSX5BxmcajYOxv-vqEjXPriFdVFMyah7EOQERKGZyzl8v_VRcUneG6eaCbUvaPcS0lHa8P1bAcHQB-CVyeguiRElihcQdXhfYfWB3bBYaC_mPkZNukGU0UGjeSwQGPC_R2tJBw7IUDxEoEPDvZ1TuxJamaj9SIsGQ1FNKm0enZQFijz2z61bww5hnBTY3pVlAPDlqkY1SS_1exbkh3NRQWe_1nw1YavyZB1wTCRAEMUQ2-3e3rz3ZvvFBf2uzZbD9UOQnKuymi8CHsWIO8KzcKqqK8M_R1nz71BmE8vD9XhBw3A2UtnZ21Cm1E_0YgH6uqa64dYKH1F_CKGbcgWfvnq6_-jKGkU6_wP6mbary8Aw5tajwDIUna3Z0pk6ggQdGY1h4C0zw6hGKP6SHe4Mt2WnZLY_t9_OJ1F1uGXSPdJJ2hJ";
+  const NONCE_B64 = "9cTuHXB4ScFceD6u";
+  const CT_B64 = "vO6-_BrnzBGyZHcjPuNAzKb0IJKQrmYwANtFKhJsIbD2YJyuWBC-UqPFYafTxTSeu0X3RraBvxn3mNVP11kuE5GzB7S4F2jxsQHKXA0ISLhjtQWJpEKK3tnyrEqCHbMbpmRkMUm7A-lYl8XTqfsEb2OEFcr14Q4Oyehown0JzWxaZGzgrqqwqSKx2nOBSKh-Mc6taVpRgqMWfoK1g-c2OOkOZfzRS5kuDsB2eeMh2-hkMCrvlczE3rxP6u1XvmY8NJBb0pwHOaEulYax3E0Hwqy-oB2D4-mxhk8kRhb9QtZ88jHgG_GQhYfrSbYdXfVdqOzOejR9JlIk4I8n8ND7IZf9HQ1TV9OATjrxjti_BKFKye9XzWTXOKNWWUBHNlefKqsD-trqirBpBZxX3BVXgPNoYruDBYGfaKffiXgbDOgq8fBIXO0_lg6XX-8HUtKMHcjw3GXVae8YmE7Z6ROalwK3MbYzCwWaIvAObuhfvOFkvfkR5g2OgFjKAAKdeM8gi0n2y_KAMD9mVFOTWmsidX5j3SVqCT3xUr0D54440T2DGMW3u-pbxN39AKGmxCHNwovRSnB-UXfo2o4m_cIndhhymWZyCB-t99oy0SZq5aA3DMirFn5ZMR1vnNGPLfbvmFvRtvfKc2cd9VnM1lhj6P4ubYdrMNbj8LPiAjZCDt-tAf8-OrDpCasyPBjKEyz6zBGJobFRsr2i8cL5nHcRVC-5JKb8FsdW-RW1gPRIacQwMFVyLkxv--nq9X_w3wdMgXbuXkX2S9rRRaC-L5IDvwHc7OQbOsN5oMvmFFYDZA6HtPqoq1GgD0W6si6Rn1iUJbO49yLG6mTUCJS-IbJQTLJiel173bRgUXiNBd_cRj-oqMcp9ZX4XOYIb9RoPIg8zq86ZC8Q7TcWuUXwzhGwpMo5y8slX6HAJMYjPwu5jjavBnu91lANOV-DWNVvlvAeSqTwG1RHqtRd8zyuZSl7xBwuJZOrWiImpZI_xvFepct9Dy-WNRASslFgUzSRqbM3VjjKRqdK3fAiuehi5TgiPob1tsSDJDOHZr9vZMAS4plGLuufVfSDVYwz-KfkaFnvafmRwXMUTGqjxHQzDFbUH1dF-kjiW__v4yqeB5bJjgmszIEHp0ZaRBostwGhacasrP5302_qYuv9DCKi9wYnofg5ksFlsIc7CGcaFSCX8nLmqXscB9fO9YwJsx386qtXzTjYDW1yov1VAvipdbUlHRZeDcoL2ikotjBr-nRgvXrK5pBRr0jtJfQPTcNTHUgixBYl4juX8BS2oHxR9yYMCz1iKJeuSlnxAi-FY9MDAoNExFGjlEzt4mJjQe2zm_ahn4yLT3eJx5bTAFiy4OVf6_rGHEPtJvvXyrAlAKiqy_z6WlkmTai922eA0WdDJIrlzKPIbvCLpmq_FPS1mhQJrPRNyfYOpnMQ0vjMojJTAqpAmy-0E5X0JZc4bLtADWfJ6X2Tv4rAvPKSX4pR6sbggN7lxrZuDGOel4obFoShTNaH5cZMXD_cSGGVswCuArd7bWZSABNvTuT1vsY5Ur1EGW_lRgLKeYsp3W8fwWJLV_VwWJG0px1hm14aV9peygujTb_9Nj_gLskfYUSlDLFyX6Gdv1PLWNePPH6zovewspJdjKKHbKTlaHHJ1ZHg2BzhdcerSyrWQ4GrMJTvzMl7K9aIwI0EVpaQqnbsH3Fc90vMFvzzmIvuVQXsyxzN-4ULfMgGmKDECboAPxG9dsBvM0aP8hc5pZ9K4ZLv6ol2ASzg4sh-zC00EZOx6aT0eV5hBFvQCiX57MQO8cU4J7NWDg4FNio6IZz4";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -1314,6 +1314,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-05 14:48</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-05 14:57</div>
 </body>
 </html>
