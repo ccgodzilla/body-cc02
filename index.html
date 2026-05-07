@@ -344,8 +344,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "oAuno466CEv-0hjd";
-  const CT_B64 = "hgXGGj14MdOEusL9hCRzOgjE7Lpz70v3C3TQC9DxwGnlHsLNgsvqPMC4E7FGM5C4qw3rojWvSSErsE1mCRtMaTCn1iRG0KlAWRdNv8R6zqXEFbczVtp0CL7BuMsQHd6BtBXdFg65zgfbw5f1eN9o19XI4wZ7hQugfRO5B6VuCsjSmqAeZZestxaEaP0gFdFKT1vHgHyT1b9JYhVaqYJNoeYTFIMFFGcW8VkwjbFjMaAq554loGaO15OQATF1SBr4QiLtDJHRs8x1CvBQMchoMXgAUTB6LPGuQ5WD3bN6WpWTLmEp3mxz0QeE6DU0v4QniD9mLOlcpsDaAg0kabiUJCX5O-4N0ngCk4xKQMbqvu4CNsCBxgY-n2Lv_hFz1Us_1Nzvf8EOXYAn6k9o24H3dPI32sGy8r6ZktEYs-3MOO_PaNwUJVAALBVVrOtGRWX-IXxm4TKdOqnYpbXBZxnYR9VfF376TiP-DJKCHRp0kTfu1HSL5tmziDwLbyWsDzIhArPMv7acT8K7K3JlPhyZg1hVexGqaN_da8kWZ4YzVfBk0ZGQLFRiD8r29z4lISbgOsUxEpb6Xdo2zuv3Wnn3N89GryreLvI_tlwFzuhu58ztE7WPDD1jicqvsXLDs3IgUBJ3hL82W02KQmYP99qu6ZkBUR_EVM5M7ow7OpShjT67XiUZ-RShcr5or8C-8ClNpdfoxxcDIlicqvO9gKaNj72rTaibzxdE-4I0SqlMMmE41C2T61LRdAEKtWO_J19mE-5SNSsWuOCYuZ3B8PeMLjgnhg_X53nWotVBlJ2uasaLo4lgjUGPgBl-z9JkDiu8CuIdaWwaikAtn4V36UkGHZmwSch5_0tK8msMpduND9uegl7CoYx06CrmG4XEA4tY5qNQfOARGDw0Whaj-yN9k6K0IuGwA5UmR85VrEpvp7xj48XMJ1OXvx8zHfOI1QSivYD-OwtMiZJu-_iUv0LVbhP-ASYBAXP2ZQKhmUZGSV7Ty1J_OPpwnl84WU28GFstLPELzdg8e-BzqnZuiFZb3tAZhstjW2Lsdapl2DXQu8Vi8QTSq5qBTEZBNupS76ZpWnriUQuwt7rKvhej9LkWRI2B_sMvQE4kHXnNRheetXL7lx-Fq4g6a8UahuveThN6wZoToV2JHyO9IAMzyJ5kjCqfz5a3BrD1uXeSkHstD991RVbCSr9P--puFDCyNb0Gjr1jJG76fU8H_kEXYhFK9j61hXNO6RGEDS80Xr3bxLxEXPPp7K5g5lA_l_Eu-M1ShGZ7l5NbCxqBG_AdCbb3JvEVIVjB25yry1R8H0Qi3lwzFI2uXexhtlZJny9oRKgvGsR4WHgMbaTgfhTVZL45WJkMjL6OqDx3K8BW77Ws5Oopi63Sgxo00fdoJzbQtO8L48UfDUZUr2vBMvN_jzg0fE28F87esml7ovk8cH73le1ldIBfLKxh5U4-yJ6PT6s9P04aJmDIQY8LurcI0EBs31ei-0tY8Hq-1kgDWtLI6eHWd4xh9lXy_dVOniG3jm_nknZr-EyXkr_QAQfoVVdv7rNIGQVPsJPIO-eSTZuQVSDrmcyTju1tCVBtRIQ9lumiUeOzGvAwCaLk2sGTGrZ7i10NBiLbyufUKNamQHG4qFUFKCQGtHiXFRzNsbqaB_rEnZda2pK7jcUlRLFdZATJzIL4wl05uG03efaDezaW5wwSKrjUivprpluUgONgAy13pBNfLs5PJZ8HfJSShcAoXrTO1WZx7Md_KLhrdjeEgtRroRye8lpxXNly4W0X8mGkYGjTFdtoOhPFg5wBqBZJcHsxffZSOdt7dsTovBPPkZIxIbwqqKTfejB8wZ3HGiDoxISdHwBujZGvPjnaOXZ3lpNV0cJBvR05AnCVnKsM3XDNIqiIBuu6fzGW8u9vnGHsgXWBHLIKctQVnvGxcIVEh5rfp4Pf482fLisp79Qrao7F_lW7hQ3kMqX9pYsQVk1H21LkgWX7UGw0pMhB4J1r-eJ-NhTebe95Se9bNVqyaevbK3NgKZpIUyY33ao0rEs0iLNqngLHX6rPVxWLcNehoHdQZ5KlXhZYyoMADc__bkOdVMAqEbVbWymZcq3gNzZBcpmfxwelwTcZwYkO1qU-xIROjrLzs7p6Sz-wO9klZRpXaau9unmSnG4g13HvpgLHAHMvQhpZNV9HMdswXFEyWmXWgeZeG6dlXx8x5N96a-pyBm0StGyh7BGEsbwzaqeJw35pT8rBnrMk_Wwp3gmZXPpfkk0ULGEggGOiFxbfJ2wg9_iHYFmrD7Yv1R0Me2af56eM0gR5-8Rry_w7eZRb2hAEEWaqKNaSm1pkG28inlGcRPQh5ExWxSryrcQavReTGLCRwqQFrpi0pWU3mYJaSKKyDBHKidGp1enYwXlj108vW_7pB52ENh_SaM9yWtScG9tyySeW0y1VWXysHOoaTyZMA4e-hPJt19EbzxsN0HISJcDwRHwBN0os2ol36H9UV9MBfIjF0kSwEpTYdKoelDb81iFCCnhQX9mmNlCGzdjJ";
+  const NONCE_B64 = "TJA9ZahD4bKoUj6K";
+  const CT_B64 = "LcXfpd6H8ag5XDPwm1spJ13uuRKqywDc7o2gCWbOWCOsmlYeDRyKGom2f2GBoIk3C4ZbV0oaw7GYdmeOnOWJYn193YoBxXteGPNTYL0EpT9mDO1ig_VWaeoEQNpUscEWvpUoe-OqtJvHRCOOjuc23cFPawjQgg8pdaCAZZ3ocmfzBB3CHqqgNxdsjxwTKGYT0b-dPyuQLJiAeG7SwxMXRW71kfowyTXx2F2MbRS71Nqn9H34pSee3XTyKiMyvkHqfykeZ1gg928g6ZDMezLV26FC5gmB-bGHksh3z-4PocJxhKJ7At6nsjCycx26KMBJvWXdzV3a0i6pMiilo3JVYDmTFIyS96O0xl5Hb83pkvy55LjzbXDxscQtG9OerOnhXpfMfs3imfH2C2gX-WsAKzuubSgIXTtmBfOJ1Vo0WJHDjSzfmdc7VkIuabM3rxBd1sPxWefUrH9hYP-eBk-egXutnqBPutv1ydA5Hw93YgQspvsOGxAgvjEp4guVxS-pLcrFVjop03D1H21cNKThxAMxphXnmzYfru7vb1cryWT2CxEIP1TaVfKZVeo_MbtNwXD2j-t-oLoSvK1ZKjNDd_El9RtIov1ypAXqsr46YD4brO8pazkcXThBvv_URtIvYv6aKQbtt9cjBa1LzDyyDhpjUxmQNJJNlP4S51Rx1QQW_1J6MIMjyucIsI0EOwo4H5GIbLPxgUNywPgG5aJFx6kWNRfk7PSsOMZFs_fRHj0iMq4Bfmozdgq4cIrdpw2uRerO0m8N7iaMS4WN7Se7SyG1SrALXK6TQ20e9tLqHVA5rwPrLAOepM8JKioYuhoHVlXZy15R7AD86McLMPS27-YgWXKw58BqqWZDAjLJ6y1cSg8i-RnsepS9gBdsAbfl3RW3_HCnU-StX-obqgpPD0M7a_4VVY-j5K51VhL3OOtOvCEQ-5YSCbhHtJI8--rwr0V3Abcw6R5E15uumw73uOXC4loZ9TgLCS6bowP1Wk7drhM2cN-ph5-rWMSs9G-ffpEEHmMzTmkiT7fOm-e4PSn6eoFLOmlKLTQci6zCt5fN2IbvrYah_YpauAOVxJu8Ij1bnIcbLt86_P1s7vZefg_U_oa_NOc6vo2CpElokHn_9mqv5Lbm2V8CriVcvesEKiJ4uCn74gvQXtOW0_X2JvKDcqLaxm8ptzLVxSLRSv9wDhJpPZg5zEtOKrAXQI2AdUUFiWLVwMjlrLQ5NGvk_TAmz3xjVdqv0YSMxlU_La2VNhjIDwoIJ4_QFdP_YcHhPOzXBgKcQk3tBsmyp2vcphqYg8HCzEybfQKbQk1VYZPMrHrHtR-sDtuMy0mpHHYZb4M5AgDLFIIM9OCiAE1VneTHp3lZlU9GhzodCrHEh2dxYLNPrf5_pJP1aq9ZVtggE-gUpHB6Dha2CwQJAWG3BUvTvP3ZMgoZ5yRsl7-TN5Rv9gADGV_Ul_nrwXqi-g1kGTe4PYzrk8FI3ZjperC2ChvdIYYbT-fgw9PnBoPh2MGKQ4cuW4rh6b0S7kpXj64DjA-4OERXv-nuVJyeBo_Wq_6Qe7YtzTD68Q5ls2MRwuegDDUx2WHidZ4aoVeDHgxfMfdRX84FxA2kqFruBMVNk32bSVulep-8ttEk4dWCunx0XfD33R1kfA49CpptT2R-hqwT5sVbmGQCGegebKAxS3fs-iHMyPmQFVMi36FIpqsCdw_mWACf_TBqtF5aX_r51HlfnOYX0hMTM0fATgPEYBBq3m9-urh77xEKyLsjxpHo5dWZrWypyJKSL0CAONHk8D9kw78_w2PIFW2JTvbHmT91DOtMr8ZYGtwMy2PhHgutCTW7pO7KuPuJplL4pk5o5-7u4Ah-_lmCTGVzeFZ_iPAvV7LX7Hwt70lY-VEGLD4BkjOEIq0Ctq-sqdUOC_3YIYWtIGGqdjphg64zfSgJ4bNmRTAevPVkqjhhhOhZu5IjcwVev9ZkXzqKRrcXUvmRBLRutAHRZ3ROhAIzEeHh5NiJ1QG-PngPiK8Poahlr7UVbsk1sVaB4LlRREpUsyjABQHG0Qzjg6-Rbn8uF7bhUPrkjSpctmS-63_DnqL6b1s0XPmjUgAhfhP_9KUnqJDqSSWTRdpk-ez5P_PCU3lX4wvB3jUqOR5yultQlxk2f4MH0lJwyAMZFJ19lDNKTcjhZCNB3daqz2BXdjtkrat9VTzZQeNUiMiUI3S14s6x6mrm8pqA1fSFMZq55flYERKMdmfex2QH8Z_wQgwzuGYLj2pBhXsRrLqQFdnMizFp6BleZfKFqXK7_aoODyWbUIt7VcdxkyTkNQQRrhstKb9jnECtQMjzCsiaA3eyb0Kopb5SrRJYPdnLlCbIHkL8h2T73DCRZpOc9Gow3sHn4FEUc5kcTAfK3RCdHdvVHh4fmHpdl6R9TdV3F17b91-cRvbjLMNYjDMs2JyKAfNhGdOQygUqRQi5NAOI6ILie7__mt87ihZIhWa-3YQtaovSAUZgQuv7zvMvUDir33NDmE74YA";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -443,7 +443,7 @@ function render(sessions, health, errors) {
 
   const HABIT_KEYS = ["coffee", "alcohol", "fruit", "dessert", "fried foods", "refined carbs", "bowel movement"];
   const EVENT_KEYS = ["doctor visit"];
-  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging", "wall push", "dead hang"];
+  const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging", "wall push", "dead hang", "weight training"];
   const baseOf = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
   const isHabit = k => HABIT_KEYS.includes(k);
   const isEvent = k => EVENT_KEYS.includes(k);
@@ -806,6 +806,7 @@ function renderActivities(sessions, activityKeys, month) {
 }
 
 const ICON_RULES = [
+  [/weight.?training/i, "🏋️"],
   [/weight/i, "⚖️"],
   [/sleep/i, "😴"],
   [/deep/i, "🌙"],
@@ -1314,6 +1315,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-07 15:08</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-07 15:11</div>
 </body>
 </html>
