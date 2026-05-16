@@ -160,8 +160,8 @@ const CATEGORIES = [
   { name: "Sleep",           type: "text", placeholder: "23:00 → 09:00",                       group: "Body" },
   { name: "Steps",           type: "number", placeholder: "11000",                              group: "Body" },
   { name: "Doctor visit",    type: "number", placeholder: "1", default: "1",                    group: "Body" },
-  // Cycle — flow intensity 1=輕 2=中 3=重, optional symptom note
-  { name: "Period",          type: "text", placeholder: "2 經痛",                               group: "Cycle" },
+  // Cycle — one tap logs a period day; keep the 1, optionally add a note (e.g. 吃太多冰的)
+  { name: "Period",          type: "text", placeholder: "1 吃太多冰的", default: "1",            group: "Cycle" },
   // Habits (text fields capture description after the count)
   { name: "Coffee",          type: "text", placeholder: "1 拿鐵",     group: "Habits" },
   { name: "Alcohol",         type: "text", placeholder: "1 紅酒",     group: "Habits" },
@@ -230,10 +230,10 @@ function renderCats() {
 }
 
 function formatHint(c) {
-  if (c.default) return `預設 1 次，直接按 Save 即可`;
   if (c.name === "Period") {
-    return `格式：經血量 1輕 2中 3重，可加症狀，例如 ${c.placeholder}`;
+    return `直接按 Save 記錄當天經期；保留 1，可加心情或反思備註，例如 吃太多冰的`;
   }
+  if (c.default) return `預設 1 次，直接按 Save 即可`;
   if (c.group === "Habits" && c.type === "text") {
     return `格式：[數量] [內容]，例如 ${c.placeholder}`;
   }
