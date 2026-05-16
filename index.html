@@ -113,6 +113,7 @@
     font-variant-numeric: tabular-nums; overflow: hidden; cursor: pointer; }
   .habit-cell.warn { box-shadow: 0 0 0 1.5px #b8302a, 0 0 6px rgba(184, 48, 42, 0.55); }
   .habit-cell.selected { outline: 2px solid var(--text); outline-offset: 1px; }
+  .habit-cell.predicted { box-shadow: inset 0 0 0 1.5px #be123c; opacity: 0.85; }
   .habit-detail { font-size: 12px; color: var(--text); padding: 6px 8px; margin: 6px 0;
     border: 1px solid var(--border); border-radius: 4px; background: var(--bg);
     min-height: 1.4em; }
@@ -272,6 +273,11 @@
   </section>
 
   <section>
+    <h2><span data-month-label="Cycle — $M">Cycle</span></h2>
+    <div id="cycleTracker"></div>
+  </section>
+
+  <section>
     <h2><span data-month-label="Activities — $M">Activities</span></h2>
     <div id="activities"></div>
   </section>
@@ -344,8 +350,8 @@ const cssVar = name => getComputedStyle(document.documentElement).getPropertyVal
 async function load() {
   const sub = document.getElementById('subtitle');
   const stats = document.getElementById('stats');
-  const NONCE_B64 = "lvWTwmAMx3mPw0X6";
-  const CT_B64 = "_R0JUSaq-Hv2xHlKGfZmyrmOS62VLM9Bq74ekCTBT70PVouoGIBCEZFU43qQTHOKc2hQV8kJnWKpZTX9H43ig2FeTKmQ2CvdgGdeHUcsP31Sbb0HafRS6RIN7GykC6-qzcW4UQYOOutofD4OmGfo5dXk2MGvNFHDDt0cd-HLclRO_aWoAO-jUhQJVol0UEKbIZ0lHZ5iHyog1Z8eyDj2HuDv0PJi7C2LTqub-O5GsIMOifHBcjTejvKSGwUm8l5U0QfNMckY9zIBH8xWDZ4D43XOOPKOOCjd3NA48zxfgxihNdklhsi_BJ_FB2EHZFa0cDvKNtCUea4-A6ImXEY4T1zyus_keN8K0EF5hi9slXc88-scsE-LocgFmaFJbHg4QSvS4kA-0kPyJilYJOD0H98u4mkOMscG-lzNhSQzkweE8ackwnz4GXMjs6wrIBbupOp8LzME9luyr1JL5OurRqJ9AJ5WcEXVU0Lh5vRRNaezYiYHKB7jaVqVw3qFfszCW0pOdg-B2aomd94al3_TJz7Lc2fdD2QYinj8rn0-Y73-RIYXCWHFN7JcYhNiBONhdrL7uQTU_jIP-Kd0xhOrSh3ryCLpTKuN99ifKwBEflcz7GN4KX1s2FFC8VdNwtkHOS1PGKBA95Xt8E3zmVbRtimvx8hGYASw_WUprcUwb_EHRiA0V0AQIBOMQT2-hCURxQIWhJdLRRb2Hjz4hXxxnuTZoQGaxM1XKeMsXPiECeNtuxprnyVoLF4bvKriwSOf319lnjgTElJscCB2LjyYI-UZJ1cCoaDCMwL0rDcpW0yY1XhpmRTLYv3ELOJAo6X6TiYao4L1XLbG1mE_JWuWjrMwqAjcV5H4qViqXwrsUxZFV4jf9muVPiKmEa9wgx0GCmnhtMnRN1lWAQorWB6wxkWYp1mBVpatXNhOtf3KLRNKeXorBb5yYMh5D9pLHXiMRX9roZuGoKWqZ7B6MH7ortjT9Pet7tQDClbVu8fFBLcIrYb2at_nt_6HA5GVbmoardXJzkNnK4YSiaOr8WUPZyyOpeMH_zGcDkefBUfkflvUBrBpKoPr0TbQid0wUe-srnEydfJHQ64n8RFWoudGcjIWF2Xtk1z5DmjnMfyMjysb_RoauChQOi1bf414XEvrB6KYBcMNsWBQKJce0mUzj_mZ6u9USZAGAJPYiCB5cQ30Z0K-zG7EXw_tTOJBcZ8rItEheEKR63mxh-Ammt2rooea1YPFG5DBmEHEQdB9u0n4WSQIrXL3M74YTYvhThzzvL-rnk-LYXpxIpUn2XT4GVugJtxO12AWnnwMMkBk6m6SAmV3KC6AM5Ze9YZ4292uE5B8BNSYWZ99disFJBLzQUSUrqJhq3J75lidyREszMEBhd4Vw4KoC5qJnKaiD13IlbMZqFxi-RS8yICTYOGEFQUwLlBOliVE9ymhhTgTQTYRvGaWGY_gLXlVz38OoTCRG40KZwMQoMf1ESTOD9v22g1CIpcLc00uTO_6SNjOIkxYXl7mRCIrIDZR090dBpCdsppDbwV40M77ZiSA8uFthY74w5kInBcnrj5oz9FJdXaux0fKo4tkbiGjJWHDm1GGD3o4tUx2-kmyWscdkeLylfCjXStOooBeMyJF3kKCFBJaa2PqI3zOYN8kbUlXxrLtfQ2a_cAv7Uzm7cM6tRG-92fN_TaLpRiGvFLdiVxSLr5DE_eNu5I6uw81g_XFNQ1qvzyyeE-rcArviDTy8-wlkzB_Z_AmCV4Z2PsLZCWmmYLwjk_3y7fanXu0A29kCVOK1lqUYLEyO7RlSazxSNbasbz4X3lSBs6W0XMbO_nfYla0LbTLBHtopnBYoIh4gb-hZ5_Qiv7w-4-8fkzoDJghJ6DA2Hsv2PuCSPX8uwBFgGbpErJMYy2AEZTXuhhKT52GlIHxw1vdgvAmUZ7nMBF2veQ38VLOQWJ3Wtolq4uMe26MzDEzcYrc_PWnZ0cuJt_pWKVd8-82mYdDh3o74a9cVoazmMI9Qf-8L99oX-woaI2LDTpG3u5TvOiIpZqlLlIB6rrQth6s7845By80qQsqw7WpG3wGQwPXeu_QqdfYocwR-IsBZ40jJARKVc8tj_nx67vlpoSVYPZs6j2cwfpX6kd65tVX65nh1pbb6dCAGhWn4tkHhaUwN1COyl6FveKSmhI63cHfSeHWhpE2IePjZ59QBBhS1Ri2z_cVF_pOn-NReu4LEIwTuyVbmFhfWr78sGGIgb77ldq5Nh6xIX-m3XCkrufhJU76ujTEVI9Rg-QA-J1ooWTOIAN2Lns0qu6PpTmz2joUxR0YLDcz9jUUID9m0Y6RZ32egsB_piR_GTrvSGByMmhARwNpFhUa3hlishZqdbXHinEKA5yC3B8vCpzOldjwn43GriqUoZf-E5FBCoFopQHyS7EEEIcFIhB-Sf_vNXrA2l2UkmzHp8wdnf8lmt2HoltMRohb3kRqV0IRxVhlfztrCUr4oPGlNkIEZzmoJuABuGCdRMhllzJ_faA1L_MpFYX6YUelyBVj33ykNJMFksYyPSYncThBtfAQwPdUhYSsX3XHJ7OnJykkbagwwfjt8henufa3ZzIIH_k5rEBailGTua78W61_C9t-2WNgJT8FdgGjAeS3g8bbcZyuNlBGQOjn1oohn-05NcvhOIbP6BwsE00EvbyJt3E72obzFVkCLUjIx0KPiKqq0DIV0eDE5gaLWvRJzDFedrA2d1vLLfWx98_3hlVtAyxe0AHJu0NYZ83sNu6Ny5E-tLk0V6FDGrLhC60jDCQi0mo2lZbUG9rZJ-ajl89tMr3HJfP13KaNwU9-4FisTKWJ6xkeL1bklLJ2hSFRzYZeNpmksXq6D9bQjubpav_mXZ7D8RJstZLwrxFNfopjlF85Lwdj2ubgYsaTvTn7kal-xbsFLVNQHGUwQrpTeJhu8s3g4V_CXdHFQX2V_G6nO6JT5lO3hMg3Rzy5XVzFeW84mbSRCuETaWZF73Kc5rx3a2Yb8Oze1ThRQXic01jGfZETxH5XPKCLT2TFYwE5xGjmPot6NGG5Ii855nGdOUq5sBCI2_gWXwQAeoPK_KpPMK56spOyZEUNjfA96bMk69H2XiikCBqHa7pg2i5hzRb6AQila3cgEs2cS_cVzkToi-d8vyQPyG82sNxHSNJKSzO3BAG-NSwGr1O1YSN0TJkoc2MaAYpgmkCwQYdv9LgjfacGTA4fVzgS5MT665DCQJ5_RIniYD7MJg07xXO34wmQqxlRHwfRb-S6ZDyMyRLjAcFIy63c7Uiz_VvjK3ryJbrMgZxR-CJva1k9oXqs_sWCQMzo-hApaHBGbEfwiQI1DPD86m7bM1XJFfSGX58LPj4OjgK4H6fGT-JgJON70Zrvcf7QTVHK2yMCdXmN8f1OXcJP9VQPFJT0dqw6dJ7EpRKBbbySOnSoTzoZ5TbyavBsmaGt0Nh_Et2oEtMmnvuUmbEVOzBhZTPLGy2zoyoCPUka3G4782aEJRGRx54ouHND67lHX2K1v5o35k1qVOG8ym4Jc07NJ-1YxcKtr6lnb6zpJ0aZshWTv18ziEmw76worvvYtlcZ0gqxGJs5BrvZJDqx2V4p-WKn_lNyl8dg-VYTlAuDOEtJgutQ_4MN9mygef3DLdsoH7F40sJO5EvdYLkDf9dpS2QGP8zmzIpIO9DD7gQRwgfuBghUt8twN06dgN7Q2W-qQTN0chlxfP7xapwAec8-nmYCgyHrTBmSTiMCMD3Mue7gC-EMYzD2Bl76T92rQ3BZCoE1ZFZ-XV_-OnTkCgr4ugYY2yS9vbi7bvxfjWukm6uJF0BRxsj7ummmPeR8jjF8vBFFITjZdkbODcW7u9KT3hE58apHCJObIg1tHIBAljGGyQjwlUIpjGQwSz1WvXLJ9PuTOJbBNx1tRq-Yo6RZ6Nsevc1BD12-SzhZGitgf7Jd-NXOfaGx34hjJ7JR64Ub8owJP1wvis2lkMoQ5f4saV4d30AXY5x7Zdrn5WjgPtU3DcAh834Dofb1PAb_Oy7ZxzIkn454Se_adWfHyKLaM7nKGoV85cbTsTaxRUlpyX-JHhqziteFkbbHC9bmPIzeFSczmcjBNDdxe7Wsh0CAZ0d_NfC25TlerLZRH9A59eFckiilOgn21GAMwgPbO9cRteS-EqH2KYJONgqOuvofMJBMLZAoi3zPD9g2TZFwXME4dVqyJctgK1y-dM16ea51PnV46HhjxU5XFtQw1VWnfJ8N-XGs3Rut4z5s7UtJKnfApuTp9PyogQXJMbrHL50XUJO3oXClIw_7KThjMvGj8kLaPPSBO5TjRxvvLj6mr34TAJiA9NCCcjJn4gLoxYSFyFbvKu01nr3PxlQUDzY6MIK7MNDqEgNLCBD1U6Qlctbp3NlV7F4tV88wLQxNTa1F7VplBCa1lOVFLnkl_P2RE5n_s7lA0cCmsO_DrDi-faAOjc5SZmYzorUVAaqCefZXsNaUglc1JfdacS4eMU9MFflOcxFvAXr7VZTdxXA76FqCl11uAMMFJWpjphhb19BUIJVHiIA_zVwh1WMS2EU8_2wFjAmHWuuQTFor83nXzZpzCgQ0UZ8CQXJ2CXJZhlE3PSr6WFyYlAMuVjdyky4qA2OdLmqvtFqI_D7K40UG3FCal_WcdZUVXrq-RWriZ17BxRQ6y5Jz7-0N6gK6IjA0bZL-pYH8rxLZ2yYyiCJTDX06--7m6D803KwD855QolQAHiKXD9gMQeeiAngFW_iYeTYOZWdnV1e_prplFiA6M4aAwYiCH09UF5ELYWDZMh0UP4FMVgk4mm8w9fJZBkuSp6AeUFdHF25-R5Ihp1btkLTeEHMhM-BpO_ldOHj0qavyNwR1yK5KRZDRIH1ti-0axn5kFD7kC00lUHpiaU5uizWQlBbnEXplqcUf4nl1Vmod9K_DM4qJPSsYOUPyBkDucyn1j9WhIUngQquvPtIoHv9vGWgjYR0Hl1pvU8zovcIFehWKkXp-psHG_oYKkIWxS4WL-oHz3kD6eNb4UN2XaoIKoz6qpV1ZJ0co_IIpAIyXMLm8xSpmDFRaqtEvhVmvc4Spd27m-k77xDAvalCL2WFyvAAoj2krYR67gCtU81c5Qa9rfTik1oJlqj23sK1RQs2QW31DiPUqSH9V7Lb8kM_ndEwfVJ7OAolAY2Q5KpxGT2Soy9wxspAavixPBT2B9HjMYoorCjQ0XxyUHQGAb-6-kFCfr7O2vHppcK6Uro1Q9wipOhvORj1G5_7UGg";
+  const NONCE_B64 = "RVC4ph3AU_wjEjDW";
+  const CT_B64 = "1zjFmWC4EiyHTLPv4EtoTqhdIP_X4Xt-EZbTpdsS61AfhoeubxjuivOgcLARvegZPSEnLw0KXBs9OLdRvgNNIG849AqOLyGuRtMLf6ctOgP4arKFon62P8cSb8NYxf6ytP_1j1w9eTN8zIVzBea68DTIa4itrUqWNirjRgpy6vI8_TzeBflkoT3yN3DAMD-TWaQguAnOgL98dMAySIYo3P6FIiQXlNYb5abJK5ZTsJKo5otNGdIFl-R9-GQzJsfXEEs6Fm2w8lUnts9NRau0w3qqFVWBD75TS-RcUmozPqsYNggW6tKd2i2gUtQNJxWLUGYuL4a4riBXmuV8JmGFkZCR5NuTBQn2azG54MSlQAyC6KrqFuSmWyG5f7Qbro1q5wOLCqW4vRaF5Mm8H8LJ7lfb2gPnRYSND-KVMRE5WqY_vhcsZ1bFRwVArnMoUYex9-_4OdTqvoz9epx-vo4WDfC4NmqNWJKR2I0yzYmWzmjFi8jMBQoygyIDjc3PY5JEy35inNHtou9M5x-VW03_VG801Y-e0pxUL8YzWEZOI2pGERgP69sRyYfcl12bfAJ_SsdDUEjaXXWNHopCCaPOFJD47pFrZw56_K_SciLXmBBlh8vcapGswkICqRnGfNFoYSVPhaUMNGhO6mW3ismPhiAASZUQXqGpFGwZNiFok5qOLSOMptjiirLUAIKOqbz4qfbVxlvBl7nGc01mv9hzWo784ggk3S39QbnEeWETHX9rOFWMH_HZvJpkuO7WQvaHaStZ2M6i0ibgRtrMs8ayiKYcpBwU5r90tq66r3GkJf68keL42JhjUxw26LCPELHHjNW5Rzp8eTgwjyHuOIfU-OEqm4KHysJ64zaBRN21rf9PePY6i_t-Gf_0V_HOt2EZ3Z6sW72stW5yRTx-JEWGhLrNoBV-x3i_2G4EPkAvy9vbLulK27KAT6PRHRHj8k5NPsCPBRK5Sk5h3uxdmZ-deCiPU04KcLBaknHlyIPoTomwcJuaiBNRqSwK_olLmf0_aPFKdePFb_lH9isTXRKWNKXYdnZ0HJ8h3vq22pvDJSa9Iq6VXnyb5hSKFXxNSSNpZQPpWb_0cMoY7hQaZ_Y3S1gSgQfUEFc9D1UJctAZnL-FTfuQmSbhD6JfqDVqRr98gQ-e6cz60I5I-3cEgU_wHJhMaKPQ1iK7vHmFK-oRuEw35x0_fgP43abdV6a7V0uT5CtsgYf_qByfWHFn_5_RsoCjrwpwpnE_0qwBavwNWJfYvIk7kbPY-SZIX45r9kfLa54x6HcQi0dywFcIklbT9yyI_B8Qen8oprASOw5ytLPUjK_mycjlxJH-WDiajEYj5pNr7JD_YkvlvU1AjljNponoDaSNE41FISNoDcg48TA_iG8sWnPNCV1VAu8mWUN2Ip0L95gGWaRVqBKBF254-XTmg3_Gvymwh6GvwuXBwuQ0n-4RlY5SJ9WHLNrOFooWQLmYzY2SziIWQGugOBRCJSE6QCB80qvaN9GaD0mUxOHdB2joLi3sLt0GsjUQ6hbIkBrNlBisuu0OhLZvbPQXKgYj-lK8reGSpnwgUE5k5QT6Nqb5ztTPj7KaxXfPKrrniCbqv4TOirXIMFZxKli3pKv318Idr7ss-Z_ln5WReDgNsxrmkFyup5icZoaNYXugveQDt5r9MM3LdohsmkNeIEfcoUGZbahEAgBq7Pa9F9KnsKcZj3FWeBkkxbaYZHjGsfJtYvI9gEwWv7eQkVkR1ST1bH6e4R2FhVQ427BaWUHr5pwDTMhdQFhFsl5gPdbcl-gDjPkXnvhl51H2sb6jEGdBciQDiB5xjFrBcptOXlUO2nCFDelheWYA1MJFg0l5Y14ArMqbKo5Gq1BaBxfGHmDzmKwcLC1q4iBEroHISxCyzK1AAu7ek3PECNgMXilc2e-_qXHaHmjwKW9xHtXFyk0yHcrrMmwc6eQkeGxUiOnnlE4oZEFoengeWkr67tGMj77FS5RpfoG3XfKpx1EowAwuuHo0DjTHfF23YMzoSsfEXQAnBlMDSNuCk-V901M25xC-H4cbZ-xCOPsXpvysDyMy4a5Np9jposRKYW0Vby0eZKZ3VV1QWDS-bS99IefcgQ7k0ncOZ8pdw51GHae9Cmz6N1Po3VGXOZPaWFNMnSVUjmtf7LpaoJr8tzEqmFQd-PcLxi4AsOlbzhTAEbexyo7Flbrey4antdB40NPBHexY5wElyvqBIEIHg_-LFKImABUfKMoZjEFLiS1wtHp3-QVbNElMqICA351l2gWQyQ2RM8r2iKij84DRt_FR55DauX5s-KYUUCqSq-wykxaTjg5K7dzly5QCkICPPMH5oTKGkDaE1uV5v2OeiLZC7P7QiY64vIkJwwvoxTYdGgFkUhY6AfsD-LKS5tD8wWHShIz4TWKggXbECaLYZyBQ0OhO-LOs2ebCF-qsnJwszkwNaYymdf46tqmVLppe54Z9IWZewCbShpnfAoFD9buKoUQVG-8aZbYoybmuiqINQsNszAxcuTnIoIpTerKsmZcGfjqQrhhbQUIhQqFq8IE98juzMZt3zAhlQ5WEIYgyWE6t26_hWvOtD8VswWXJrP1E480Z_N51W3T-PgUNDi7ndjP4QhW9kN23OeJpgbTU0idF1LYE3CV532q9F3y8iOd89S2Yakpmb1fEIZ3t5H8sHJpcSFGoUQlOyzlINU36KurLZtiQk9o517L3XLC97VeY84fBuDWmMXwNjwLJk7y5YCnbM0fg6zvjeg_3gFjeW8MPEmSXyTU6FkDm_H43X-Qc8MBbl-HdFSuihfIaykG2v2lfhmUvHYc30qPai31ucGrhYL2dqedzGkNaHMw9Jns7MyXDXLrERS3iQ1DdHAtdRtQuj8RlfOlW-bK23aY1lg9QIgzzSPkSrb4XdDDwz_qiXyfSpDT0QLuWhEQb9-WzpMHAPiWO-0ypogf6keJ5Ye3YCN3aSop1ReAx_UIYzd6YgolaTtEN-ahcIFELHLCeMJABe0XoIDueIxf4xZdQaJHdDHjakM0O82BwNrYn_qx0oXLLuuvj26rJA-MsX3t-C-tX1LcYNhhz2jgbyqiKMPsLR8tAo3Usz1_OOsT_y1PmRjuw89HS-AxI-eYc0MqoCxNNQ7sfI4vIL1xrJloH9wqAXubvwS56LZC02XkS95kSWxaaO_u4YIE5k5jVRcS4xt8G3N1byJfpQQ2mFuA10ANVAOirC7B7s68tzb7ftyDg9S3a4i4CFyFsofXbyXjHb7xhF16lNBVYS1W6XpB4mr-EfqNl-1NJM1-um9XMcBzC1YClD4n35HxR8WclcQaLs2ptFH-DLt_oSf8d-I9rfz1CYHMhmqKgimD_CgMHIiVFpe1SOYNmnOl8B5IcJFBUCaF6on7G0ScqXdtLe9EfMKvonFXh0oTSr2KDWT1g8wWmXUrTaKUv1feMWSA73DB8J4YGkULV_Vrpsi7IiGvsw7BIqeEtqlBLEKNNrzLP4izHSz8DPZo8TkfD34QH2Ja_giE2muj0bzSVRPD9S6iJUumJiffiUSFUqaIWP-YmqeXa1Tm8G9QtztcZuhbE7pA1p1lbN2BvHxeGleFF9Fbzz03nOmvveqFb9t-hXC8HdtJlwxO9SjUZ_x676wAo48DuurYbGKisHHgqazLas5T6TYi0VQHrY44dRnksrc1KcKwCpwuUaIlOEH8W__DZen9RE4RHlbGJ36L3gyvbk4d6I2SFLSUaGysUd3RXRHXCJKC2QmZmMR9C_UrDzE5T501P355ANKzEOM0P0vLSpXzsuBGQxS4kwH3wkfY85qD6ixGsOUGoDKZnh98NwT4dR5cc9c2iBO1VnzEFNkAC1ghVlqnMrje56YrfQFc-B5U01AAFWwPVSGGJMvZh7nuK7gtha8SHa-DETzkdnRKSY75u_1Hgruplmcw-nAQ_PSYZ4E7eNIYZuIR0SvGW2YhkyuFB23zAhzYVxpSsEaHJnaNGxnfJuyPdeMpThGbdt-bnq5NN4ZGSHCiBJw9dTOsdkYCUi-MKLPHQtQUtdPkaZglvjrh36h0GjkWjKOkgPPYHvj2mPJew7R-c0bAlkv5lvr-ccQa_CvyYA2e4rSRzNCtWGSQiyyE3X7j9X4_ER1iJyrhq5l1MR-9NV-QPe__1UVe_zCT-Aqq0W2lsiZ0KuG5eyRhRhyX2IVcZJnia3f9_Sc9fm7dDJ-1IDMUuWAKW-k6l0SKo14vrkGED_27OcIOaGaQ7uEDcEmHpX4TKRIagT0LdPmsG4PZTwo60z89Yojj7XvLzRWeX-2G-pEYTTj8ltU6rJynjEroaE2xW1NUzJwAChQI4T5RlhUfrXHnCLdwbeOxjRAXfKAsb1kL95uQgZ7elcvl3UVSsWs2aDuoyhWvc92BSq7gX8eYqSgkvX8wtY8HlAoAIwDGM7jBVogTWrNf8bWURTaDvU0knolM1qePokUuQrT_NShU370RRl6FBHbL1oVuBN9VR7FUkO2jID-Gfz2h4AfgVa2ry6DcJFENvK9DGiOpxS7hhMwrQeftyqQiMuqWB91pw6dy1dH91C6w0j39TD1om0RwhMMtB5c9o7Z0rzQlPSS1ckpByo5KOmc3CQct_0iXD4ND3HJmHTgkVwQTtUKQNoO99LnUe15T0aAlTOkK6frjshyQazVVBWma6vsvm81-tgHEfol57__RCnoNtfeduoHKAILYCsI5RVFBX5ZGA3VXRSC9SCxwqHz4xK58zrjw4cDiWpL-ewtP-nW8tJY3WOJDEHUCfE8yONye3hYYjN2rdfoVzZFyYO8VIr1eOIMog_48R5hOxPP1NZmeHaMxYqRle9X3ZSqUhvoOgIfKn04cS_rjQpjizq8hz2YYj1LcnoVfs_mB3cOqQVdQc9SdcSZuhUICmLWEZu83jbwu8eTyhwW-0UcIxhNUTHRAIzYWF50SPp0MdsAo2FoQOqgGovvBgZTmf9CM7ArAckePILAxTUj2fqgVFRsSs84SVpxcH8M3_nPgaIvEeUmKWn1d3vJPAg5ZhBpLOkdhBoj9pf04j2aAGkLOU8-ZlMJD-ZsE7IpMvuoYm7VO11M06S5mKdnVdJmwDiMVuVZT_z_dEfx3c0l46P589UBAkwUrenhnewwWyXdEudssmC_7b2fMqCrH03ncIW9TvkBQcg4KDM6W5Kp9LLcjv2jjzgs5uvky_NzDSROppCXRi23Nwu4cnT77YVQeD8nJ8b5aS_Gtc_FB8QF9IaoCTQaTqbbbIfnvBuUACfRNngAg2yk3qQ2HYvlnzErHooyRXjQSgNuyI5Tje5R8cDb7HFX2c62aIr9tC1AMYa6PdgogyV6Ltn_9iJVDfEmcMvIL5mYlRF6OHhtuRYbo0-olhpYsZswuIPTguBipHf3e8891YImSpuYhNddGtS9qBsonc5v2mfr5Cc8X5gVeO-P6YdV72vkUPZHO2jxsnS8-t965Kh0oMDu13HQ";
   const b64uDecode = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
   const keyStr = location.hash.replace(/^#/, '');
   if (!keyStr) {
@@ -444,6 +450,7 @@ function render(sessions, health, errors) {
   const HABIT_KEYS = ["coffee", "alcohol", "fruit", "dessert", "fried foods", "refined carbs", "bowel movement"];
   const EVENT_KEYS = ["doctor visit"];
   const ACTIVITY_KEYS = ["badminton", "trampoline", "dancing", "pilates", "jogging", "wall push", "dead hang", "workout"];
+  const CYCLE_KEY = "period";
   const baseOf = k => k.replace(/\s+(day|morning|afternoon|evening|night)$/, "");
   const isHabit = k => HABIT_KEYS.includes(k);
   const isEvent = k => EVENT_KEYS.includes(k);
@@ -474,6 +481,7 @@ function render(sessions, health, errors) {
       }
       if (!s.date.startsWith(monthPrefix)) continue;
       if (isHabit(k)) continue;
+      if (k === CYCLE_KEY) continue;
       if (isActivity(k)) continue;
       if (k === STEPS_KEY) continue;
       if (k === SLEEP_KEY) continue;
@@ -512,6 +520,26 @@ function render(sessions, health, errors) {
     const a = avg(sleepEntriesMonth.map(s => s.duration));
     cards.push(["Sleep", `${a.toFixed(1)} h`, `${sleepEntriesMonth.length} nights · ${monthName}`]);
   }
+  // Cycle card — derived from logged Period days (start = first day of a run).
+  const cyc = cycleStats(sessions);
+  if (cyc) {
+    const fmtShort = iso => {
+      const [y, m, d] = iso.split("-").map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    };
+    if (cyc.onPeriodToday) {
+      cards.push(["Cycle", `Period · day ${cyc.runLen}`,
+        `started ${fmtShort(cyc.lastStart)} · cycle day ${cyc.cycleDay}`]);
+    } else {
+      const due = cyc.daysToNext;
+      const when = due === 0 ? "today" : due > 0 ? `in ${due}d` : `${-due}d late`;
+      cards.push(["Cycle", `Day ${cyc.cycleDay}`,
+        `last ${fmtShort(cyc.lastStart)} · ~${cyc.avgCycle}d · next ~${fmtShort(cyc.nextStart)} (${when})`]);
+    }
+  } else {
+    cards.push(["Cycle", "—", "no period logged yet"]);
+  }
+
   // Event cards (e.g. doctor visit) — render before the per-habit totals.
   // Past entries = history; future-dated entries = scheduled.
   const todayMs = new Date().setHours(0,0,0,0);
@@ -569,6 +597,7 @@ function render(sessions, health, errors) {
     el.textContent = el.dataset.monthLabel.replace("$M", monthName);
   });
 
+  renderCycle(sessions, currentMonth);
   renderHabitTracker(sessions, HABIT_KEYS, currentMonth);
   renderActivities(sessions, ACTIVITY_KEYS, currentMonth);
   requestAnimationFrame(() => {
@@ -821,6 +850,7 @@ const ICON_RULES = [
   [/refined.*carb|carb/i, "🍞"],
   [/steps/i, "👟"],
   [/jerk/i, "🍆"],
+  [/period|menstr|cycle/i, "🩸"],
   [/blood/i, "🩸"],
   [/colonoscopy/i, "🔬"],
   [/push.?up/i, "💪"],
@@ -842,6 +872,131 @@ const ICON_RULES = [
 function iconFor(label) {
   const m = ICON_RULES.find(([re]) => re.test(label));
   return m ? m[1] : "";
+}
+
+function isoShift(iso, n) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const t = new Date(y, m - 1, d + n);
+  return `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`;
+}
+function todayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// Derive menstrual-cycle facts from logged Period days.
+// A "start" is a period day whose previous calendar day has no period entry.
+function cycleStats(sessions) {
+  const periodVal = raw => typeof raw === "number" ? raw : (raw && raw.isCount ? raw.value : 0);
+  const days = sessions
+    .filter(s => periodVal(s.items["period"]) > 0)
+    .map(s => s.date)
+    .sort();
+  if (!days.length) return null;
+  const dset = new Set(days);
+  const starts = days.filter(d => !dset.has(isoShift(d, -1)));
+  const lastStart = starts[starts.length - 1];
+  const lengths = [];
+  for (let i = 1; i < starts.length; i++)
+    lengths.push(Math.round((new Date(starts[i]) - new Date(starts[i - 1])) / 86400000));
+  const avgCycle = lengths.length
+    ? Math.round(lengths.reduce((a, b) => a + b, 0) / lengths.length)
+    : 28;
+  const today = todayISO();
+  // length of the most recent (possibly ongoing) period run
+  let runLen = 1, cur = days[days.length - 1];
+  while (dset.has(isoShift(cur, -1))) { runLen++; cur = isoShift(cur, -1); }
+  const onPeriodToday = dset.has(today);
+  const cycleDay = Math.max(1,
+    Math.round((new Date(today) - new Date(lastStart)) / 86400000) + 1);
+  let nextStart = isoShift(lastStart, avgCycle);
+  while (nextStart < today) nextStart = isoShift(nextStart, avgCycle);
+  const daysToNext = Math.round((new Date(nextStart) - new Date(today)) / 86400000);
+  return { days, dset, starts, lastStart, lengths, avgCycle, runLen,
+           onPeriodToday, cycleDay, nextStart, daysToNext };
+}
+
+function renderCycle(sessions, month) {
+  const container = document.getElementById("cycleTracker");
+  const dayKeys = monthDays(month);
+  const nDays = dayKeys.length;
+  const byDate = Object.fromEntries(sessions.map(s => [s.date, s.items]));
+  const stats = cycleStats(sessions);
+  const COLOR = "#be123c";
+
+  // predicted-period windows for the displayed month (~5-day window per cycle)
+  const predicted = new Set();
+  if (stats) {
+    const monthFirst = dayKeys[0], monthLast = dayKeys[nDays - 1], today = todayISO();
+    let p = stats.lastStart;
+    for (let i = 0; i < 60 && p <= monthLast; i++) {
+      p = isoShift(p, stats.avgCycle);
+      if (p > monthLast) break;
+      if (p < today) continue;
+      for (let k = 0; k < 5; k++) {
+        const w = isoShift(p, k);
+        if (w >= monthFirst && w <= monthLast) predicted.add(w);
+      }
+    }
+  }
+
+  let daysWith = 0;
+  const cells = dayKeys.map(dk => {
+    const raw = (byDate[dk] || {})["period"];
+    const val = typeof raw === "number" ? raw : (raw && raw.isCount ? raw.value : 0);
+    const notes = raw && raw.notes ? raw.notes.join(", ") : "";
+    let bg, label = "", cls = "habit-cell";
+    if (val) {
+      daysWith++;
+      const o = Math.min(1, 0.4 + val * 0.2);
+      bg = `color-mix(in srgb, ${COLOR} ${Math.round(o * 100)}%, transparent)`;
+      label = String(val);
+    } else {
+      bg = "var(--border)";
+      if (predicted.has(dk)) cls += " predicted";
+    }
+    const tip = `${dk}: ${val ? "flow " + val : (predicted.has(dk) ? "predicted" : "—")}${notes ? " (" + notes + ")" : ""}`;
+    const tipAttr = tip.replace(/"/g, "&quot;");
+    return `<div class="${cls}" style="background:${bg}" title="${tipAttr}" data-tip="${tipAttr}" data-date="${dk}">${label}</div>`;
+  }).join("");
+
+  let summary;
+  if (!stats) {
+    summary = "No period logged yet — add a <b>Period</b> entry from the log form (flow 1 輕 · 2 中 · 3 重).";
+  } else if (stats.onPeriodToday) {
+    summary = `On period · day ${stats.runLen} · cycle day ${stats.cycleDay} · avg cycle ~${stats.avgCycle}d`
+      + (stats.lengths.length ? ` (from ${stats.lengths.length + 1} starts)` : ` (default — need ≥2 starts)`);
+  } else {
+    const d = stats.daysToNext;
+    const when = d === 0 ? "due today" : d > 0 ? `~${d}d away` : `${-d}d late`;
+    summary = `Cycle day ${stats.cycleDay} · last started ${stats.lastStart} · avg ~${stats.avgCycle}d · next ~${stats.nextStart} (${when})`
+      + (stats.lengths.length ? "" : " · avg is default until ≥2 starts logged");
+  }
+
+  container.innerHTML =
+    `<div id="cycleDetail" class="habit-detail empty">Tap a cell to see details</div>` +
+    `<div class="habit-row" style="--days:${nDays}">
+      <div class="habit-name"><span class="icon">🩸</span>period</div>
+      <div class="habit-cells">${cells}</div>
+      <div class="habit-tot">${daysWith}d</div>
+    </div>` +
+    `<div style="font-size:11px;color:var(--muted);margin-top:8px;">${summary}<br>Cell color deepens with flow (1–3). Red-ringed empty cells = predicted next-period window. Tap a cell to pin details.</div>`;
+
+  const detail = container.querySelector("#cycleDetail");
+  container.onclick = e => {
+    const cell = e.target.closest(".habit-cell");
+    if (!cell) return;
+    if (cell.classList.contains("selected")) {
+      cell.classList.remove("selected");
+      detail.textContent = "Tap a cell to see details";
+      detail.classList.add("empty");
+      return;
+    }
+    container.querySelectorAll(".habit-cell.selected").forEach(c => c.classList.remove("selected"));
+    cell.classList.add("selected");
+    detail.textContent = `${cell.dataset.date} · ${cell.dataset.tip.split(": ").slice(1).join(": ")}`;
+    detail.classList.remove("empty");
+  };
 }
 
 function renderHabitTracker(sessions, habits, month) {
@@ -1315,6 +1470,6 @@ if (window.ResizeObserver) {
 window.addEventListener("resize", () => scheduleRerender(150));
 window.addEventListener("orientationchange", () => scheduleRerender(400));
 </script>
-<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-16 13:26</div>
+<div style="text-align:center;color:var(--muted);font-size:10px;margin-top:24px;opacity:0.6;">build 2026-05-16 15:48</div>
 </body>
 </html>
