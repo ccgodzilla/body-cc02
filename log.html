@@ -170,6 +170,7 @@ const CATEGORIES = [
   { name: "Fried foods",     type: "text", placeholder: "1 炸雞",     group: "Habits" },
   { name: "Refined carbs",   type: "text", placeholder: "1 可頌麵包", group: "Habits" },
   { name: "Bowel movement",  type: "number", placeholder: "1", default: "1", group: "Habits" },
+  { name: "Daily medicine",  type: "text", placeholder: "1 維他命D", default: "1", group: "Habits" },
   // Activities — default-1 chips submit with one tap; counted ones need a value
   { name: "Badminton",       type: "number", placeholder: "1", default: "1", group: "Activities" },
   { name: "Trampoline",      type: "number", placeholder: "1", default: "1", group: "Activities" },
@@ -232,6 +233,9 @@ function renderCats() {
 function formatHint(c) {
   if (c.name === "Period") {
     return `直接按 Save 記錄當天經期；保留 1，可加心情或反思備註，例如 吃太多冰的`;
+  }
+  if (c.name === "Daily medicine") {
+    return `直接按 Save 記錄今天有吃藥；保留 1，可加備註（藥名／劑量），例如 維他命D`;
   }
   if (c.default) return `預設 1 次，直接按 Save 即可`;
   if (c.group === "Habits" && c.type === "text") {
